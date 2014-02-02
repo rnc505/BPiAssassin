@@ -22,6 +22,7 @@
 		D510A7CF1890790000DBCD91 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D510A7AE1890790000DBCD91 /* UIKit.framework */; };
 		D510A7D71890790000DBCD91 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D510A7D51890790000DBCD91 /* InfoPlist.strings */; };
 		D510A7D91890790000DBCD91 /* BPiAssassinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D510A7D81890790000DBCD91 /* BPiAssassinTests.m */; };
+		D5C734AC189EF3C400198654 /* libBPFacialRecognition.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5C734A9189EF3BA00198654 /* libBPFacialRecognition.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +32,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = D510A7A61890790000DBCD91;
 			remoteInfo = BPiAssassin;
+		};
+		D5C734A8189EF3BA00198654 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5C734A3189EF3BA00198654 /* BPFacialRecognition.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D5AF85DE1890DC10009A42D0;
+			remoteInfo = BPFacialRecognition;
+		};
+		D5C734AA189EF3BA00198654 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5C734A3189EF3BA00198654 /* BPFacialRecognition.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D5AF85EE1890DC10009A42D0;
+			remoteInfo = BPFacialRecognitionTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -55,6 +70,7 @@
 		D510A7D41890790000DBCD91 /* BPiAssassinTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BPiAssassinTests-Info.plist"; sourceTree = "<group>"; };
 		D510A7D61890790000DBCD91 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D510A7D81890790000DBCD91 /* BPiAssassinTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPiAssassinTests.m; sourceTree = "<group>"; };
+		D5C734A3189EF3BA00198654 /* BPFacialRecognition.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BPFacialRecognition.xcodeproj; path = ../../BPFacialRecognition/BPFacialRecognition/BPFacialRecognition.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5C734AC189EF3C400198654 /* libBPFacialRecognition.a in Frameworks */,
 				D510A7AD1890790000DBCD91 /* CoreGraphics.framework in Frameworks */,
 				D510A7AF1890790000DBCD91 /* UIKit.framework in Frameworks */,
 				D510A7AB1890790000DBCD91 /* Foundation.framework in Frameworks */,
@@ -84,6 +101,7 @@
 		D510A79E1890790000DBCD91 = {
 			isa = PBXGroup;
 			children = (
+				D5C734A3189EF3BA00198654 /* BPFacialRecognition.xcodeproj */,
 				D510A7B01890790000DBCD91 /* BPiAssassin */,
 				D510A7D21890790000DBCD91 /* BPiAssassinTests */,
 				D510A7A91890790000DBCD91 /* Frameworks */,
@@ -155,6 +173,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D5C734A4189EF3BA00198654 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D5C734A9189EF3BA00198654 /* libBPFacialRecognition.a */,
+				D5C734AB189EF3BA00198654 /* BPFacialRecognitionTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -219,6 +246,12 @@
 			mainGroup = D510A79E1890790000DBCD91;
 			productRefGroup = D510A7A81890790000DBCD91 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D5C734A4189EF3BA00198654 /* Products */;
+					ProjectRef = D5C734A3189EF3BA00198654 /* BPFacialRecognition.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				D510A7A61890790000DBCD91 /* BPiAssassin */,
@@ -226,6 +259,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D5C734A9189EF3BA00198654 /* libBPFacialRecognition.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBPFacialRecognition.a;
+			remoteRef = D5C734A8189EF3BA00198654 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D5C734AB189EF3BA00198654 /* BPFacialRecognitionTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = BPFacialRecognitionTests.xctest;
+			remoteRef = D5C734AA189EF3BA00198654 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D510A7A51890790000DBCD91 /* Resources */ = {
@@ -333,6 +383,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/..",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -351,6 +405,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../BPFacialRecognition/BPFacialRecognition/BPFacialRecognition";
 			};
 			name = Debug;
 		};
@@ -374,6 +429,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/..",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -384,6 +443,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../BPFacialRecognition/BPFacialRecognition/BPFacialRecognition";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
