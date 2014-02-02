@@ -2,7 +2,7 @@
 //  BPAppDelegate.m
 //  BPiAssassin
 //
-//  Created by Robby Cohen on 1/22/14.
+//  Created by John Rozier on 1/22/14.
 //  Copyright (c) 2014 BP. All rights reserved.
 //
 

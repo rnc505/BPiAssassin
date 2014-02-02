@@ -475,6 +475,7 @@
 				D510A7DE1890790000DBCD91 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D510A7DF1890790000DBCD91 /* Build configuration list for PBXNativeTarget "BPiAssassinTests" */ = {
 			isa = XCConfigurationList;
@@ -483,6 +484,7 @@
 				D510A7E11890790000DBCD91 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
