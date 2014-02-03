@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52C66A9C189F458100282514 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C66A9B189F458100282514 /* Default.png */; };
 		D510A7AB1890790000DBCD91 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D510A7AA1890790000DBCD91 /* Foundation.framework */; };
 		D510A7AD1890790000DBCD91 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D510A7AC1890790000DBCD91 /* CoreGraphics.framework */; };
 		D510A7AF1890790000DBCD91 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D510A7AE1890790000DBCD91 /* UIKit.framework */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		52C66A9B189F458100282514 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		D510A7A71890790000DBCD91 /* BPiAssassin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BPiAssassin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D510A7AA1890790000DBCD91 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D510A7AC1890790000DBCD91 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -101,6 +103,7 @@
 		D510A79E1890790000DBCD91 = {
 			isa = PBXGroup;
 			children = (
+				52C66A9B189F458100282514 /* Default.png */,
 				D5C734A3189EF3BA00198654 /* BPFacialRecognition.xcodeproj */,
 				D510A7B01890790000DBCD91 /* BPiAssassin */,
 				D510A7D21890790000DBCD91 /* BPiAssassinTests */,
@@ -286,6 +289,7 @@
 				D510A7C61890790000DBCD91 /* Images.xcassets in Resources */,
 				D510A7BE1890790000DBCD91 /* Main_iPhone.storyboard in Resources */,
 				D510A7B51890790000DBCD91 /* InfoPlist.strings in Resources */,
+				52C66A9C189F458100282514 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,7 +10,7 @@
 
 @interface BPViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-@property (strong, nonatomic) IBOutlet UIView *imageView;
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
 
 - (IBAction)takePhoto:(UIButton *)sender;
 - (IBAction)selectPhoto:(UIButton *)sender;

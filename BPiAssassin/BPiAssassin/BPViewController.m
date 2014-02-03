@@ -18,7 +18,16 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                              message:@"Device has no camera"
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles: nil];
+        [myAlertView show];
     }
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -43,5 +52,23 @@
     
     [self presentViewController:picker animated:YES completion:NULL];
 }
+
+#pragma mark - Image Picker Controller delegate methods
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    self.imageView.image = chosenImage;
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
 
 @end
