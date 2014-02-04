@@ -83,7 +83,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uz7-Lm-ITw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-404" y="-53"/>
+            <point key="canvasLocation" x="-698" y="-47"/>
         </scene>
         <!--Face Confirm View Controller-->
         <scene sceneID="WFR-Ad-jIU">
@@ -171,7 +171,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gST-JK-s2b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="72" y="-53"/>
+            <point key="canvasLocation" x="-258" y="-105"/>
         </scene>
         <!--Unlock Device View Controller-->
         <scene sceneID="gip-D0-fjj">
@@ -249,12 +249,13 @@
                     </view>
                     <connections>
                         <outlet property="newFace" destination="uwr-fJ-gxa" id="f2d-nk-fY5"/>
+                        <outlet property="targetFace" destination="uwr-fJ-gxa" id="d4y-Lx-etN"/>
                         <outlet property="welcomeLabel" destination="kXP-K7-F7B" id="bhL-kO-gWY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wUA-cM-slf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="552" y="-53"/>
+            <point key="canvasLocation" x="236" y="-205"/>
         </scene>
     </scenes>
     <resources>

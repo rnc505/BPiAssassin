@@ -10,7 +10,7 @@
 
 @interface BPUnlockDeviceViewController : UIViewController
 
-@property (strong, nonatomic) IBOutlet UIImageView *newFace;
+@property (strong, nonatomic) IBOutlet UIImageView *targetFace;
 @property (strong, nonatomic) IBOutlet UILabel *welcomeLabel;
 
 

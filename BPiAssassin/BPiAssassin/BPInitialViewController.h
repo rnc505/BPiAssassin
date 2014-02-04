@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BPInitialViewController : UIViewController
+@interface BPInitialViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIImageView *face1;
 @property (strong, nonatomic) IBOutlet UITextField *faceName;
