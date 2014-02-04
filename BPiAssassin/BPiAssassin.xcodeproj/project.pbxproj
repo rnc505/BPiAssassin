@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5241CE0318A04D92003EA1D9 /* images.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5241CE0218A04D92003EA1D9 /* images.jpg */; };
+		5241CE0918A0B2B6003EA1D9 /* BPInitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5241CE0818A0B2B6003EA1D9 /* BPInitialViewController.m */; };
+		5241CE0C18A0B3E3003EA1D9 /* BPFaceConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5241CE0B18A0B3E3003EA1D9 /* BPFaceConfirmViewController.m */; };
+		5241CE0F18A0B42B003EA1D9 /* BPUnlockDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5241CE0E18A0B42B003EA1D9 /* BPUnlockDeviceViewController.m */; };
 		52C66A9C189F458100282514 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C66A9B189F458100282514 /* Default.png */; };
 		D510A7AB1890790000DBCD91 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D510A7AA1890790000DBCD91 /* Foundation.framework */; };
 		D510A7AD1890790000DBCD91 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D510A7AC1890790000DBCD91 /* CoreGraphics.framework */; };
@@ -16,7 +20,6 @@
 		D510A7BB1890790000DBCD91 /* BPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D510A7BA1890790000DBCD91 /* BPAppDelegate.m */; };
 		D510A7BE1890790000DBCD91 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D510A7BC1890790000DBCD91 /* Main_iPhone.storyboard */; };
 		D510A7C11890790000DBCD91 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D510A7BF1890790000DBCD91 /* Main_iPad.storyboard */; };
-		D510A7C41890790000DBCD91 /* BPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D510A7C31890790000DBCD91 /* BPViewController.m */; };
 		D510A7C61890790000DBCD91 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D510A7C51890790000DBCD91 /* Images.xcassets */; };
 		D510A7CD1890790000DBCD91 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D510A7CC1890790000DBCD91 /* XCTest.framework */; };
 		D510A7CE1890790000DBCD91 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D510A7AA1890790000DBCD91 /* Foundation.framework */; };
@@ -51,6 +54,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5241CE0218A04D92003EA1D9 /* images.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = images.jpg; path = ../../../../../../../Desktop/images.jpg; sourceTree = "<group>"; };
+		5241CE0718A0B2B6003EA1D9 /* BPInitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPInitialViewController.h; sourceTree = "<group>"; };
+		5241CE0818A0B2B6003EA1D9 /* BPInitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPInitialViewController.m; sourceTree = "<group>"; };
+		5241CE0A18A0B3E3003EA1D9 /* BPFaceConfirmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPFaceConfirmViewController.h; sourceTree = "<group>"; };
+		5241CE0B18A0B3E3003EA1D9 /* BPFaceConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPFaceConfirmViewController.m; sourceTree = "<group>"; };
+		5241CE0D18A0B42B003EA1D9 /* BPUnlockDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPUnlockDeviceViewController.h; sourceTree = "<group>"; };
+		5241CE0E18A0B42B003EA1D9 /* BPUnlockDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPUnlockDeviceViewController.m; sourceTree = "<group>"; };
 		52C66A9B189F458100282514 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		D510A7A71890790000DBCD91 /* BPiAssassin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BPiAssassin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D510A7AA1890790000DBCD91 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -64,8 +74,6 @@
 		D510A7BA1890790000DBCD91 /* BPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPAppDelegate.m; sourceTree = "<group>"; };
 		D510A7BD1890790000DBCD91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		D510A7C01890790000DBCD91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		D510A7C21890790000DBCD91 /* BPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPViewController.h; sourceTree = "<group>"; };
-		D510A7C31890790000DBCD91 /* BPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPViewController.m; sourceTree = "<group>"; };
 		D510A7C51890790000DBCD91 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D510A7CB1890790000DBCD91 /* BPiAssassinTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BPiAssassinTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D510A7CC1890790000DBCD91 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -103,6 +111,7 @@
 		D510A79E1890790000DBCD91 = {
 			isa = PBXGroup;
 			children = (
+				5241CE0218A04D92003EA1D9 /* images.jpg */,
 				52C66A9B189F458100282514 /* Default.png */,
 				D5C734A3189EF3BA00198654 /* BPFacialRecognition.xcodeproj */,
 				D510A7B01890790000DBCD91 /* BPiAssassin */,
@@ -139,8 +148,12 @@
 				D510A7BA1890790000DBCD91 /* BPAppDelegate.m */,
 				D510A7BC1890790000DBCD91 /* Main_iPhone.storyboard */,
 				D510A7BF1890790000DBCD91 /* Main_iPad.storyboard */,
-				D510A7C21890790000DBCD91 /* BPViewController.h */,
-				D510A7C31890790000DBCD91 /* BPViewController.m */,
+				5241CE0718A0B2B6003EA1D9 /* BPInitialViewController.h */,
+				5241CE0818A0B2B6003EA1D9 /* BPInitialViewController.m */,
+				5241CE0A18A0B3E3003EA1D9 /* BPFaceConfirmViewController.h */,
+				5241CE0B18A0B3E3003EA1D9 /* BPFaceConfirmViewController.m */,
+				5241CE0D18A0B42B003EA1D9 /* BPUnlockDeviceViewController.h */,
+				5241CE0E18A0B42B003EA1D9 /* BPUnlockDeviceViewController.m */,
 				D510A7C51890790000DBCD91 /* Images.xcassets */,
 				D510A7B11890790000DBCD91 /* Supporting Files */,
 			);
@@ -290,6 +303,7 @@
 				D510A7BE1890790000DBCD91 /* Main_iPhone.storyboard in Resources */,
 				D510A7B51890790000DBCD91 /* InfoPlist.strings in Resources */,
 				52C66A9C189F458100282514 /* Default.png in Resources */,
+				5241CE0318A04D92003EA1D9 /* images.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,9 +322,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D510A7C41890790000DBCD91 /* BPViewController.m in Sources */,
+				5241CE0C18A0B3E3003EA1D9 /* BPFaceConfirmViewController.m in Sources */,
+				5241CE0F18A0B42B003EA1D9 /* BPUnlockDeviceViewController.m in Sources */,
 				D510A7BB1890790000DBCD91 /* BPAppDelegate.m in Sources */,
 				D510A7B71890790000DBCD91 /* main.m in Sources */,
+				5241CE0918A0B2B6003EA1D9 /* BPInitialViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,7 +476,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BPiAssassin/BPiAssassin-Prefix.pch";
 				INFOPLIST_FILE = "BPiAssassin/BPiAssassin-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -473,7 +491,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BPiAssassin/BPiAssassin-Prefix.pch";
 				INFOPLIST_FILE = "BPiAssassin/BPiAssassin-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
