@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BPFaceConfirmViewController : UIViewController
+@interface BPFaceConfirmViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIImageView *face2;
 @property (strong, nonatomic) IBOutlet UILabel *nameDisplay;
+@property (strong, nonatomic) NSString *faceName;
+
+@property (strong, nonatomic) IBOutlet UIButton *confirmFaceBtn;
 
 - (IBAction)takePhoto:(UIButton *)sender;
 - (IBAction)selectPhoto:(UIButton *)sender;

@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BPUnlockDeviceViewController : UIViewController
+@interface BPUnlockDeviceViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIImageView *targetFace;
 @property (strong, nonatomic) IBOutlet UILabel *welcomeLabel;
+@property (strong, nonatomic) NSString *faceName;
 
+@property (strong, nonatomic) IBOutlet UIButton *unlockBtn;
 
 - (IBAction)takePhoto:(UIButton *)sender;
 - (IBAction)selectPhoto:(UIButton *)sender;

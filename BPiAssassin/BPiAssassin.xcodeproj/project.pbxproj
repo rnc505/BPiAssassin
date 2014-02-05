@@ -11,6 +11,7 @@
 		5241CE0C18A0B3E3003EA1D9 /* BPFaceConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5241CE0B18A0B3E3003EA1D9 /* BPFaceConfirmViewController.m */; };
 		5241CE0F18A0B42B003EA1D9 /* BPUnlockDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5241CE0E18A0B42B003EA1D9 /* BPUnlockDeviceViewController.m */; };
 		5241CE1118A1483E003EA1D9 /* images.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5241CE1018A1483E003EA1D9 /* images.jpg */; };
+		5241CE1618A20707003EA1D9 /* BPConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5241CE1518A20707003EA1D9 /* BPConfirmViewController.m */; };
 		52C66A9C189F458100282514 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C66A9B189F458100282514 /* Default.png */; };
 		D510A7AB1890790000DBCD91 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D510A7AA1890790000DBCD91 /* Foundation.framework */; };
 		D510A7AD1890790000DBCD91 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D510A7AC1890790000DBCD91 /* CoreGraphics.framework */; };
@@ -61,6 +62,8 @@
 		5241CE0D18A0B42B003EA1D9 /* BPUnlockDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPUnlockDeviceViewController.h; sourceTree = "<group>"; };
 		5241CE0E18A0B42B003EA1D9 /* BPUnlockDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPUnlockDeviceViewController.m; sourceTree = "<group>"; };
 		5241CE1018A1483E003EA1D9 /* images.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = images.jpg; path = ../images.jpg; sourceTree = "<group>"; };
+		5241CE1418A20707003EA1D9 /* BPConfirmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPConfirmViewController.h; sourceTree = "<group>"; };
+		5241CE1518A20707003EA1D9 /* BPConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPConfirmViewController.m; sourceTree = "<group>"; };
 		52C66A9B189F458100282514 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		D510A7A71890790000DBCD91 /* BPiAssassin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BPiAssassin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D510A7AA1890790000DBCD91 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -154,6 +157,8 @@
 				5241CE0B18A0B3E3003EA1D9 /* BPFaceConfirmViewController.m */,
 				5241CE0D18A0B42B003EA1D9 /* BPUnlockDeviceViewController.h */,
 				5241CE0E18A0B42B003EA1D9 /* BPUnlockDeviceViewController.m */,
+				5241CE1418A20707003EA1D9 /* BPConfirmViewController.h */,
+				5241CE1518A20707003EA1D9 /* BPConfirmViewController.m */,
 				D510A7C51890790000DBCD91 /* Images.xcassets */,
 				D510A7B11890790000DBCD91 /* Supporting Files */,
 			);
@@ -323,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5241CE0C18A0B3E3003EA1D9 /* BPFaceConfirmViewController.m in Sources */,
+				5241CE1618A20707003EA1D9 /* BPConfirmViewController.m in Sources */,
 				5241CE0F18A0B42B003EA1D9 /* BPUnlockDeviceViewController.m in Sources */,
 				D510A7BB1890790000DBCD91 /* BPAppDelegate.m in Sources */,
 				D510A7B71890790000DBCD91 /* main.m in Sources */,
