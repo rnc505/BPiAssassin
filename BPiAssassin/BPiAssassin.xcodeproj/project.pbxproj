@@ -13,6 +13,7 @@
 		52CA374218B029AC00A87AAE /* BPGameStatsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CA374118B029AC00A87AAE /* BPGameStatsVC.m */; };
 		52CA374518B02A2F00A87AAE /* BPCameraAimVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CA374418B02A2F00A87AAE /* BPCameraAimVC.m */; };
 		52CA374818B02A5900A87AAE /* BPMatchmakingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CA374718B02A5900A87AAE /* BPMatchmakingVC.m */; };
+		52D753A618B165CF007BF7DC /* Hot Blood Wallpapers.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 52D753A518B165CF007BF7DC /* Hot Blood Wallpapers.jpg */; };
 		D510A7AB1890790000DBCD91 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D510A7AA1890790000DBCD91 /* Foundation.framework */; };
 		D510A7AD1890790000DBCD91 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D510A7AC1890790000DBCD91 /* CoreGraphics.framework */; };
 		D510A7AF1890790000DBCD91 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D510A7AE1890790000DBCD91 /* UIKit.framework */; };
@@ -67,6 +68,7 @@
 		52CA374418B02A2F00A87AAE /* BPCameraAimVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCameraAimVC.m; sourceTree = "<group>"; };
 		52CA374618B02A5900A87AAE /* BPMatchmakingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMatchmakingVC.h; sourceTree = "<group>"; };
 		52CA374718B02A5900A87AAE /* BPMatchmakingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMatchmakingVC.m; sourceTree = "<group>"; };
+		52D753A518B165CF007BF7DC /* Hot Blood Wallpapers.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Hot Blood Wallpapers.jpg"; sourceTree = "<group>"; };
 		D510A7A71890790000DBCD91 /* BPiAssassin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BPiAssassin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D510A7AA1890790000DBCD91 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D510A7AC1890790000DBCD91 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -118,6 +120,7 @@
 		D510A79E1890790000DBCD91 = {
 			isa = PBXGroup;
 			children = (
+				52D753A518B165CF007BF7DC /* Hot Blood Wallpapers.jpg */,
 				52C66A9B189F458100282514 /* Default.png */,
 				D5C734A3189EF3BA00198654 /* BPFacialRecognition.xcodeproj */,
 				D510A7B01890790000DBCD91 /* BPiAssassin */,
@@ -315,6 +318,7 @@
 				D510A7BE1890790000DBCD91 /* Main_iPhone.storyboard in Resources */,
 				D510A7B51890790000DBCD91 /* InfoPlist.strings in Resources */,
 				52C66A9C189F458100282514 /* Default.png in Resources */,
+				52D753A618B165CF007BF7DC /* Hot Blood Wallpapers.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
