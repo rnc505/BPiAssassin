@@ -116,7 +116,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t1q-DY-C1t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="772" y="-25"/>
+            <point key="canvasLocation" x="1810" y="-1194"/>
         </scene>
         <!--Camera AimVC-->
         <scene sceneID="w3t-dc-DcZ">
@@ -152,6 +152,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="Ko2-GT-4Q2" kind="modal" id="WAE-QP-P91"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -159,7 +162,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S1N-Yf-SIU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1283" y="-5"/>
+            <point key="canvasLocation" x="1319" y="301"/>
         </scene>
         <!--Live GameVC-->
         <scene sceneID="yOQ-Uf-JDa">
@@ -224,7 +227,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b1s-xR-8pW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1295" y="-749"/>
+            <point key="canvasLocation" x="1299" y="-679"/>
         </scene>
         <!--MatchmakingVC-->
         <scene sceneID="SFx-GZ-CDW">
@@ -298,7 +301,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GmK-7O-9Zv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="747" y="-766"/>
+            <point key="canvasLocation" x="739" y="-926"/>
         </scene>
     </scenes>
     <resources>
@@ -310,4 +313,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="WAE-QP-P91"/>
+    </inferredMetricsTieBreakers>
 </document>

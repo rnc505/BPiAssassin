@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		52C66A9C189F458100282514 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C66A9B189F458100282514 /* Default.png */; };
+		5272562818B472B900F3E8FA /* 883033.png in Resources */ = {isa = PBXBuildFile; fileRef = 5272562518B472B800F3E8FA /* 883033.png */; };
+		5272562A18B472B900F3E8FA /* speeding_bullet.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5272562718B472B800F3E8FA /* speeding_bullet.jpg */; };
+		5272563218B47E3800F3E8FA /* icon29pt.png in Resources */ = {isa = PBXBuildFile; fileRef = 5272562F18B47E3800F3E8FA /* icon29pt.png */; };
+		5272563318B47E3800F3E8FA /* icon40pt.png in Resources */ = {isa = PBXBuildFile; fileRef = 5272563018B47E3800F3E8FA /* icon40pt.png */; };
+		5272563418B47E3800F3E8FA /* icon60pt.png in Resources */ = {isa = PBXBuildFile; fileRef = 5272563118B47E3800F3E8FA /* icon60pt.png */; };
+		5272563618B4848600F3E8FA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5272563518B4848600F3E8FA /* Default.png */; };
+		5272563818B4870000F3E8FA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5272563718B4870000F3E8FA /* Default@2x.png */; };
 		52CA373C18B0291400A87AAE /* BPCreateGameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CA373B18B0291400A87AAE /* BPCreateGameVC.m */; };
 		52CA373F18B0294700A87AAE /* BPLiveGameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CA373E18B0294700A87AAE /* BPLiveGameVC.m */; };
 		52CA374218B029AC00A87AAE /* BPGameStatsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CA374118B029AC00A87AAE /* BPGameStatsVC.m */; };
@@ -57,7 +63,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		52C66A9B189F458100282514 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		5272562518B472B800F3E8FA /* 883033.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 883033.png; sourceTree = "<group>"; };
+		5272562718B472B800F3E8FA /* speeding_bullet.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = speeding_bullet.jpg; sourceTree = "<group>"; };
+		5272562F18B47E3800F3E8FA /* icon29pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon29pt.png; sourceTree = "<group>"; };
+		5272563018B47E3800F3E8FA /* icon40pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon40pt.png; sourceTree = "<group>"; };
+		5272563118B47E3800F3E8FA /* icon60pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon60pt.png; sourceTree = "<group>"; };
+		5272563518B4848600F3E8FA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		5272563718B4870000F3E8FA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		52CA373A18B0291400A87AAE /* BPCreateGameVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCreateGameVC.h; sourceTree = "<group>"; };
 		52CA373B18B0291400A87AAE /* BPCreateGameVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCreateGameVC.m; sourceTree = "<group>"; };
 		52CA373D18B0294700A87AAE /* BPLiveGameVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPLiveGameVC.h; sourceTree = "<group>"; };
@@ -120,8 +132,14 @@
 		D510A79E1890790000DBCD91 = {
 			isa = PBXGroup;
 			children = (
+				5272563718B4870000F3E8FA /* Default@2x.png */,
+				5272563518B4848600F3E8FA /* Default.png */,
+				5272562F18B47E3800F3E8FA /* icon29pt.png */,
+				5272563018B47E3800F3E8FA /* icon40pt.png */,
+				5272563118B47E3800F3E8FA /* icon60pt.png */,
+				5272562518B472B800F3E8FA /* 883033.png */,
+				5272562718B472B800F3E8FA /* speeding_bullet.jpg */,
 				52D753A518B165CF007BF7DC /* Hot Blood Wallpapers.jpg */,
-				52C66A9B189F458100282514 /* Default.png */,
 				D5C734A3189EF3BA00198654 /* BPFacialRecognition.xcodeproj */,
 				D510A7B01890790000DBCD91 /* BPiAssassin */,
 				D510A7D21890790000DBCD91 /* BPiAssassinTests */,
@@ -261,6 +279,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = BP;
 				TargetAttributes = {
+					D510A7A61890790000DBCD91 = {
+						DevelopmentTeam = 7MA825R8KR;
+					};
 					D510A7CA1890790000DBCD91 = {
 						TestTargetID = D510A7A61890790000DBCD91;
 					};
@@ -313,12 +334,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5272563818B4870000F3E8FA /* Default@2x.png in Resources */,
+				5272562818B472B900F3E8FA /* 883033.png in Resources */,
 				D510A7C11890790000DBCD91 /* Main_iPad.storyboard in Resources */,
+				5272563318B47E3800F3E8FA /* icon40pt.png in Resources */,
 				D510A7C61890790000DBCD91 /* Images.xcassets in Resources */,
 				D510A7BE1890790000DBCD91 /* Main_iPhone.storyboard in Resources */,
+				5272563218B47E3800F3E8FA /* icon29pt.png in Resources */,
 				D510A7B51890790000DBCD91 /* InfoPlist.strings in Resources */,
-				52C66A9C189F458100282514 /* Default.png in Resources */,
+				5272562A18B472B900F3E8FA /* speeding_bullet.jpg in Resources */,
 				52D753A618B165CF007BF7DC /* Hot Blood Wallpapers.jpg in Resources */,
+				5272563418B47E3800F3E8FA /* icon60pt.png in Resources */,
+				5272563618B4848600F3E8FA /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,10 +518,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BPiAssassin/BPiAssassin-Prefix.pch";
 				INFOPLIST_FILE = "BPiAssassin/BPiAssassin-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -504,10 +534,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BPiAssassin/BPiAssassin-Prefix.pch";
 				INFOPLIST_FILE = "BPiAssassin/BPiAssassin-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
