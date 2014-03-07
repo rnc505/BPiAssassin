@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype-descriptor name="schmear-base-rest">
+	<fileSets>
+		<fileSet filtered="true" encoding="UTF-8">
+			<directory>src/</directory>
+			<include>**/**</include>
+		</fileSet>
+		<fileSet filtered="true" encoding="UTF-8">
+			<directory>/</directory>
+			<include>pom.xml</include>
+		</fileSet>
+	</fileSets>
+	<configuration>
+		<includeEmptyDirs>true</includeEmptyDirs>
+	</configuration>
+</archetype-descriptor>
