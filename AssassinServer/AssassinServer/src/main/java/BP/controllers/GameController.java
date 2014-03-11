@@ -33,9 +33,9 @@ public class GameController {
 	 * 
 	 */
 	
-	@RequestMapping(method = RequestMethod.POST, value = "createGame")
+	/*@RequestMapping(method = RequestMethod.POST, value = "createGame")
 	public List<GameUserImage> createGame() {
 		return this.store.getAllUserImagesSorted();
-	}
+	}*/
 	
 }

@@ -6,6 +6,7 @@ public class GameUser {
 
 	public final int NUM_IMAGES = 4;
 	
+	public int UUID;
 	public String userID;
 
 	//GameUserImage Information	
@@ -148,5 +149,9 @@ public class GameUser {
 	 */
 	public int getNumWins() {
 		return this.numWins;
+	}
+	
+	public int getUUID() {
+		return this.UUID;
 	}
 }
