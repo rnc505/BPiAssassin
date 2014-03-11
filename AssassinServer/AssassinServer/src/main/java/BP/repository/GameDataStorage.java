@@ -4,11 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import BP.users.*;
 
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
-import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.datastore.*;
 
 
 public class GameDataStorage {
@@ -24,14 +20,37 @@ public class GameDataStorage {
 		datastore = DatastoreServiceFactory.getDatastoreService();
 	}
 	
-	public int create(GameUser user) {
+	//***************************
+	//Methods used by GameUsers
+	//***************************
+	
+	/**
+	 * create() 
+	 * Creates a DataStore entity for the new user
+	 * @param user
+	 * @return The UUID of the stored user
+	 */
+	public long create(GameUser user) {
 		entity = new Entity("User");
+		entity.setProperty("hash", user.getHash());
 		entity.setProperty("userID", user.getUserID());
 		entity.setProperty("numKills", user.getNumKills());
 		entity.setProperty("numDeaths", user.getNumDeaths());
-		entity.setProperty("numWins", user.getNumWins());
-		entity.setProperty("target", user.getTarget().getUUID());
-		return 0;
+		entity.setProperty("numWins", user.getNumWins());;
+		datastore.put(entity);
+		return entity.getKey().getId();
+	}
+	
+	public void update(GameUser user, String userID, String propertyName) {
+		
+	}
+	
+	public void update(GameUser user, GameUser target, String propertyName) {
+		
+	}
+	
+	public void update(GameUser user, int value, String propertyName) {
+		
 	}
 	
 	

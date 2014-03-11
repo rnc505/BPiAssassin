@@ -1,11 +1,12 @@
 package BP.game;
 
-import BP.users;
-import BP.repository;
-import BP.domain;
-import java.util.AbstractMap;
+import BP.users.*;
+import BP.repository.GameDataStorage;
+import BP.domain.GameData;
+import java.util.HashMap;
 import java.util.Collections;
 import java.util.ArrayList;
+
 
 public class Game {
 
@@ -40,10 +41,11 @@ public class Game {
 			throw new RuntimeException(
 					"Cannot collect Init Data. Game in Progress.");
 		
-		ArrayList<ArrayList<GameUserImage>> data;
+		ArrayList<ArrayList<GameUserImage>> data = 
+				new ArrayList<ArrayList<GameUserImage>>();
 		int numUsers = this.playerList.size();
 		for (int i =0; i < numUsers; i++) {
-			data.add(playerList.get().getUsrImages());
+			data.add(playerList.get(i).getUsrImages());
 		}
 		return data;
 	}
@@ -73,7 +75,7 @@ public class Game {
 	 */
 	public HashMap<GameUser, GameUser> startGame() {
 		if (gameInProgress)
-			throw new IOException("Game is already in Progress.");
+			throw new RuntimeException("Game is already in Progress.");
 		this.gameInProgress = true;
 		return assignTargets();
 	}
@@ -104,7 +106,7 @@ public class Game {
 	 */
 	public void endGame(GameUser winner) {
 		if (!gameInProgress)
-			throw new IOException("Game has not been started yet.");
+			throw new RuntimeException("Game has not been started yet.");
 		this.gameInProgress = false;
 		winner.addWin();
 	}
@@ -122,7 +124,7 @@ public class Game {
 		int numPlayers = playerList.size();
 		HashMap<GameUser,GameUser> map = new HashMap<GameUser, GameUser>(numPlayers);
 		for (int i =0; i < numPlayers; i++) {
-			map.put(i, (i+1)%(numPlayers))
+			map.put(playerList.get(i), playerList.get((i+1)%(numPlayers)));
 		}
 		return map;
 	}

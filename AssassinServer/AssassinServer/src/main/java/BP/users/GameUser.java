@@ -6,7 +6,8 @@ public class GameUser {
 
 	public final int NUM_IMAGES = 4;
 	
-	public int UUID;
+	public String hash;
+	public long UUID;
 	public String userID;
 
 	//GameUserImage Information	
@@ -32,9 +33,10 @@ public class GameUser {
 	 * @param usrImage3
 	 * @param usrImage4
 	 */
-	public GameUser(String userID, GameUserImage thumbnail, 
+	public GameUser(String hash, String userID,  GameUserImage thumbnail, 
 			GameUserImage usrImage1,GameUserImage usrImage2, 
 			GameUserImage usrImage3, GameUserImage usrImage4) {
+		this.hash = hash;
 		this.userID = userID;
 		this.thumbnail = thumbnail;
 		this.usrImage1 = usrImage1;
@@ -45,6 +47,7 @@ public class GameUser {
 		this.numDeaths = 0;
 		this.numWins = 0;
 }
+	
 	
 	/**
 	 * setTarget() 
@@ -151,7 +154,20 @@ public class GameUser {
 		return this.numWins;
 	}
 	
-	public int getUUID() {
+	/**
+	 * getUUID() 
+	 * @return Returns the UUID of the GameUser
+	 */
+	public long getUUID() {
 		return this.UUID;
+	}
+	
+	/**
+	 * getHash()
+	 * Returns the client hash for the Game User 
+	 * @return 
+	 */
+	public String getHash() {
+		return this.hash;
 	}
 }
