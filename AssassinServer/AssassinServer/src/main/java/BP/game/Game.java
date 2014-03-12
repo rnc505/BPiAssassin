@@ -10,10 +10,11 @@ import java.util.ArrayList;
 
 public class Game {
 
+	public GameDataStorage storage = new GameDataStorage();
+	
 	public GameData gamePlayData; //Data used for facial recognition
-	public ArrayList<GameUser> playerList;
-	public GameUser host; //player who "created" game
-	public GameDataStorage myData;
+	public ArrayList<String> playerList;
+	public String hostHash; //player who "created" game
 	
 	public boolean gameInProgress;
 	
@@ -23,11 +24,15 @@ public class Game {
 	 * @param host
 	 * @param playerList
 	 */
-	public Game(GameUser host, ArrayList<GameUser> playerList) {
-		this.host = host;
+	public Game(String host, ArrayList<String> playerList) {
+		this.hostHash = host;
 		this.playerList = playerList;
 		this.gameInProgress = false;
-		this.myData = new GameDataStorage();
+		storage.createGame(host, playerList);
+		//Ensures all game users information is up-to-date for Game Set Up
+		for (String a: playerList) {
+			storage.getUser(a).refreshUserData();
+		}
 	}
 	
 	/**
@@ -45,7 +50,7 @@ public class Game {
 				new ArrayList<ArrayList<GameUserImage>>();
 		int numUsers = this.playerList.size();
 		for (int i =0; i < numUsers; i++) {
-			data.add(playerList.get(i).getUsrImages());
+			data.add(storage.getUser(playerList.get(i)).getUsrImages());
 		}
 		return data;
 	}
@@ -124,7 +129,8 @@ public class Game {
 		int numPlayers = playerList.size();
 		HashMap<GameUser,GameUser> map = new HashMap<GameUser, GameUser>(numPlayers);
 		for (int i =0; i < numPlayers; i++) {
-			map.put(playerList.get(i), playerList.get((i+1)%(numPlayers)));
+			map.put(storage.getUser(playerList.get(i)), 
+					storage.getUser(playerList.get((i+1)%numPlayers)));
 		}
 		return map;
 	}

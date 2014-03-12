@@ -1,31 +1,49 @@
 package BP.users;
 
+import BP.repository.GameDataStorage;
+
 import java.util.ArrayList;
 
-public class GameUser {
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
+
+@PersistenceCapable
+public class GameUser {
+	
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	public String uuidString;
+	
+	@Persistent
 	public final int NUM_IMAGES = 4;
 	
-	public String hash;
-	public long UUID;
+	@Persistent
 	public String userID;
-
-	//GameUserImage Information	
+	@Persistent
 	public GameUserImage thumbnail;
+	@Persistent
 	public GameUserImage usrImage1;
+	@Persistent
 	public GameUserImage usrImage2;
+	@Persistent
 	public GameUserImage usrImage3;
+	@Persistent
 	public GameUserImage usrImage4;
+	@Persistent
+	public String targetUUID;
 	
-	public GameUser usrTarget;
+	
 	public int numKills;
 	public int numDeaths;
 	public int numWins;
 
-	
 	/**
-	 * Constructor 
-	 *
+	 * Default Constructor 
+	 *  
+	 * @param hash
 	 * @param userID
 	 * @param thumbnail
 	 * @param usrImage1
@@ -33,19 +51,46 @@ public class GameUser {
 	 * @param usrImage3
 	 * @param usrImage4
 	 */
-	public GameUser(String hash, String userID,  GameUserImage thumbnail, 
+	public GameUser(String uuid, String userID,  GameUserImage thumbnail, 
 			GameUserImage usrImage1,GameUserImage usrImage2, 
 			GameUserImage usrImage3, GameUserImage usrImage4) {
-		this.hash = hash;
+		this(uuid, userID, thumbnail, usrImage1, 
+				usrImage2, usrImage3, usrImage4, null, 0, 0 ,0, true);
+	}
+	
+	
+	/**
+	 * Special Constructor 
+	 * @param hash
+	 * @param userID
+	 * @param thumbnail
+	 * @param usrImage1
+	 * @param usrImage2
+	 * @param usrImage3
+	 * @param usrImage4
+	 * @param usrTarget
+	 * @param numKills
+	 * @param numDeaths
+	 * @param numWins
+	 * @param storeData
+	 */
+	public GameUser(String uuid, String userID,  GameUserImage thumbnail, 
+			GameUserImage usrImage1,GameUserImage usrImage2, 
+			GameUserImage usrImage3, GameUserImage usrImage4, 
+			String usrTarget, int numKills, int numDeaths, int numWins, 
+			boolean storeData) {
+		this.uuidString = uuid;
 		this.userID = userID;
 		this.thumbnail = thumbnail;
 		this.usrImage1 = usrImage1;
 		this.usrImage2 = usrImage2;
 		this.usrImage3 = usrImage3;
 		this.usrImage4 = usrImage4;
-		this.numKills = 0;
-		this.numDeaths = 0;
-		this.numWins = 0;
+		this.targetUUID = usrTarget;
+		this.numKills = numKills;
+		this.numDeaths = numDeaths;
+		this.numWins = numWins;
+		
 }
 	
 	
@@ -54,8 +99,8 @@ public class GameUser {
 	 * Sets user target
 	 * @param target
 	 */
-	public void setTarget(GameUser target) {
-		this.usrTarget = target;
+	public void setTarget(String target) {
+		this.targetUUID = target;
 	}
 	
 	/**
@@ -64,6 +109,15 @@ public class GameUser {
 	 * @return 
 	 */
 	public GameUser getTarget() {
+		return storage.getUser(this.usrTarget);
+	}
+	
+	/**
+	 * getTargetHash() 
+	 * Returns the user's target's hash
+	 * @return
+	 */
+	public String getTargetHash() {
 		return this.usrTarget;
 	}
 	
@@ -105,7 +159,8 @@ public class GameUser {
 	 * @return
 	 */
 	public int addKill() {
-		return ++this.numKills;
+		storage.updateUser(this, "numKills", ++this.numKills);
+		return this.numKills;
 	}
 	
 	/**
@@ -123,7 +178,8 @@ public class GameUser {
 	 * @return
 	 */
 	public int addDeath() {
-		return ++this.numDeaths;
+		storage.updateUser(this, "numDeaths", ++this.numDeaths);
+		return this.numDeaths;
 	}
 	
 	/**
@@ -142,7 +198,8 @@ public class GameUser {
 	 * @return
 	 */
 	public int addWin() {
-		return ++this.numWins;
+		storage.updateUser(this, "numWins", ++this.numWins);
+		return this.numWins;
 	}
 
 	/**
@@ -152,14 +209,6 @@ public class GameUser {
 	 */
 	public int getNumWins() {
 		return this.numWins;
-	}
-	
-	/**
-	 * getUUID() 
-	 * @return Returns the UUID of the GameUser
-	 */
-	public long getUUID() {
-		return this.UUID;
 	}
 	
 	/**
