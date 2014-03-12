@@ -21,12 +21,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 @Controller
-@RequestMapping("/game/")
+@RequestMapping("/game")
 public class GameController {
 	
-	ObjectMapper jsonParser;
 	public GameController() {
-		jsonParser = new ObjectMapper();
 	}
 	
 	
@@ -46,15 +44,13 @@ public class GameController {
 	 */
 	
 	@RequestMapping(method = RequestMethod.POST, value = "createGame")
-	public List<GameUserImage> createGame(@RequestBody String json) {
-		JsonNode root = this.jsonParser.readTree(json);
-		String hostId = root.path("hostId").textValue();
-		ArrayList<String> playerIds = new ArrayList<String>();
-		for(JsonNode node : root.path("playerIds")) {
-			playerIds.add(node.textValue());
-		}
-		Game newGame = new Game(hostId, playerIds);
-		return newGame.getGameInitData(); // something along these lines
+	public @ResponseBody List<GameUserImage> createGame(
+			@RequestParam(value = "hostId",required = true, defaultValue = "") final String hostID,
+			@RequestParam(value = "playerIds", required = true, defaultValue = "") final ArrayList<String> playerIds
+			){
+	
+		return null;
+		
 	}
 	
 	
