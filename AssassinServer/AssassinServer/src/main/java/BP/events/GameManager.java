@@ -20,7 +20,8 @@ public class GameManager implements GameManagerInterface {
 	//User Management
 	public String RegisterUser(String code_name, GameUserImage thumbnail, 
 			ArrayList<GameUserImage> faceImages, String apn, String platformID) {
-		return new String();
+		String a = new String();
+		return a;
 	}
 	public void deleteUser(String uuid) {
 	
@@ -28,27 +29,34 @@ public class GameManager implements GameManagerInterface {
 	
 	//Game Management
 	public GameCreated createGame(String hostUUID, ArrayList<String> playerUUIDs) {
-		return new GameCreated();
+		GameCreated a = new GameCreated();
+		return a;
 	}
 	public GameStarted startGame(String gameUUID, GameData data) {
-		return new GameStarted();
+		GameStarted a = new GameStarted();
+		return a;
 	}
 	public GameData getGamePlayData(String gameUUID) {
-		return new GameData();
+		GameData a = new GameData();
+		return a;
 	}
 	public GameStarted restartGame(String gameUUID) {
-		return new GameStarted();
+		GameStarted a = new GameStarted();
+		return a;
 	}
 	
 	//Game Play
 	public String getTarget(String gameUUID, String userUUID) {
-		return new String();
+		String a = new String();
+		return a;
 	}
 	public String killUser(String gameUUID, String assassinUUID, String victimUUID) {
-		return new String();
+		String a = new String();
+		return a;
 	}
 	public GameEnded endGame(String gameUUID) {
-		return new GameEnded();
+		GameEnded a = new GameEnded();
+		return a;
 	}
 
 
