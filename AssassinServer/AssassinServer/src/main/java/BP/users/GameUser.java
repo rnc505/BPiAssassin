@@ -13,80 +13,41 @@ import javax.jdo.annotations.PrimaryKey;
 @PersistenceCapable
 public class GameUser {
 	
+	public final int NUM_IMAGES = 4;
+	
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	public String uuidString;
 	
 	@Persistent
-	public final int NUM_IMAGES = 4;
-	
-	@Persistent
-	public String userID;
+	public String code_name;
 	@Persistent
 	public GameUserImage thumbnail;
 	@Persistent
-	public GameUserImage usrImage1;
-	@Persistent
-	public GameUserImage usrImage2;
-	@Persistent
-	public GameUserImage usrImage3;
-	@Persistent
-	public GameUserImage usrImage4;
+	public ArrayList<GameUserImage> usrImages;
 	@Persistent
 	public String targetUUID;
-	
-	
+	@Persistent
 	public int numKills;
+	@Persistent
 	public int numDeaths;
+	@Persistent
 	public int numWins;
 
 	/**
-	 * Default Constructor 
-	 *  
-	 * @param hash
-	 * @param userID
-	 * @param thumbnail
-	 * @param usrImage1
-	 * @param usrImage2
-	 * @param usrImage3
-	 * @param usrImage4
+	 * JDO Constructor 
+	 * no-args constructor for use by JDO
 	 */
-	public GameUser(String uuid, String userID,  GameUserImage thumbnail, 
-			GameUserImage usrImage1,GameUserImage usrImage2, 
-			GameUserImage usrImage3, GameUserImage usrImage4) {
-		this(uuid, userID, thumbnail, usrImage1, 
-				usrImage2, usrImage3, usrImage4, null, 0, 0 ,0, true);
+	public GameUser() {
 	}
 	
-	
-	/**
-	 * Special Constructor 
-	 * @param hash
-	 * @param userID
-	 * @param thumbnail
-	 * @param usrImage1
-	 * @param usrImage2
-	 * @param usrImage3
-	 * @param usrImage4
-	 * @param usrTarget
-	 * @param numKills
-	 * @param numDeaths
-	 * @param numWins
-	 * @param storeData
-	 */
-	public GameUser(String uuid, String userID,  GameUserImage thumbnail, 
-			GameUserImage usrImage1,GameUserImage usrImage2, 
-			GameUserImage usrImage3, GameUserImage usrImage4, 
-			String usrTarget, int numKills, int numDeaths, int numWins, 
-			boolean storeData) {
+	public GameUser(String uuid, String code_name,  GameUserImage thumbnail, 
+			ArrayList<GameUserImage> usrImages) {
 		this.uuidString = uuid;
-		this.userID = userID;
+		this.code_name = code_name;
 		this.thumbnail = thumbnail;
-		this.usrImage1 = usrImage1;
-		this.usrImage2 = usrImage2;
-		this.usrImage3 = usrImage3;
-		this.usrImage4 = usrImage4;
-		this.targetUUID = usrTarget;
+		this.usrImages = usrImages;
+		this.targetUUID =null;
 		this.numKills = numKills;
 		this.numDeaths = numDeaths;
 		this.numWins = numWins;
