@@ -26,5 +26,30 @@ public interface GameManagerInterface {
 	String getTarget(String gameUUID, String userUUID);
 	String killUser(String gameUUID, String assassinUUID, String victimUUID);
 	GameEnded endGame(String gameUUID);
+	
+	
+	
+	//GameEnded contains:
+	//1. APN information -- Tell users who won the game
+	
+	//GameStarted contains:
+	//1. APN information - tell users to call "getGamePlayData"
+	//
+	
+	//GameCreated contains:
+	//1. ArrayList of ArrayList of UserImages
+	//  This is returned to the host(requester)
+	
+	
+	/*
+	 *  Design Idea
+	 * for GameStarted & GameEnded
+	 *
+	 *  Each has an ArrayList of Maps (for push notification information)
+	 *  Each element in array represents a user
+	 *  Each map contains 2 keys: APN and PlatformID
+	 *  
+	 */
+	
 		
 }

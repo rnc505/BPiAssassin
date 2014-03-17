@@ -13,8 +13,6 @@ import javax.jdo.annotations.PrimaryKey;
 @PersistenceCapable
 public class GameUser {
 	
-	public final int NUM_IMAGES = 4;
-	
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	public String uuidString;
@@ -26,7 +24,7 @@ public class GameUser {
 	@Persistent
 	public ArrayList<GameUserImage> usrImages;
 	@Persistent
-	public String targetUUID;
+	public GameUser target;
 	@Persistent
 	public int numKills;
 	@Persistent
@@ -47,39 +45,26 @@ public class GameUser {
 		this.code_name = code_name;
 		this.thumbnail = thumbnail;
 		this.usrImages = usrImages;
-		this.targetUUID =null;
-		this.numKills = numKills;
-		this.numDeaths = numDeaths;
-		this.numWins = numWins;
-		
+		this.target =null;
+		this.numKills = 0;
+		this.numDeaths = 0;
+		this.numWins = 0;
 }
 	
-	
 	/**
-	 * setTarget() 
-	 * Sets user target
-	 * @param target
+	 * getUUID()
+	 * @return Returns the client unique identifier for the Game User
 	 */
-	public void setTarget(String target) {
-		this.targetUUID = target;
+	public String getUUID() {
+		return this.uuidString;
 	}
 	
 	/**
-	 * getTarget() 
-	 * Returns user target
-	 * @return 
+	 * getUserCodeName() 
+	 * @return Returns the user's code name
 	 */
-	public GameUser getTarget() {
-		return storage.getUser(this.usrTarget);
-	}
-	
-	/**
-	 * getTargetHash() 
-	 * Returns the user's target's hash
-	 * @return
-	 */
-	public String getTargetHash() {
-		return this.usrTarget;
+	public String getUserCodeName() {
+		return this.code_name;
 	}
 	
 	/**
@@ -97,22 +82,34 @@ public class GameUser {
 	 * @return
 	 */
 	public ArrayList<GameUserImage> getUsrImages() {
-		ArrayList<GameUserImage> iArray = new ArrayList<GameUserImage>();
-		iArray.add(this.usrImage1);
-		iArray.add(this.usrImage2);
-		iArray.add(this.usrImage3);
-		iArray.add(this.usrImage4);
-		return iArray;
+		return this.usrImages;
 	}
 	
 	/**
-	 * getUserID() 
-	 * Returns the user ID
-	 * @return
+	 * setTarget() 
+	 * Sets user target
+	 * @param target
 	 */
-	public String getUserID() {
-		return this.userID;
+	public void setTarget(GameUser target) {
+		this.target = target;
 	}
+	
+	/**
+	 * getTarget() 
+	 * @return Returns user target
+	 */
+	public GameUser getTarget() {
+		return this.target;
+	}
+	
+	/**
+	 * getTargetUUID() 
+	 * @return Returns the user's target's UUID
+	 */
+	public String getTargetUUID() {
+		return this.target.getUUID();
+	}
+	
 	
 	/**
 	 * addKill() 
@@ -120,14 +117,12 @@ public class GameUser {
 	 * @return
 	 */
 	public int addKill() {
-		storage.updateUser(this, "numKills", ++this.numKills);
-		return this.numKills;
+		return ++this.numKills;
 	}
 	
 	/**
 	 * getNumKills() 
-	 * Returns number of kills
-	 * @return
+	 * @return Returns number of kills
 	 */
 	public int getNumKills() {
 		return this.numKills;
@@ -139,8 +134,7 @@ public class GameUser {
 	 * @return
 	 */
 	public int addDeath() {
-		storage.updateUser(this, "numDeaths", ++this.numDeaths);
-		return this.numDeaths;
+		return ++this.numDeaths;
 	}
 	
 	/**
@@ -159,8 +153,7 @@ public class GameUser {
 	 * @return
 	 */
 	public int addWin() {
-		storage.updateUser(this, "numWins", ++this.numWins);
-		return this.numWins;
+		return ++this.numWins;
 	}
 
 	/**
@@ -172,12 +165,4 @@ public class GameUser {
 		return this.numWins;
 	}
 	
-	/**
-	 * getHash()
-	 * Returns the client hash for the Game User 
-	 * @return 
-	 */
-	public String getHash() {
-		return this.hash;
-	}
 }
