@@ -16,27 +16,27 @@ public class GameUser {
 	
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-	public String uuidString;
+	private String uuidString;
 	
 	@Persistent
-	public String code_name;
+	private String code_name;
 	@Persistent
-	public GameUserImage thumbnail;
+	private GameUserImage thumbnail;
 	@Persistent
-	public ArrayList<GameUserImage> usrImages;
+	private ArrayList<GameUserImage> usrImages;
 	@Persistent
-	public HashMap<String, GameUser>  gameTargets;
+	private HashMap<String, GameUser>  gameTargets;
 	@Persistent
-	public int numKills;
+	private int numKills;
 	@Persistent
-	public int numDeaths;
+	private int numDeaths;
 	@Persistent
-	public int numWins;
+	private int numWins;
 	
 	@Persistent
-	public String apn;
+	private String apn;
 	@Persistent 
-	public String platformID;
+	private String platformID;
 	
 
 	/**

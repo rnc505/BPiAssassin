@@ -16,17 +16,17 @@ public class Game {
 	
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-	public String uuidString;
+	private String uuidString;
 	
 	@Persistent
-	public GameData gamePlayData; //Data used for facial recognition
+	private GameData gamePlayData; //Data used for facial recognition
 	@Persistent
-	public ArrayList<GameUser> playerList;
+	private ArrayList<GameUser> playerList;
 	@Persistent
-	public GameUser host; //player who "created" game
+	private GameUser host; //player who "created" game
 	
 	@Persistent
-	public boolean gameInProgress;
+	private boolean gameInProgress;
 	
 	
 	
@@ -119,12 +119,19 @@ public class Game {
 	/**
 	 * endGame() 
 	 * Ends games and increments win count for winner
-	 * @param winner
-	 * @return 
+	 * @param winner 
 	 */
 	public void endGame(GameUser winner) {
 		this.gameInProgress = false;
 		winner.addWin();
+	}
+	
+	public ArrayList<GameUser> getPlayerList() {
+		return this.playerList;
+	}
+	
+	public GameUser getHost() {
+		return this.host;
 	}
 	
 	

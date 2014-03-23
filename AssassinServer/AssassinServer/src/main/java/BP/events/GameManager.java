@@ -1,6 +1,7 @@
 package BP.events;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManagerFactory;
@@ -14,12 +15,9 @@ import BP.events.objects.GameCreated;
 import BP.events.objects.GameStarted;
 import BP.events.objects.GameEnded;
 import BP.game.Game;
-import BP.repository.GameDataStorage;
 
 
 public class GameManager implements GameManagerInterface {
-	
-	public static final GameDataStorage storage = new GameDataStorage();
 	
 	/**
 	 * Constructor 
@@ -40,7 +38,7 @@ public class GameManager implements GameManagerInterface {
 		} finally {
 			pm.close();
 		}
-		return g.uuidString;
+		return g.getUUID();
 	}
 	
 	public void deleteUser(String uuid) {
@@ -77,36 +75,126 @@ public class GameManager implements GameManagerInterface {
 	}
 	
 	public GameStarted startGame(String gameUUID, GameData data) {
-		GameStarted a = new GameStarted();
-		return a;
+		PersistenceManager pm = getPersistenceManager();
+		GameStarted retObject;
+		ArrayList<HashMap<String, String>> array =
+				new ArrayList<HashMap<String, String>>();
+		try {
+			Game g = pm.getObjectById(Game.class, gameUUID);
+			g.setGamePlayData(data);
+			g.startGame();
+			String hostUUID = g.getHost().getUUID();
+			for (GameUser a: g.getPlayerList()) {
+				if (a.getUUID() != hostUUID) {
+					HashMap<String, String> entry = 
+							new HashMap<String, String>();
+					entry.put("apn", a.getAPN());
+					entry.put("platformID", a.getPlatformID());
+					array.add(entry);
+				}
+			}
+		} finally {
+			pm.close();
+		}
+		retObject = new GameStarted(array);
+		return retObject;
 	}
+
 	public GameData getGamePlayData(String gameUUID) {
-		GameData a = new GameData();
-		return a;
+		PersistenceManager pm = getPersistenceManager();
+		GameData retObject;
+		try {
+			Game g = pm.getObjectById(Game.class, gameUUID);
+			retObject = g.getGamePlayData();
+		} finally {
+			pm.close();
+		}
+		return retObject;
 	}
+
 	public GameStarted restartGame(String gameUUID) {
-		GameStarted a = new GameStarted();
-		return a;
+		PersistenceManager pm = getPersistenceManager();
+		GameStarted retObject;
+		ArrayList<HashMap<String, String>> array =
+				new ArrayList<HashMap<String, String>>();
+		try {
+			Game g = pm.getObjectById(Game.class, gameUUID);
+			g.startGame();
+			String hostUUID = g.getHost().getUUID();
+			for (GameUser a: g.getPlayerList()) {
+				if (a.getUUID() != hostUUID) {
+					HashMap<String, String> entry = 
+							new HashMap<String, String>();
+					entry.put("apn", a.getAPN());
+					entry.put("platformID", a.getPlatformID());
+					array.add(entry);
+				}
+			}
+		} finally {
+			pm.close();
+		}
+		retObject = new GameStarted(array);
+		return retObject;
 	}
 	
 	//Game Play
 	public String getTarget(String gameUUID, String userUUID) {
-		String a = new String();
-		return a;
+		PersistenceManager pm = getPersistenceManager();
+		String retVal;
+		try {
+			GameUser a = pm.getObjectById(GameUser.class, userUUID);
+			retVal = a.getTarget(gameUUID).getUUID();
+		} finally {
+			pm.close();
+		}
+		return retVal;
 	}
+	
 	public String killUser(String gameUUID, String assassinUUID, String victimUUID) {
-		String a = new String();
-		return a;
+		PersistenceManager pm = getPersistenceManager();
+		String retVal;
+		try {
+			Game g = pm.getObjectById(Game.class, gameUUID);
+			GameUser assassin = pm.getObjectById(GameUser.class, assassinUUID);
+			GameUser victim = pm.getObjectById(GameUser.class, victimUUID);
+			GameUser nextTarget = g.killUser(assassin, victim);
+			retVal = nextTarget.getUUID();
+		} finally {
+			pm.close();
+		}
+		return retVal;
 	}
-	public GameEnded endGame(String gameUUID) {
-		GameEnded a = new GameEnded();
-		return a;
+	
+	public GameEnded endGame(String gameUUID, String winnerUUID) {
+		PersistenceManager pm = getPersistenceManager();
+		GameEnded retObject;
+		ArrayList<HashMap<String, String>> array =
+				new ArrayList<HashMap<String, String>>();
+		try {
+			Game g = pm.getObjectById(Game.class, gameUUID);
+			GameUser winner = pm.getObjectById(GameUser.class, winnerUUID);
+			g.endGame(winner);
+			for (GameUser a: g.getPlayerList()) {
+				if (a.getUUID() != winnerUUID) {
+					HashMap<String, String> entry = 
+							new HashMap<String, String>();
+					entry.put("apn", a.getAPN());
+					entry.put("platformID", a.getPlatformID());
+					array.add(entry);
+				}
+			}
+		} finally {
+			pm.close();
+		}
+		retObject = new GameEnded(array);
+		return retObject;
 	}
 	
 	//Returns an instance of the PersistenceManager
 	private PersistenceManager getPersistenceManager() {
 		return JDOHelper.getPersistenceManagerFactory("transactions-optional").getPersistenceManager();
 	}
+	
 		
 
 
