@@ -1,38 +1,59 @@
 package BP.game;
 
 import BP.users.*;
-import BP.repository.GameDataStorage;
 import BP.domain.GameData;
-import java.util.HashMap;
 import java.util.Collections;
 import java.util.ArrayList;
+import java.util.UUID;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
+@PersistenceCapable
 public class Game {
-
-	public GameDataStorage storage = new GameDataStorage();
 	
-	public GameData gamePlayData; //Data used for facial recognition
-	public ArrayList<String> playerList;
-	public String hostHash; //player who "created" game
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private String uuidString;
 	
-	public boolean gameInProgress;
+	@Persistent
+	private GameData gamePlayData; //Data used for facial recognition
+	@Persistent
+	private ArrayList<GameUser> playerList;
+	@Persistent
+	private GameUser host; //player who "created" game
+	
+	@Persistent
+	private boolean gameInProgress;
+	
+	
+	
+	/**
+	 * JDO Constructor 
+	 * no-args constructor for use by JDO
+	 */
+	public Game() {
+	}
 	
 	/**
 	 * Constructor 
 	 * 
+	 * @param uuid
 	 * @param host
 	 * @param playerList
 	 */
-	public Game(String host, ArrayList<String> playerList) {
-		this.hostHash = host;
+	public Game(GameUser host, ArrayList<GameUser> playerList) {
+		UUID uuid = new UUID(System.nanoTime(), System.nanoTime());
+		this.uuidString = uuid.toString();
+		this.host = host;
 		this.playerList = playerList;
 		this.gameInProgress = false;
-		storage.createGame(host, playerList);
-		//Ensures all game users information is up-to-date for Game Set Up
-		for (String a: playerList) {
-			storage.getUser(a).refreshUserData();
-		}
+	}
+	
+	public String getUUID() {
+		return this.uuidString;
 	}
 	
 	/**
@@ -42,15 +63,10 @@ public class Game {
 	 * @return
 	 */
 	public ArrayList<ArrayList<GameUserImage>> getGameInitData() {
-		if (gameInProgress)
-			throw new RuntimeException(
-					"Cannot collect Init Data. Game in Progress.");
-		
 		ArrayList<ArrayList<GameUserImage>> data = 
 				new ArrayList<ArrayList<GameUserImage>>();
-		int numUsers = this.playerList.size();
-		for (int i =0; i < numUsers; i++) {
-			data.add(storage.getUser(playerList.get(i)).getUsrImages());
+		for (GameUser usr: playerList) {
+			data.add(usr.getUsrImages());
 		}
 		return data;
 	}
@@ -75,14 +91,11 @@ public class Game {
 	
 	/**
 	 * startGame() 
-	 * Assigns user targets and returns a
-	 * map of user targets
+	 * Assigns user targets and sets indicator flag
 	 */
-	public HashMap<GameUser, GameUser> startGame() {
-		if (gameInProgress)
-			throw new RuntimeException("Game is already in Progress.");
+	public void startGame() {
 		this.gameInProgress = true;
-		return assignTargets();
+		assignTargets();
 	}
 	
 	/**
@@ -96,24 +109,29 @@ public class Game {
 	 * @return
 	 */
 	public GameUser killUser(GameUser assassin, GameUser victim) {
-		assassin.addDeath();
+		assassin.addKill();
 		victim.addDeath();
-		assassin.setTarget(victim.getTarget()); //Assigns new target to assassin
-		victim.setTarget(null);
-		return victim.getTarget();
+		assassin.setTarget(uuidString, victim.getTarget(uuidString)); //Assigns new target to assassin
+		victim.removeTarget(uuidString);
+		return assassin.getTarget(uuidString);
 	}
 	
 	/**
 	 * endGame() 
 	 * Ends games and increments win count for winner
-	 * @param winner
-	 * @return 
+	 * @param winner 
 	 */
 	public void endGame(GameUser winner) {
-		if (!gameInProgress)
-			throw new RuntimeException("Game has not been started yet.");
 		this.gameInProgress = false;
 		winner.addWin();
+	}
+	
+	public ArrayList<GameUser> getPlayerList() {
+		return this.playerList;
+	}
+	
+	public GameUser getHost() {
+		return this.host;
 	}
 	
 	
@@ -124,14 +142,11 @@ public class Game {
 	 * Assigns user initial user targets and returns map
 	 * @return
 	 */
-	private HashMap<GameUser, GameUser> assignTargets() {
+	private void assignTargets() {
 		Collections.shuffle(playerList);
 		int numPlayers = playerList.size();
-		HashMap<GameUser,GameUser> map = new HashMap<GameUser, GameUser>(numPlayers);
-		for (int i =0; i < numPlayers; i++) {
-			map.put(storage.getUser(playerList.get(i)), 
-					storage.getUser(playerList.get((i+1)%numPlayers)));
+		for (int i= 0; i < numPlayers; i ++) {
+			playerList.get(i).setTarget(uuidString, playerList.get((i+1)%numPlayers));
 		}
-		return map;
 	}
 }	

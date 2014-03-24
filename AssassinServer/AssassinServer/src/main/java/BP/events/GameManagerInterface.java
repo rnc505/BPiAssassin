@@ -23,9 +23,10 @@ public interface GameManagerInterface {
 	GameStarted restartGame(String gameUUID);
 	
 	//Game Play
+	//Do we also want a getTargetThumbnail method?
 	String getTarget(String gameUUID, String userUUID);
 	String killUser(String gameUUID, String assassinUUID, String victimUUID);
-	GameEnded endGame(String gameUUID);
+	GameEnded endGame(String gameUUID, String winnerUUID);
 	
 	
 	

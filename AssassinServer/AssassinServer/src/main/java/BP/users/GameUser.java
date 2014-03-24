@@ -1,8 +1,9 @@
 package BP.users;
 
-import BP.repository.GameDataStorage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.UUID;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
@@ -15,22 +16,28 @@ public class GameUser {
 	
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-	public String uuidString;
+	private String uuidString;
 	
 	@Persistent
-	public String code_name;
+	private String code_name;
 	@Persistent
-	public GameUserImage thumbnail;
+	private GameUserImage thumbnail;
 	@Persistent
-	public ArrayList<GameUserImage> usrImages;
+	private ArrayList<GameUserImage> usrImages;
 	@Persistent
-	public GameUser target;
+	private HashMap<String, GameUser>  gameTargets;
 	@Persistent
-	public int numKills;
+	private int numKills;
 	@Persistent
-	public int numDeaths;
+	private int numDeaths;
 	@Persistent
-	public int numWins;
+	private int numWins;
+	
+	@Persistent
+	private String apn;
+	@Persistent 
+	private String platformID;
+	
 
 	/**
 	 * JDO Constructor 
@@ -39,13 +46,14 @@ public class GameUser {
 	public GameUser() {
 	}
 	
-	public GameUser(String uuid, String code_name,  GameUserImage thumbnail, 
+	public GameUser(String code_name,  GameUserImage thumbnail, 
 			ArrayList<GameUserImage> usrImages) {
-		this.uuidString = uuid;
+		UUID uuid = new UUID(System.nanoTime(), System.nanoTime());
+		this.uuidString = uuid.toString();
 		this.code_name = code_name;
 		this.thumbnail = thumbnail;
 		this.usrImages = usrImages;
-		this.target =null;
+		this.gameTargets =null;
 		this.numKills = 0;
 		this.numDeaths = 0;
 		this.numWins = 0;
@@ -90,26 +98,26 @@ public class GameUser {
 	 * Sets user target
 	 * @param target
 	 */
-	public void setTarget(GameUser target) {
-		this.target = target;
+	public void setTarget(String gameUUID, GameUser target) {
+		this.gameTargets.put(gameUUID, target);
 	}
 	
 	/**
 	 * getTarget() 
 	 * @return Returns user target
 	 */
-	public GameUser getTarget() {
-		return this.target;
+	public GameUser getTarget(String gameUUID) {
+		return this.gameTargets.get(gameUUID);
 	}
-	
 	/**
-	 * getTargetUUID() 
-	 * @return Returns the user's target's UUID
+	 * removeGame () 
+	 * Removes the game and associated target from 
+	 * gameTargets
+	 * @param gameUUID
 	 */
-	public String getTargetUUID() {
-		return this.target.getUUID();
+	public void removeTarget(String gameUUID) {
+		this.gameTargets.remove(gameUUID);
 	}
-	
 	
 	/**
 	 * addKill() 
@@ -163,6 +171,22 @@ public class GameUser {
 	 */
 	public int getNumWins() {
 		return this.numWins;
+	}
+	
+	public void setAPN(String apn) {
+		this.apn =apn;
+	}
+	
+	public String getAPN() {
+		return this.apn;
+	}
+	
+	public void setPlatformID(String id) {
+		this.platformID = id;
+	}
+	
+	public String getPlatformID() {
+		return this.platformID;
 	}
 	
 }
