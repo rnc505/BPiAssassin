@@ -294,6 +294,11 @@
 			<version>${datanucleus-jodatime-version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.urbanairship</groupId>
+			<artifactId>java-client</artifactId>
+			<version>0.2.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
