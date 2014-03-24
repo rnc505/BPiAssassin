@@ -20,6 +20,7 @@ import BP.users.GameUserImage;
 public class GameController {
 	
 	GameManagerInterface gameManager;
+	APNController apnController;
 	public GameController() {
 		this.gameManager = new GameManager();
 	}
@@ -41,7 +42,7 @@ public class GameController {
 	 *	@return GameCreated Object
 	 */
 	
-	@RequestMapping(method = RequestMethod.POST, value = "createGame")
+	@RequestMapping(method = RequestMethod.POST, value = "/createGame")
 	public @ResponseBody GameCreated createGame(
 			@RequestParam(value = "hostId",required = true, defaultValue = "") final String hostID,
 			@RequestParam(value = "playerIds", required = true, defaultValue = "") final ArrayList<String> playerIds
@@ -73,7 +74,7 @@ public class GameController {
 	 *
 	 *	@return 
 	 */
-	@RequestMapping(method = RequestMethod.POST, value = "createGame")
+	@RequestMapping(method = RequestMethod.POST, value = "/startGame")
 	public @ResponseBody String startGame(
 			@RequestParam(value = "gameId",required = true, defaultValue = "") final String gameId,
 			@RequestParam(value = "meanImage", required = true, defaultValue = "") final String meanImage,
@@ -84,7 +85,22 @@ public class GameController {
 		
 		GameData recognizerData = new GameData(meanImage, covarEigen, workFunctEigen, projectedImages);
 		gameManager.startGame(gameId, recognizerData);
+		
+		/// send notification to non-host users
 		return null;
 		
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/gamePlayData/{gameId}")
+	public @ResponseBody GameData getGamePlayer(@PathVariable String gameId) {
+		return gameManager.getGamePlayData(gameId);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/getTarget/{gameId}/{userId}")
+	public @ResponseBody String getTarget(@PathVariable String gameId, @PathVariable String userId) {
+		return gameManager.getTarget(gameId, userId);
+	}
+	
+	
+	
 }
