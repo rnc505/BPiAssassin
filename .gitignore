@@ -20,3 +20,5 @@ DerivedData
 #CocoaPods
 Pods
 /bin
+.project
+.classpath
