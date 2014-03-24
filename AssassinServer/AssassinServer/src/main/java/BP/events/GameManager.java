@@ -14,6 +14,7 @@ import BP.domain.GameData;
 import BP.events.objects.GameCreated;
 import BP.events.objects.GameStarted;
 import BP.events.objects.GameEnded;
+import BP.events.objects.UserKilled;
 import BP.game.Game;
 
 
@@ -150,7 +151,7 @@ public class GameManager implements GameManagerInterface {
 		return retVal;
 	}
 	
-	public String killUser(String gameUUID, String assassinUUID, String victimUUID) {
+	public UserKilled killUser(String gameUUID, String assassinUUID, String victimUUID) {
 		PersistenceManager pm = getPersistenceManager();
 		String retVal;
 		try {
@@ -162,7 +163,8 @@ public class GameManager implements GameManagerInterface {
 		} finally {
 			pm.close();
 		}
-		return retVal;
+		UserKilled a = new UserKilled();
+		return a;
 	}
 	
 	public GameEnded endGame(String gameUUID, String winnerUUID) {

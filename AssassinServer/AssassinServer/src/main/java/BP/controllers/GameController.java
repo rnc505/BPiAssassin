@@ -14,6 +14,7 @@ import BP.domain.GameData;
 import BP.events.GameManager;
 import BP.events.GameManagerInterface;
 import BP.events.objects.GameCreated;
+import BP.events.objects.GameStarted;
 import BP.users.GameUserImage;
 
 
@@ -86,10 +87,10 @@ public class GameController {
 			){
 		
 		GameData recognizerData = new GameData(meanImage, covarEigen, workFunctEigen, projectedImages);
-		gameManager.startGame(gameId, recognizerData);
+		GameStarted startedGame = gameManager.startGame(gameId, recognizerData);
 		
 		/// send notification to non-host users
-		return null;
+		return "GetTarget";
 		
 	}
 	
@@ -103,6 +104,26 @@ public class GameController {
 		return gameManager.getTarget(gameId, userId);
 	}
 	
+	@RequestMapping(method = RequestMethod.POST, value = "/killUser")
+	public @ResponseBody String killUser(
+			@RequestParam(value = "gameId", required = true, defaultValue = "") final String gameID,
+			@RequestParam(value = "assassinId", required = true, defaultValue = "") final String assassinId,
+			@RequestParam(value = "victimId", required = true, defaultValue = "") final String victimID) 
+	{
+		return gameManager.killUser(gameID, assassinId, victimID).getNextTarget();
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/registerUser")
+	public @ResponseBody String registerUser(
+			@RequestParam(value = "username", required = true, defaultValue = "") final String username,
+			@RequestParam(value = "thumbnail", required = true, defaultValue = "") final GameUserImage thumbnail,
+			@RequestParam(value = "faceImages", required = true, defaultValue = "") final ArrayList<GameUserImage> faceImages,
+			@RequestParam(value = "apn", required = true, defaultValue = "") final String apn,
+			@RequestParam(value = "platformId", required = true, defaultValue = "") final String platformId) 
+	{
+		return gameManager.RegisterUser(username, thumbnail, faceImages, apn, platformId);
+	}
+			
 	
 	
 }
