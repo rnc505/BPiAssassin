@@ -7,7 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		52C66A9C189F458100282514 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C66A9B189F458100282514 /* Default.png */; };
+		5272562818B472B900F3E8FA /* 883033.png in Resources */ = {isa = PBXBuildFile; fileRef = 5272562518B472B800F3E8FA /* 883033.png */; };
+		5272562A18B472B900F3E8FA /* speeding_bullet.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5272562718B472B800F3E8FA /* speeding_bullet.jpg */; };
+		5272563218B47E3800F3E8FA /* icon29pt.png in Resources */ = {isa = PBXBuildFile; fileRef = 5272562F18B47E3800F3E8FA /* icon29pt.png */; };
+		5272563318B47E3800F3E8FA /* icon40pt.png in Resources */ = {isa = PBXBuildFile; fileRef = 5272563018B47E3800F3E8FA /* icon40pt.png */; };
+		5272563418B47E3800F3E8FA /* icon60pt.png in Resources */ = {isa = PBXBuildFile; fileRef = 5272563118B47E3800F3E8FA /* icon60pt.png */; };
+		5272563618B4848600F3E8FA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5272563518B4848600F3E8FA /* Default.png */; };
+		5272563818B4870000F3E8FA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5272563718B4870000F3E8FA /* Default@2x.png */; };
+		52CA373C18B0291400A87AAE /* BPCreateGameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CA373B18B0291400A87AAE /* BPCreateGameVC.m */; };
+		52CA373F18B0294700A87AAE /* BPLiveGameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CA373E18B0294700A87AAE /* BPLiveGameVC.m */; };
+		52CA374218B029AC00A87AAE /* BPGameStatsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CA374118B029AC00A87AAE /* BPGameStatsVC.m */; };
+		52CA374518B02A2F00A87AAE /* BPCameraAimVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CA374418B02A2F00A87AAE /* BPCameraAimVC.m */; };
+		52CA374818B02A5900A87AAE /* BPMatchmakingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CA374718B02A5900A87AAE /* BPMatchmakingVC.m */; };
+		52D753A618B165CF007BF7DC /* Hot Blood Wallpapers.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 52D753A518B165CF007BF7DC /* Hot Blood Wallpapers.jpg */; };
+		BA856295CC4740C19F54C2F6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 790462C32CBF45979A6AD682 /* libPods.a */; };
 		D510A7AB1890790000DBCD91 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D510A7AA1890790000DBCD91 /* Foundation.framework */; };
 		D510A7AD1890790000DBCD91 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D510A7AC1890790000DBCD91 /* CoreGraphics.framework */; };
 		D510A7AF1890790000DBCD91 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D510A7AE1890790000DBCD91 /* UIKit.framework */; };
@@ -23,6 +36,8 @@
 		D510A7CF1890790000DBCD91 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D510A7AE1890790000DBCD91 /* UIKit.framework */; };
 		D510A7D71890790000DBCD91 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D510A7D51890790000DBCD91 /* InfoPlist.strings */; };
 		D510A7D91890790000DBCD91 /* BPiAssassinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D510A7D81890790000DBCD91 /* BPiAssassinTests.m */; };
+		D5B01E6018E134D500BDC3A6 /* BPAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B01E5F18E134D500BDC3A6 /* BPAPIClient.m */; };
+		D5B01E6418E1451100BDC3A6 /* BPNotificationClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B01E6318E1451100BDC3A6 /* BPNotificationClient.m */; };
 		D5C734AC189EF3C400198654 /* libBPFacialRecognition.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5C734A9189EF3BA00198654 /* libBPFacialRecognition.a */; };
 /* End PBXBuildFile section */
 
@@ -51,7 +66,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		52C66A9B189F458100282514 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		5272562518B472B800F3E8FA /* 883033.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 883033.png; sourceTree = "<group>"; };
+		5272562718B472B800F3E8FA /* speeding_bullet.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = speeding_bullet.jpg; sourceTree = "<group>"; };
+		5272562F18B47E3800F3E8FA /* icon29pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon29pt.png; sourceTree = "<group>"; };
+		5272563018B47E3800F3E8FA /* icon40pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon40pt.png; sourceTree = "<group>"; };
+		5272563118B47E3800F3E8FA /* icon60pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon60pt.png; sourceTree = "<group>"; };
+		5272563518B4848600F3E8FA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		5272563718B4870000F3E8FA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		52CA373A18B0291400A87AAE /* BPCreateGameVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCreateGameVC.h; sourceTree = "<group>"; };
+		52CA373B18B0291400A87AAE /* BPCreateGameVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCreateGameVC.m; sourceTree = "<group>"; };
+		52CA373D18B0294700A87AAE /* BPLiveGameVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPLiveGameVC.h; sourceTree = "<group>"; };
+		52CA373E18B0294700A87AAE /* BPLiveGameVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPLiveGameVC.m; sourceTree = "<group>"; };
+		52CA374018B029AC00A87AAE /* BPGameStatsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPGameStatsVC.h; sourceTree = "<group>"; };
+		52CA374118B029AC00A87AAE /* BPGameStatsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPGameStatsVC.m; sourceTree = "<group>"; };
+		52CA374318B02A2F00A87AAE /* BPCameraAimVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCameraAimVC.h; sourceTree = "<group>"; };
+		52CA374418B02A2F00A87AAE /* BPCameraAimVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCameraAimVC.m; sourceTree = "<group>"; };
+		52CA374618B02A5900A87AAE /* BPMatchmakingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMatchmakingVC.h; sourceTree = "<group>"; };
+		52CA374718B02A5900A87AAE /* BPMatchmakingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMatchmakingVC.m; sourceTree = "<group>"; };
+		52D753A518B165CF007BF7DC /* Hot Blood Wallpapers.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Hot Blood Wallpapers.jpg"; sourceTree = "<group>"; };
+		790462C32CBF45979A6AD682 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B102BED10A484046B9E56BB2 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		D510A7A71890790000DBCD91 /* BPiAssassin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BPiAssassin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D510A7AA1890790000DBCD91 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D510A7AC1890790000DBCD91 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -72,6 +106,11 @@
 		D510A7D41890790000DBCD91 /* BPiAssassinTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BPiAssassinTests-Info.plist"; sourceTree = "<group>"; };
 		D510A7D61890790000DBCD91 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D510A7D81890790000DBCD91 /* BPiAssassinTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPiAssassinTests.m; sourceTree = "<group>"; };
+		D5B01E5E18E134D500BDC3A6 /* BPAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPAPIClient.h; sourceTree = "<group>"; };
+		D5B01E5F18E134D500BDC3A6 /* BPAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPAPIClient.m; sourceTree = "<group>"; };
+		D5B01E6218E1451100BDC3A6 /* BPNotificationClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPNotificationClient.h; sourceTree = "<group>"; };
+		D5B01E6318E1451100BDC3A6 /* BPNotificationClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPNotificationClient.m; sourceTree = "<group>"; };
+		D5B01E6518E1478C00BDC3A6 /* BPNotifications.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPNotifications.h; sourceTree = "<group>"; };
 		D5C734A3189EF3BA00198654 /* BPFacialRecognition.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BPFacialRecognition.xcodeproj; path = ../../BPFacialRecognition/BPFacialRecognition/BPFacialRecognition.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,6 +123,7 @@
 				D510A7AD1890790000DBCD91 /* CoreGraphics.framework in Frameworks */,
 				D510A7AF1890790000DBCD91 /* UIKit.framework in Frameworks */,
 				D510A7AB1890790000DBCD91 /* Foundation.framework in Frameworks */,
+				BA856295CC4740C19F54C2F6 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,12 +143,20 @@
 		D510A79E1890790000DBCD91 = {
 			isa = PBXGroup;
 			children = (
-				52C66A9B189F458100282514 /* Default.png */,
+				5272563718B4870000F3E8FA /* Default@2x.png */,
+				5272563518B4848600F3E8FA /* Default.png */,
+				5272562F18B47E3800F3E8FA /* icon29pt.png */,
+				5272563018B47E3800F3E8FA /* icon40pt.png */,
+				5272563118B47E3800F3E8FA /* icon60pt.png */,
+				5272562518B472B800F3E8FA /* 883033.png */,
+				5272562718B472B800F3E8FA /* speeding_bullet.jpg */,
+				52D753A518B165CF007BF7DC /* Hot Blood Wallpapers.jpg */,
 				D5C734A3189EF3BA00198654 /* BPFacialRecognition.xcodeproj */,
 				D510A7B01890790000DBCD91 /* BPiAssassin */,
 				D510A7D21890790000DBCD91 /* BPiAssassinTests */,
 				D510A7A91890790000DBCD91 /* Frameworks */,
 				D510A7A81890790000DBCD91 /* Products */,
+				B102BED10A484046B9E56BB2 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,6 +176,7 @@
 				D510A7AC1890790000DBCD91 /* CoreGraphics.framework */,
 				D510A7AE1890790000DBCD91 /* UIKit.framework */,
 				D510A7CC1890790000DBCD91 /* XCTest.framework */,
+				790462C32CBF45979A6AD682 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -135,6 +184,8 @@
 		D510A7B01890790000DBCD91 /* BPiAssassin */ = {
 			isa = PBXGroup;
 			children = (
+				D5B01E6118E1446000BDC3A6 /* BPNotificationClient */,
+				D5B01E5B18E134B700BDC3A6 /* BPAPIClient */,
 				D510A7B91890790000DBCD91 /* BPAppDelegate.h */,
 				D510A7BA1890790000DBCD91 /* BPAppDelegate.m */,
 				D510A7BC1890790000DBCD91 /* Main_iPhone.storyboard */,
@@ -143,6 +194,16 @@
 				D510A7C31890790000DBCD91 /* BPViewController.m */,
 				D510A7C51890790000DBCD91 /* Images.xcassets */,
 				D510A7B11890790000DBCD91 /* Supporting Files */,
+				52CA373A18B0291400A87AAE /* BPCreateGameVC.h */,
+				52CA373B18B0291400A87AAE /* BPCreateGameVC.m */,
+				52CA373D18B0294700A87AAE /* BPLiveGameVC.h */,
+				52CA373E18B0294700A87AAE /* BPLiveGameVC.m */,
+				52CA374018B029AC00A87AAE /* BPGameStatsVC.h */,
+				52CA374118B029AC00A87AAE /* BPGameStatsVC.m */,
+				52CA374318B02A2F00A87AAE /* BPCameraAimVC.h */,
+				52CA374418B02A2F00A87AAE /* BPCameraAimVC.m */,
+				52CA374618B02A5900A87AAE /* BPMatchmakingVC.h */,
+				52CA374718B02A5900A87AAE /* BPMatchmakingVC.m */,
 			);
 			path = BPiAssassin;
 			sourceTree = "<group>";
@@ -176,6 +237,25 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D5B01E5B18E134B700BDC3A6 /* BPAPIClient */ = {
+			isa = PBXGroup;
+			children = (
+				D5B01E5E18E134D500BDC3A6 /* BPAPIClient.h */,
+				D5B01E5F18E134D500BDC3A6 /* BPAPIClient.m */,
+			);
+			name = BPAPIClient;
+			sourceTree = "<group>";
+		};
+		D5B01E6118E1446000BDC3A6 /* BPNotificationClient */ = {
+			isa = PBXGroup;
+			children = (
+				D5B01E6218E1451100BDC3A6 /* BPNotificationClient.h */,
+				D5B01E6318E1451100BDC3A6 /* BPNotificationClient.m */,
+				D5B01E6518E1478C00BDC3A6 /* BPNotifications.h */,
+			);
+			name = BPNotificationClient;
+			sourceTree = "<group>";
+		};
 		D5C734A4189EF3BA00198654 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,9 +272,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D510A7DC1890790000DBCD91 /* Build configuration list for PBXNativeTarget "BPiAssassin" */;
 			buildPhases = (
+				43E7256F89494FD486AE9E30 /* Check Pods Manifest.lock */,
 				D510A7A31890790000DBCD91 /* Sources */,
 				D510A7A41890790000DBCD91 /* Frameworks */,
 				D510A7A51890790000DBCD91 /* Resources */,
+				D0890D982AB443A38733DF00 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -230,9 +312,12 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = BP;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = BP;
 				TargetAttributes = {
+					D510A7A61890790000DBCD91 = {
+						DevelopmentTeam = 7MA825R8KR;
+					};
 					D510A7CA1890790000DBCD91 = {
 						TestTargetID = D510A7A61890790000DBCD91;
 					};
@@ -285,11 +370,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5272563818B4870000F3E8FA /* Default@2x.png in Resources */,
+				5272562818B472B900F3E8FA /* 883033.png in Resources */,
 				D510A7C11890790000DBCD91 /* Main_iPad.storyboard in Resources */,
+				5272563318B47E3800F3E8FA /* icon40pt.png in Resources */,
 				D510A7C61890790000DBCD91 /* Images.xcassets in Resources */,
 				D510A7BE1890790000DBCD91 /* Main_iPhone.storyboard in Resources */,
+				5272563218B47E3800F3E8FA /* icon29pt.png in Resources */,
 				D510A7B51890790000DBCD91 /* InfoPlist.strings in Resources */,
-				52C66A9C189F458100282514 /* Default.png in Resources */,
+				5272562A18B472B900F3E8FA /* speeding_bullet.jpg in Resources */,
+				52D753A618B165CF007BF7DC /* Hot Blood Wallpapers.jpg in Resources */,
+				5272563418B47E3800F3E8FA /* icon60pt.png in Resources */,
+				5272563618B4848600F3E8FA /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,14 +395,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		43E7256F89494FD486AE9E30 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D0890D982AB443A38733DF00 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D510A7A31890790000DBCD91 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52CA374518B02A2F00A87AAE /* BPCameraAimVC.m in Sources */,
+				52CA374218B029AC00A87AAE /* BPGameStatsVC.m in Sources */,
+				52CA373C18B0291400A87AAE /* BPCreateGameVC.m in Sources */,
+				52CA374818B02A5900A87AAE /* BPMatchmakingVC.m in Sources */,
+				D5B01E6018E134D500BDC3A6 /* BPAPIClient.m in Sources */,
+				D5B01E6418E1451100BDC3A6 /* BPNotificationClient.m in Sources */,
 				D510A7C41890790000DBCD91 /* BPViewController.m in Sources */,
 				D510A7BB1890790000DBCD91 /* BPAppDelegate.m in Sources */,
 				D510A7B71890790000DBCD91 /* main.m in Sources */,
+				52CA373F18B0294700A87AAE /* BPLiveGameVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,7 +504,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -417,7 +548,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -454,26 +584,34 @@
 		};
 		D510A7DD1890790000DBCD91 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B102BED10A484046B9E56BB2 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BPiAssassin/BPiAssassin-Prefix.pch";
 				INFOPLIST_FILE = "BPiAssassin/BPiAssassin-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		D510A7DE1890790000DBCD91 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B102BED10A484046B9E56BB2 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BPiAssassin/BPiAssassin-Prefix.pch";
 				INFOPLIST_FILE = "BPiAssassin/BPiAssassin-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -481,7 +619,6 @@
 		D510A7E01890790000DBCD91 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BPiAssassin.app/BPiAssassin";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -504,7 +641,6 @@
 		D510A7E11890790000DBCD91 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BPiAssassin.app/BPiAssassin";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
