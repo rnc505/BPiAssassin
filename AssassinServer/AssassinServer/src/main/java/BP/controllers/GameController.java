@@ -1,7 +1,8 @@
 package BP.controllers;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import BP.events.GameManager;
 import BP.events.GameManagerInterface;
 import BP.events.objects.GameCreated;
 import BP.events.objects.GameStarted;
+import BP.events.objects.UserKilled;
 import BP.users.GameUserImage;
 
 
@@ -79,16 +81,10 @@ public class GameController {
 	 */
 	@RequestMapping(method = RequestMethod.POST, value = "/startGame")
 	public @ResponseBody String startGame(
-			@RequestParam(value = "gameId",required = true, defaultValue = "") final String gameId,
-			@RequestParam(value = "meanImage", required = true, defaultValue = "") final String meanImage,
-			@RequestParam(value = "covarEigen", required = true, defaultValue = "") final String covarEigen,
-			@RequestParam(value = "workFunctEigen", required = true, defaultValue = "") final String workFunctEigen,
-			@RequestParam(value = "projectedImages", required = true, defaultValue = "") final String projectedImages
-			){
-		
-		GameData recognizerData = new GameData(meanImage, covarEigen, workFunctEigen, projectedImages);
+			@RequestParam(value = "gameId", required = true, defaultValue = "") final String gameId,
+			@RequestParam(value = "gameData",required = true, defaultValue = "") final GameData recognizerData)
+	{
 		GameStarted startedGame = gameManager.startGame(gameId, recognizerData);
-		
 		/// send notification to non-host users
 		return "GetTarget";
 		
@@ -124,6 +120,28 @@ public class GameController {
 		return gameManager.RegisterUser(username, thumbnail, faceImages, apn, platformId);
 	}
 			
+	@RequestMapping(method = RequestMethod.GET, value = "/helloWorld")
+	public @ResponseBody String helloWorld() {
+		return "Hello World";
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/exampleArray")
+	public @ResponseBody ArrayList<String> retArray() {
+		ArrayList<String> ret = new ArrayList<String>(3);
+		ret.add("Hello");
+		ret.add("World");
+		ret.add("!");
+		return ret;
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/exampleMap")
+	public @ResponseBody Map<String,UserKilled> exampleMap() {
+		Map<String,UserKilled> ret = new HashMap<String,UserKilled>(3);
+		ret.put("user1", new UserKilled("ABCD"));
+		ret.put("user2", new UserKilled("EFGH"));
+		ret.put("user3", new UserKilled("IJKL"));
+		return ret;
+	}
 	
 	
 }

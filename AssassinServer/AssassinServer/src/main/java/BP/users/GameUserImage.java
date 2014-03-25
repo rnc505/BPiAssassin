@@ -1,17 +1,14 @@
 package BP.users;
 
-import com.google.appengine.api.datastore.*;
-
+import com.fasterxml.jackson.annotation.*;
+@JsonAutoDetect
 public class GameUserImage {
 
+	@JsonProperty
+	String image;
 	
-	public GameUserImage(Blob blob) {
-		//NEED TO WRITE THIS
+	public GameUserImage(String base64Image) {
+		this.image = base64Image;
 	}
 	
-	//NEED TO WRITE THIS METHOD
-	public Blob toBlob() {
-		byte[] g = new byte[50];
-		return new Blob(g);
-	}
 }
