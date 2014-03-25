@@ -91,7 +91,7 @@ public class GameController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/gamePlayData/{gameId}")
-	public @ResponseBody GameData getGamePlayer(@PathVariable String gameId) {
+	public @ResponseBody GameData getGamePlayData(@PathVariable String gameId) {
 		return gameManager.getGamePlayData(gameId);
 	}
 	
