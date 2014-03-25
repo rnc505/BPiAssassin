@@ -18,7 +18,6 @@ DerivedData
 *.xccheckout
 
 #CocoaPods
-Pods
 /bin
 .project
 .classpath
