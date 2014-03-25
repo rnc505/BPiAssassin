@@ -28,6 +28,7 @@ public class GameController {
 	APNController apnController;
 	public GameController() {
 		this.gameManager = new GameManager();
+		this.apnController = new APNController();
 	}
 	
 	
@@ -86,7 +87,7 @@ public class GameController {
 	{
 		GameStarted startedGame = gameManager.startGame(gameId, recognizerData);
 		/// send notification to non-host users
-		return "GetTarget";
+		return "";
 		
 	}
 	

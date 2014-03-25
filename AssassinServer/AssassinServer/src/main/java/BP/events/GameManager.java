@@ -90,7 +90,7 @@ public class GameManager implements GameManagerInterface {
 					HashMap<String, String> entry = 
 							new HashMap<String, String>();
 					entry.put("apn", a.getAPN());
-					entry.put("platformID", a.getPlatformID());
+					entry.put("platformId", a.getPlatformID());
 					array.add(entry);
 				}
 			}
@@ -127,7 +127,7 @@ public class GameManager implements GameManagerInterface {
 					HashMap<String, String> entry = 
 							new HashMap<String, String>();
 					entry.put("apn", a.getAPN());
-					entry.put("platformID", a.getPlatformID());
+					entry.put("platformId", a.getPlatformID());
 					array.add(entry);
 				}
 			}
@@ -181,7 +181,7 @@ public class GameManager implements GameManagerInterface {
 					HashMap<String, String> entry = 
 							new HashMap<String, String>();
 					entry.put("apn", a.getAPN());
-					entry.put("platformID", a.getPlatformID());
+					entry.put("platformId", a.getPlatformID());
 					array.add(entry);
 				}
 			}
