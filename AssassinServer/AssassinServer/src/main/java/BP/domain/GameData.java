@@ -1,30 +1,38 @@
 package BP.domain;
 
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.appengine.api.datastore.Text;
 
 @JsonAutoDetect
+@PersistenceCapable
 public class GameData {
 
 	@JsonProperty
-	Text meanImage;
+	@Persistent
+	private String meanImage;
 	
 	@JsonProperty
-	Text covarEigen;
+	@Persistent
+	private String covarEigen;
 	
 	@JsonProperty
-	Text workFunctEigen;
+	@Persistent
+	private String workFunctEigen;
 	
 	@JsonProperty
-	Text projectedImages;
+	@Persistent
+	private String projectedImages;
 	
 	public GameData(String meanImage, String covarEigen, String workFunctEigen,
 			String projectedImages) {
-		this.meanImage = new Text(meanImage);
-		this.covarEigen = new Text(covarEigen);
-		this.workFunctEigen = new Text(workFunctEigen);
-		this.projectedImages = new Text(projectedImages);
+		this.meanImage = meanImage;
+		this.covarEigen = covarEigen;
+		this.workFunctEigen = workFunctEigen;
+		this.projectedImages = projectedImages;
 	}
 	
 }

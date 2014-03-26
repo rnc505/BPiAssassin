@@ -211,7 +211,8 @@ public class GameManager implements GameManagerInterface {
 	
 	//Returns an instance of the PersistenceManager
 	private PersistenceManager getPersistenceManager() {
-		return JDOHelper.getPersistenceManagerFactory("transactions-optional").getPersistenceManager();
+		return JDOHelper.getPersistenceManagerFactory("transactions-optional")
+				.getPersistenceManager();
 	}
 	
 		
