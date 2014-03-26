@@ -44,12 +44,13 @@ public class UserKilled implements PushNotificationInterface {
 		return nextTarget;
 	}
 
+	@JsonIgnore
 	@Override
 	public ArrayList<HashMap<String, String>> getNotificationObject() {
 		// TODO Auto-generated method stub
 		return data;
 	}
-
+	@JsonIgnore
 	@Override
 	public String getActionIdentifier() {
 		// TODO Auto-generated method stub
