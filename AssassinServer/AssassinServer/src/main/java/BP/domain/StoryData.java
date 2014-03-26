@@ -1,5 +1,6 @@
 package BP.domain;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -17,10 +18,14 @@ public class StoryData {
 	@Persistent
 	private String data1;
 	
-	public StoryData(String data) {
+	@Persistent
+	private ArrayList<String> array1;
+	
+	public StoryData(String data, ArrayList<String> array) {
 		UUID uuid = new UUID(System.nanoTime(), System.nanoTime());
 		this.uuidString = uuid.toString();
 		this.data1 = data;
+		this.array1 = array;
 	}
 	
 }

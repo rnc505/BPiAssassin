@@ -38,7 +38,10 @@ public class GameManager implements GameManagerInterface {
 		
 		PersistenceManager pm = getPersistenceManager();
 		try {
-			StoryData test = new StoryData("test");
+			ArrayList<String> a = new ArrayList<String>();
+			a.add("test");
+			a.add("test2");
+			StoryData test = new StoryData("test", a);
 			pm.makePersistent(test);
 		} finally {
 			pm.close();
