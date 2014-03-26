@@ -138,7 +138,13 @@ public class GameController {
 			GameUserImage tempImg = new GameUserImage(img);
 			temp1.add(tempImg);
 		}
-		String userUUID = gameManager.RegisterUser(username, thumbnail, temp1, apn, platformId);
+		ArrayList<GameUserImage> temp2 = new ArrayList<GameUserImage>();
+		temp2.add(new GameUserImage("I suck"));
+		temp2.add(new GameUserImage("I really Suck"));
+		GameUserImage img = new GameUserImage("I suck");
+		//String userUUID = gameManager.RegisterUser(username, thumbnail, temp1, apn, platformId);
+		String userUUID = gameManager.RegisterUser("I'm stupid", img, temp2, "Robby sucks APN", "Rozier sucks everyone");
+		
 		JSONObject str = new JSONObject().put("userId", userUUID);
 		return str.toString();
 	}

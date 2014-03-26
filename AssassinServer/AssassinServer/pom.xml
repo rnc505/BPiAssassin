@@ -335,6 +335,13 @@
 							<filtering>true</filtering>
 							<targetPath>WEB-INF</targetPath>
 						</resource>
+						
+						
+						<resource>
+							<directory>${basedir}/src/main/java/META-INF</directory>
+							<filtering>true</filtering>
+							<targetPath>WEB-INF/classes/META-INF</targetPath>
+						</resource>
 					</webResources>
 				</configuration>
 			</plugin>
