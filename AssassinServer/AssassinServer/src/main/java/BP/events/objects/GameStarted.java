@@ -20,13 +20,11 @@ public class GameStarted implements PushNotificationInterface {
 
 	@Override
 	public ArrayList<HashMap<String, String>> getNotificationObject() {
-		// TODO Auto-generated method stub
 		return data;
 	}
 
 	@Override
 	public String getActionIdentifier() {
-		// TODO Auto-generated method stub
 		return "gameStarted";
 	}
 

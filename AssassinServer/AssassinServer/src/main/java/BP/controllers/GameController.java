@@ -111,13 +111,12 @@ public class GameController {
 		UserKilled killed = gameManager.killUser(gameId, assassinId, victimId);
 		if(killed.getNextTarget().equals(assassinId)) {
 			GameEnded ended =  this.gameManager.endGame(gameId, assassinId);
-			this.apnController.sendNotification(ended, ended.getWinner(assassinId) + " has won the game!");
+			this.apnController.sendNotification(ended, ended.getWinner() + " has won the game!");
 		} else {
-			UserKilled everyoneElse = killed.getEveryoneExceptAssassinAndVictim(assassinId, victimId);
-			this.apnController.sendNotification(everyoneElse, everyoneElse.getNextTarget() + " has been assassinated!!");
-			this.apnController.sendNotification(killed.getVictim(victimId), "You have been assassinated!");
+			UserKilled victim = killed.createUKObjectforVictim();
+			this.apnController.sendNotification(killed, killed.getVictimCodeName() + " has been assassinated!!");
+			this.apnController.sendNotification(victim, "You have been assassinated!");
 		}
-		this.apnController.sendNotification(killed, ""); // 
 		return killed.getNextTarget(); 
 	}
 	
@@ -143,15 +142,6 @@ public class GameController {
 		ret.add("Hello");
 		ret.add("World");
 		ret.add("!");
-		return ret;
-	}
-	
-	@RequestMapping(method = RequestMethod.GET, value = "/exampleMap")
-	public @ResponseBody Map<String,UserKilled> exampleMap() {
-		Map<String,UserKilled> ret = new HashMap<String,UserKilled>(3);
-		ret.put("user1", new UserKilled("ABCD"));
-		ret.put("user2", new UserKilled("EFGH"));
-		ret.put("user3", new UserKilled("IJKL"));
 		return ret;
 	}
 	
