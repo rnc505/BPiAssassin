@@ -13,7 +13,6 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
-@PersistenceAware
 public class Game {
 	
 	@PrimaryKey
