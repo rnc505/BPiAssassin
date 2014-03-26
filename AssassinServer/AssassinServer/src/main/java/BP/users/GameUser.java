@@ -17,21 +17,16 @@ public class GameUser {
 	
 	@PrimaryKey
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-    @Extension(vendorName="datanucleus", key="gae.encoded-pk", value="true")
-    private String encodedKey;
-	
-	@Persistent
-    @Extension(vendorName="datanucleus", key="gae.pk-name", value="true")
     private String uuidString;
 	
 	@Persistent
 	private String code_name;
 	@Persistent
-	private GameUserImage thumbnail;
+	private String thumbnailUUID;
 	@Persistent
-	private ArrayList<GameUserImage> usrImages;
+	private ArrayList<String> usrImageUUIDs;
 	@Persistent
-	private HashMap<String, GameUser>  gameTargets;
+	private HashMap<String, String>  gameTargetUUIDs;
 	@Persistent
 	private int numKills;
 	@Persistent
@@ -52,14 +47,14 @@ public class GameUser {
 	public GameUser() {
 	}
 	
-	public GameUser(String code_name,  GameUserImage thumbnail, 
-			ArrayList<GameUserImage> usrImages) {
+	public GameUser(String code_name,  String thumbnailUUID, 
+			ArrayList<String> usrImageUUIDs) {
 		UUID uuid = new UUID(System.nanoTime(), System.nanoTime());
 		this.uuidString = uuid.toString();
 		this.code_name = code_name;
-		this.thumbnail = thumbnail;
-		this.usrImages = usrImages;
-		this.gameTargets =null;
+		this.thumbnailUUID = thumbnailUUID;
+		this.usrImageUUIDs = usrImageUUIDs;
+		this.gameTargetUUIDs =null;
 		this.numKills = 0;
 		this.numDeaths = 0;
 		this.numWins = 0;
@@ -86,17 +81,17 @@ public class GameUser {
 	 * Returns user GameUserImage thumbnail
 	 * @return
 	 */
-	public GameUserImage getThumbnail() {
-		return this.thumbnail;
+	public String getThumbnailUUID() {
+		return this.thumbnailUUID;
 	}
 	
 	/**
-	 * getUsrImages() 
+	 * getUsrImageUUIDs() 
 	 * Returns an ArrayList of the UserImages
 	 * @return
 	 */
-	public ArrayList<GameUserImage> getUsrImages() {
-		return this.usrImages;
+	public ArrayList<String> getUsrImageUUIDs() {
+		return this.usrImageUUIDs;
 	}
 	
 	/**
@@ -104,16 +99,16 @@ public class GameUser {
 	 * Sets user target
 	 * @param target
 	 */
-	public void setTarget(String gameUUID, GameUser target) {
-		this.gameTargets.put(gameUUID, target);
+	public void setTargetUUID(String gameUUID, String targetUUID) {
+		this.gameTargetUUIDs.put(gameUUID, targetUUID);
 	}
 	
 	/**
 	 * getTarget() 
 	 * @return Returns user target
 	 */
-	public GameUser getTarget(String gameUUID) {
-		return this.gameTargets.get(gameUUID);
+	public String getTargetUUID(String gameUUID) {
+		return this.gameTargetUUIDs.get(gameUUID);
 	}
 	/**
 	 * removeGame () 
@@ -122,7 +117,7 @@ public class GameUser {
 	 * @param gameUUID
 	 */
 	public void removeTarget(String gameUUID) {
-		this.gameTargets.remove(gameUUID);
+		this.gameTargetUUIDs.remove(gameUUID);
 	}
 	
 	/**
