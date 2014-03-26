@@ -43,6 +43,8 @@ public class GameManager implements GameManagerInterface {
 		
 		PersistenceManager pm = getPersistenceManager();
 		try {
+			pm.makePersistent(thumbnail);
+			pm.makePersistentAll(faceImages);
 			pm.makePersistent(g);
 		} finally {
 			pm.close();
