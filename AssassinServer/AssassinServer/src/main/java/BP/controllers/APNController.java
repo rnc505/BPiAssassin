@@ -11,8 +11,8 @@ import org.json.*;
 
 public class APNController {
 
-	private static final String kKey = "";
-	private static final String kSecret = "";
+	private static final String kKey = "Q5lV5gMPT2e--ONHmxd1WA";
+	private static final String kSecret = "Km9qxTtQSQmM0izZKurXpw";
 	private static final String kBaseUrl = "https://go.urbanairship.com/api/push/";
 
 	private ApnManager apnManager;
