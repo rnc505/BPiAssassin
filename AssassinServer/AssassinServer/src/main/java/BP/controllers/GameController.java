@@ -1,6 +1,7 @@
 package BP.controllers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -84,9 +85,12 @@ public class GameController {
 	@RequestMapping(method = RequestMethod.POST, value = "/startGame")
 	public @ResponseBody String startGame(
 			@RequestParam(value = "gameId", required = true, defaultValue = "") final String gameId,
-			@RequestParam(value = "gameData",required = true, defaultValue = "") final GameData recognizerData)
+			@RequestParam(value = "meanImage",required = true, defaultValue = "") final String meanImage,
+			@RequestParam(value = "covarEigen",required = true, defaultValue = "") final String covarEigen,
+			@RequestParam(value = "workFunctEigen",required = true, defaultValue = "") final String workFunctEigen,
+			@RequestParam(value = "projectedImages",required = true, defaultValue = "") final String projectedImages)
 	{
-		GameStarted startedGame = gameManager.startGame(gameId, recognizerData);
+		GameStarted startedGame = gameManager.startGame(gameId, new GameData(meanImage, covarEigen,workFunctEigen,projectedImages));
 		this.apnController.sendNotification(startedGame, "LET THE GAMES BEGIN! Come see who's your first target...");
 		return new JSONObject().toString();
 		
@@ -124,11 +128,17 @@ public class GameController {
 	public @ResponseBody String registerUser(
 			@RequestParam(value = "username", required = true, defaultValue = "") final String username,
 			@RequestParam(value = "thumbnail", required = true, defaultValue = "") final GameUserImage thumbnail,
-			@RequestParam(value = "faceImages", required = true, defaultValue = "") final ArrayList<GameUserImage> faceImages,
+			@RequestParam(value = "faceImages", required = true, defaultValue = "") final String[] faceImages,
 			@RequestParam(value = "apn", required = true, defaultValue = "") final String apn,
 			@RequestParam(value = "platformId", required = true, defaultValue = "") final String platformId) 
 	{
-		String userUUID = gameManager.RegisterUser(username, thumbnail, faceImages, apn, platformId);
+		ArrayList<String> temp = new ArrayList<String>(Arrays.asList(faceImages));
+		ArrayList<GameUserImage> temp1 = new ArrayList<GameUserImage>(temp.size());
+		for (String img : temp) {
+			GameUserImage tempImg = new GameUserImage(img);
+			temp1.add(tempImg);
+		}
+		String userUUID = gameManager.RegisterUser(username, thumbnail, temp1, apn, platformId);
 		JSONObject str = new JSONObject().put("userId", userUUID);
 		return str.toString();
 	}
