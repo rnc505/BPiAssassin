@@ -10,17 +10,24 @@ public class GameEnded implements PushNotificationInterface {
 	
 	private ArrayList<HashMap<String, String>> data;
 	
-	public GameEnded(ArrayList<HashMap<String, String>> a) {
+	private String winnerCode_Name;
+	
+	/**
+	 * 
+	 * @param a
+	 * @param code_name
+	 */
+	public GameEnded(ArrayList<HashMap<String, String>> a, String code_name) {
 		this.data = a;
+		this.winnerCode_Name = code_name;
 	}
 	
 	public ArrayList<HashMap<String, String>>getData() {
 		return this.data;
 	}
 
-	public String getWinner(String winnersId) {
-		// need to get Name/Codename from Winners Id
-		return null;
+	public String getWinner() {
+		return this.winnerCode_Name;
 	}
 	
 	@Override

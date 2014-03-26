@@ -153,18 +153,33 @@ public class GameManager implements GameManagerInterface {
 	
 	public UserKilled killUser(String gameUUID, String assassinUUID, String victimUUID) {
 		PersistenceManager pm = getPersistenceManager();
-		String retVal;
+		ArrayList<HashMap<String, String>> victimAPN = new ArrayList<HashMap<String, String>>();
+		ArrayList<HashMap<String, String>> otherAPN = new ArrayList<HashMap<String, String>>();
+		String victimCodeName;
+		String nextTargetUUID;
 		try {
 			Game g = pm.getObjectById(Game.class, gameUUID);
 			GameUser assassin = pm.getObjectById(GameUser.class, assassinUUID);
 			GameUser victim = pm.getObjectById(GameUser.class, victimUUID);
 			GameUser nextTarget = g.killUser(assassin, victim);
-			retVal = nextTarget.getUUID();
+			victimCodeName = victim.getUserCodeName();
+			nextTargetUUID = nextTarget.getUUID();
+			for (GameUser a: g.getPlayerList()) {
+				HashMap<String, String> entry = new HashMap<String, String>();
+				entry.put("apn",a.getAPN());
+				entry.put("platformId", a.getPlatformID());
+				if (a.getUUID() == victimUUID) {
+					victimAPN.add(entry);
+				} else if (a.getUUID() != assassinUUID) {
+					otherAPN.add(entry);
+				}
+			}
 		} finally {
 			pm.close();
 		}
-		UserKilled a = new UserKilled();
-		return a;
+		UserKilled retObject = new UserKilled(otherAPN, victimAPN, 
+				victimCodeName, nextTargetUUID);
+		return retObject;
 	}
 	
 	public GameEnded endGame(String gameUUID, String winnerUUID) {
@@ -172,9 +187,11 @@ public class GameManager implements GameManagerInterface {
 		GameEnded retObject;
 		ArrayList<HashMap<String, String>> array =
 				new ArrayList<HashMap<String, String>>();
+		String winnerCode_Name;
 		try {
 			Game g = pm.getObjectById(Game.class, gameUUID);
 			GameUser winner = pm.getObjectById(GameUser.class, winnerUUID);
+			winnerCode_Name = winner.getUserCodeName();
 			g.endGame(winner);
 			for (GameUser a: g.getPlayerList()) {
 				if (a.getUUID() != winnerUUID) {
@@ -188,7 +205,7 @@ public class GameManager implements GameManagerInterface {
 		} finally {
 			pm.close();
 		}
-		retObject = new GameEnded(array);
+		retObject = new GameEnded(array, winnerCode_Name);
 		return retObject;
 	}
 	
