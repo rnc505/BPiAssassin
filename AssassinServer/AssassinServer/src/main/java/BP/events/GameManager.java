@@ -8,6 +8,9 @@ import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
+
 import BP.users.GameUser;
 import BP.users.GameUserImage;
 import BP.domain.GameData;
@@ -45,7 +48,8 @@ public class GameManager implements GameManagerInterface {
 	public void deleteUser(String uuid) {
 		PersistenceManager pm = getPersistenceManager();
 		try {
-			GameUser GameUserToDelete = pm.getObjectById(GameUser.class, uuid);
+			Key k = KeyFactory.createKey(GameUser.class.getSimpleName(), uuid);
+			GameUser GameUserToDelete = pm.getObjectById(GameUser.class, k);
 			pm.deletePersistent(GameUserToDelete);
 		} finally {
 			pm.close();
@@ -59,11 +63,14 @@ public class GameManager implements GameManagerInterface {
 				new ArrayList<ArrayList<GameUserImage>>();
 		String gameUUID;
 		try {
-			GameUser host = pm.getObjectById(GameUser.class, hostUUID);
+			// child-parent dependency -- in order to search child entity, need to create a key with the parent key
+			Key k = KeyFactory.createKey(GameUser.class.getSimpleName(), hostUUID);
+			GameUser host = pm.getObjectById(GameUser.class, k);
 			ArrayList<GameUser> players = new ArrayList<GameUser>();
 			GameUser player;
 			for (String a: playerUUIDs) {
-				player = pm.getObjectById(GameUser.class, a);
+				k = KeyFactory.createKey(GameUser.class.getSimpleName(), a);
+				player = pm.getObjectById(GameUser.class, k);
 				players.add(player);
 				faceImages.add(player.getUsrImages());
 			}
@@ -83,7 +90,8 @@ public class GameManager implements GameManagerInterface {
 		ArrayList<HashMap<String, String>> array =
 				new ArrayList<HashMap<String, String>>();
 		try {
-			Game g = pm.getObjectById(Game.class, gameUUID);
+			Key k = KeyFactory.createKey(Game.class.getSimpleName(), gameUUID);
+			Game g = pm.getObjectById(Game.class, k);
 			g.setGamePlayData(data);
 			g.startGame();
 			String hostUUID = g.getHost().getUUID();
@@ -107,7 +115,8 @@ public class GameManager implements GameManagerInterface {
 		PersistenceManager pm = getPersistenceManager();
 		GameData retObject;
 		try {
-			Game g = pm.getObjectById(Game.class, gameUUID);
+			Key k = KeyFactory.createKey(Game.class.getSimpleName(), gameUUID);
+			Game g = pm.getObjectById(Game.class, k);
 			retObject = g.getGamePlayData();
 		} finally {
 			pm.close();
@@ -121,7 +130,8 @@ public class GameManager implements GameManagerInterface {
 		ArrayList<HashMap<String, String>> array =
 				new ArrayList<HashMap<String, String>>();
 		try {
-			Game g = pm.getObjectById(Game.class, gameUUID);
+			Key k = KeyFactory.createKey(Game.class.getSimpleName(), gameUUID);
+			Game g = pm.getObjectById(Game.class, k);
 			g.startGame();
 			String hostUUID = g.getHost().getUUID();
 			for (GameUser a: g.getPlayerList()) {
@@ -145,7 +155,8 @@ public class GameManager implements GameManagerInterface {
 		PersistenceManager pm = getPersistenceManager();
 		String retVal;
 		try {
-			GameUser a = pm.getObjectById(GameUser.class, userUUID);
+			Key k = KeyFactory.createKey(GameUser.class.getSimpleName(), userUUID);
+			GameUser a = pm.getObjectById(GameUser.class, k);
 			retVal = a.getTarget(gameUUID).getUUID();
 		} finally {
 			pm.close();
@@ -160,9 +171,12 @@ public class GameManager implements GameManagerInterface {
 		String victimCodeName;
 		String nextTargetUUID;
 		try {
-			Game g = pm.getObjectById(Game.class, gameUUID);
-			GameUser assassin = pm.getObjectById(GameUser.class, assassinUUID);
-			GameUser victim = pm.getObjectById(GameUser.class, victimUUID);
+			Key k1 = KeyFactory.createKey(Game.class.getSimpleName(), gameUUID);
+			Game g = pm.getObjectById(Game.class, k1);
+			Key k2 = KeyFactory.createKey(GameUser.class.getSimpleName(), assassinUUID);
+			GameUser assassin = pm.getObjectById(GameUser.class, k2);
+			Key k3 = KeyFactory.createKey(GameUser.class.getSimpleName(), victimUUID);
+			GameUser victim = pm.getObjectById(GameUser.class, k3);
 			GameUser nextTarget = g.killUser(assassin, victim);
 			victimCodeName = victim.getUserCodeName();
 			nextTargetUUID = nextTarget.getUUID();
@@ -191,8 +205,10 @@ public class GameManager implements GameManagerInterface {
 				new ArrayList<HashMap<String, String>>();
 		String winnerCode_Name;
 		try {
-			Game g = pm.getObjectById(Game.class, gameUUID);
-			GameUser winner = pm.getObjectById(GameUser.class, winnerUUID);
+			Key k1 = KeyFactory.createKey(Game.class.getSimpleName(), gameUUID);
+			Game g = pm.getObjectById(Game.class, k1);
+			Key k2 = KeyFactory.createKey(GameUser.class.getSimpleName(), winnerUUID);
+			GameUser winner = pm.getObjectById(GameUser.class, k2);
 			winnerCode_Name = winner.getUserCodeName();
 			g.endGame(winner);
 			for (GameUser a: g.getPlayerList()) {

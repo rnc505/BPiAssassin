@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,7 +57,6 @@ public class GameController {
 			){
 	
 		return gameManager.createGame(hostID, playerIds);
-		
 	}
 	
 	/**
@@ -128,7 +128,9 @@ public class GameController {
 			@RequestParam(value = "apn", required = true, defaultValue = "") final String apn,
 			@RequestParam(value = "platformId", required = true, defaultValue = "") final String platformId) 
 	{
-		return gameManager.RegisterUser(username, thumbnail, faceImages, apn, platformId);
+		String userUUID = gameManager.RegisterUser(username, thumbnail, faceImages, apn, platformId);
+		JSONObject str = new JSONObject().put("userId", userUUID);
+		return str.toString();
 	}
 			
 	@RequestMapping(method = RequestMethod.GET, value = "/helloWorld")
