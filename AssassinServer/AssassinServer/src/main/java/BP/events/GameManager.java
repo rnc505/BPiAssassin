@@ -57,6 +57,7 @@ public class GameManager implements GameManagerInterface {
 		PersistenceManager pm = getPersistenceManager();
 		ArrayList<ArrayList<GameUserImage>> faceImages = 
 				new ArrayList<ArrayList<GameUserImage>>();
+		String gameUUID;
 		try {
 			GameUser host = pm.getObjectById(GameUser.class, hostUUID);
 			ArrayList<GameUser> players = new ArrayList<GameUser>();
@@ -67,11 +68,12 @@ public class GameManager implements GameManagerInterface {
 				faceImages.add(player.getUsrImages());
 			}
 			Game g = new Game(host, players);
+			gameUUID = g.getUUID();
 			pm.makePersistent(g);
 		} finally {
 			pm.close();
 		}
-		GameCreated retObject = new GameCreated(faceImages);
+		GameCreated retObject = new GameCreated(faceImages, gameUUID);
 		return retObject;
 	}
 	

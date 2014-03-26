@@ -13,12 +13,20 @@ public class GameCreated {
 	@JsonProperty
 	public ArrayList<ArrayList<GameUserImage>> usrImageCompilation;
 	
-	public GameCreated (ArrayList<ArrayList<GameUserImage>> a){
+	@JsonProperty
+	public String gameUUID;
+	
+	public GameCreated (ArrayList<ArrayList<GameUserImage>> a, String gameUUID){
 		this.usrImageCompilation = a;
+		this.gameUUID = gameUUID;
 	}
 	
 	public ArrayList<GameUserImage> getImages(int i) {
 		return this.usrImageCompilation.get(i);
+	}
+	
+	public String getGameUUID() {
+		return this.gameUUID;
 	}
 	
 	
