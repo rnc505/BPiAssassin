@@ -1,7 +1,9 @@
 package BP.domain;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,6 +13,10 @@ import com.google.appengine.api.datastore.Text;
 @PersistenceCapable
 public class GameData {
 
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private String uuidString;
+	
 	@JsonProperty
 	@Persistent
 	private String meanImage;
