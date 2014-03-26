@@ -35,6 +35,8 @@ public class GameManager implements GameManagerInterface {
 			ArrayList<GameUserImage> faceImages, String apn, String platformID) {
 		ArrayList<String> usrImageUUIDs = new ArrayList<String>();
 		for (GameUserImage a: faceImages) {
+			if (a.getUUID() == null)
+				throw new IllegalArgumentException();
 			usrImageUUIDs.add(a.getUUID());
 		}
 		GameUser g = new GameUser(code_name, thumbnail.getUUID(), usrImageUUIDs);
