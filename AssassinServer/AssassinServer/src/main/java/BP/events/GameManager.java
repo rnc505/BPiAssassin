@@ -42,6 +42,8 @@ public class GameManager implements GameManagerInterface {
 			array.add("player1");
 			array.add("player2");
 			GameUser test = new GameUser("Robby_sucks", "thumbnailUUID", array);
+			test.setAPN("Like damn");
+			test.setPlatformID("especially his jSON bs");
 			pm.makePersistent(test);
 		} finally {
 			pm.close();
@@ -59,8 +61,8 @@ public class GameManager implements GameManagerInterface {
 			g = new GameUser(code_name, thumbnail.getUUID(), usrImageUUIDs);
 			g.setAPN(apn);
 			g.setPlatformID(platformID);
-			pm.makePersistent(thumbnail);
-			pm.makePersistentAll(faceImages);
+			//pm.makePersistent(thumbnail);
+			//pm.makePersistentAll(faceImages);
 			pm.makePersistent(g);
 		} finally {
 			pm.close();
