@@ -88,7 +88,7 @@ public class GameController {
 	{
 		GameStarted startedGame = gameManager.startGame(gameId, recognizerData);
 		this.apnController.sendNotification(startedGame, "LET THE GAMES BEGIN! Come see who's your first target...");
-		return "";
+		return new JSONObject().toString();
 		
 	}
 	
