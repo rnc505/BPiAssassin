@@ -51,6 +51,10 @@ public class GameManager implements GameManagerInterface {
 			pm.makePersistent(g);
 			pm.currentTransaction().commit();
 		} finally {
+			if (pm.currentTransaction().isActive()) {
+				pm.currentTransaction().rollback();
+				throw new RuntimeException();
+			}
 			pm.close();
 		}
 		return g.getUUID();
