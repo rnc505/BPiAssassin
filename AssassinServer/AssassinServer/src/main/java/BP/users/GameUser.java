@@ -18,6 +18,10 @@ public class GameUser {
 	@PrimaryKey
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
     @Extension(vendorName="datanucleus", key="gae.encoded-pk", value="true")
+    private String encodedKey;
+	
+	@Persistent
+    @Extension(vendorName="datanucleus", key="gae.pk-name", value="true")
     private String uuidString;
 	
 	@Persistent
