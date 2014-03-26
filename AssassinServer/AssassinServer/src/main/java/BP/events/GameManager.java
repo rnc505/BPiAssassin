@@ -21,6 +21,7 @@ import BP.events.objects.GameStarted;
 import BP.events.objects.GameEnded;
 import BP.events.objects.UserKilled;
 import BP.game.Game;
+import BP.domain.StoryData;
 
 @PersistenceAware
 public class GameManager implements GameManagerInterface {
@@ -36,7 +37,17 @@ public class GameManager implements GameManagerInterface {
 			ArrayList<GameUserImage> faceImages, String apn, String platformID) {
 		
 		PersistenceManager pm = getPersistenceManager();
+		try {
+			StoryData test = new StoryData("test");
+			pm.makePersistent(test);
+		} finally {
+			pm.close();
+		}
+		
+		
+		
 		GameUser g;
+		pm = getPersistenceManager();
 		try {
 			ArrayList<String> usrImageUUIDs = new ArrayList<String>();
 			for (GameUserImage a: faceImages) {
