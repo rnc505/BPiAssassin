@@ -54,10 +54,10 @@ public class GameController {
 	@RequestMapping(method = RequestMethod.POST, value = "/createGame")
 	public @ResponseBody GameCreated createGame(
 			@RequestParam(value = "hostId",required = true, defaultValue = "") final String hostID,
-			@RequestParam(value = "playerIds", required = true, defaultValue = "") final ArrayList<String> playerIds
+			@RequestParam(value = "playerIds", required = true, defaultValue = "") final String[] playerIds
 			){
-	
-		return gameManager.createGame(hostID, playerIds);
+		ArrayList<String> temp = new ArrayList<String>(Arrays.asList(playerIds));
+		return gameManager.createGame(hostID, temp);
 	}
 	
 	/**
