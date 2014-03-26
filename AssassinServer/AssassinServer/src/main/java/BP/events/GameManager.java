@@ -8,6 +8,7 @@ import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
+import javax.jdo.annotations.PersistenceAware;
 
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
@@ -21,7 +22,7 @@ import BP.events.objects.GameEnded;
 import BP.events.objects.UserKilled;
 import BP.game.Game;
 
-
+@PersistenceAware
 public class GameManager implements GameManagerInterface {
 	
 	/**
@@ -35,8 +36,6 @@ public class GameManager implements GameManagerInterface {
 			ArrayList<GameUserImage> faceImages, String apn, String platformID) {
 		ArrayList<String> usrImageUUIDs = new ArrayList<String>();
 		for (GameUserImage a: faceImages) {
-			if (a.getUUID() == null)
-				throw new IllegalArgumentException();
 			usrImageUUIDs.add(a.getUUID());
 		}
 		GameUser g = new GameUser(code_name, thumbnail.getUUID(), usrImageUUIDs);
@@ -45,7 +44,7 @@ public class GameManager implements GameManagerInterface {
 		
 		PersistenceManager pm = getPersistenceManager();
 		try {
-			//pm.makePersistent(thumbnail);
+			pm.makePersistent(thumbnail);
 			pm.makePersistentAll(faceImages);
 			pm.makePersistent(g);
 		} finally {
