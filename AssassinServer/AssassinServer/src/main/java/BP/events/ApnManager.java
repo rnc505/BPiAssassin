@@ -33,7 +33,8 @@ public class ApnManager {
 	}
 	
 	
-	public void sendPush(JSONObject apnInfo) throws IOException {
+	public void sendPush(JSONObject apnInfo) {
+		try {
 		URL url = new URL(urlBase);
 		String nameAndPassword = key+":"+secret;
 		String authorizationString = "Basic " + base64.encode(nameAndPassword.getBytes());
@@ -49,6 +50,9 @@ public class ApnManager {
 		if (fetchedResponse.getResponseCode() != 200) {
 		    // something went wrong...
 			// do some sort of logging...
+		}
+		} catch (IOException except) {
+			
 		}
 
 	}

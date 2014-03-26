@@ -15,16 +15,19 @@ public class APNController {
 	private static final String kSecret = "";
 	private static final String kBaseUrl = "https://go.urbanairship.com/api/push/";
 
-	ApnManager apnManager;
+	private ApnManager apnManager;
 
 	public APNController() {
 		this.apnManager = new ApnManager(kKey, kSecret, kBaseUrl);
 	}
 
 	public void sendNotification(PushNotificationInterface notification,
-			String message) throws JSONException {
+			String message) {
+		try {
 		ArrayList<HashMap<String, String>> input = notification
 				.getNotificationObject();
+		String action = notification.getActionIdentifier();
+		
 		JSONObject jsonPayload = new JSONObject();
 		JSONArray iOSDeviceTokens = new JSONArray();
 		JSONArray AndroidDeviceTokens = new JSONArray();
@@ -39,7 +42,11 @@ public class APNController {
 				AndroidDeviceTokens.put(hashMap.get("apn"));
 			}
 		}
+		
+		jsonPayload.put("notification", new JSONObject().put("alert", message));
+		
 		if (iOSDeviceTokens.length() > 0) {
+			jsonPayload.getJSONObject("notification").put("ios", new JSONObject().put("extra", new JSONObject().put("action", action)));
 			if (iOSDeviceTokens.length() == 1) {
 				jsonPayload.getJSONObject("audience").put("device_token",
 						iOSDeviceTokens.getString(0));
@@ -51,6 +58,7 @@ public class APNController {
 				}
 			}
 		} else {
+			jsonPayload.getJSONObject("notification").put("android", new JSONObject().put("extra", new JSONObject().put("action", action)));
 			if (AndroidDeviceTokens.length() == 1) {
 				jsonPayload.getJSONObject("audience").put("apid",
 						AndroidDeviceTokens.getString(0));
@@ -62,9 +70,12 @@ public class APNController {
 				}
 			}
 		}
-		jsonPayload.put("notification", new JSONObject().put("alert", message));
+		
 
 		this.apnManager.sendPush(jsonPayload);
+		} catch (JSONException except) {
+			
+		} 
 	}
 
 }

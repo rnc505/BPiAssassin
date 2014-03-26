@@ -2,28 +2,29 @@ package BP.domain;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.appengine.api.datastore.Text;
 
 @JsonAutoDetect
 public class GameData {
 
 	@JsonProperty
-	String meanImage;
+	Text meanImage;
 	
 	@JsonProperty
-	String covarEigen;
+	Text covarEigen;
 	
 	@JsonProperty
-	String workFunctEigen;
+	Text workFunctEigen;
 	
 	@JsonProperty
-	String projectedImages;
+	Text projectedImages;
 	
 	public GameData(String meanImage, String covarEigen, String workFunctEigen,
 			String projectedImages) {
-		this.meanImage = meanImage;
-		this.covarEigen = covarEigen;
-		this.workFunctEigen = workFunctEigen;
-		this.projectedImages = projectedImages;
+		this.meanImage = new Text(meanImage);
+		this.covarEigen = new Text(covarEigen);
+		this.workFunctEigen = new Text(workFunctEigen);
+		this.projectedImages = new Text(projectedImages);
 	}
 	
 }

@@ -24,4 +24,10 @@ public class GameStarted implements PushNotificationInterface {
 		return data;
 	}
 
+	@Override
+	public String getActionIdentifier() {
+		// TODO Auto-generated method stub
+		return "gameStarted";
+	}
+
 }

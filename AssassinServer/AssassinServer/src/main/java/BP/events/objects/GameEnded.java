@@ -18,10 +18,19 @@ public class GameEnded implements PushNotificationInterface {
 		return this.data;
 	}
 
+	public String getWinner(String winnersId) {
+		// need to get Name/Codename from Winners Id
+		return null;
+	}
+	
 	@Override
 	public ArrayList<HashMap<String, String>> getNotificationObject() {
-		// TODO Auto-generated method stub
 		return data;
+	}
+
+	@Override
+	public String getActionIdentifier() {
+		return "gameEnded";
 	}
 
 }

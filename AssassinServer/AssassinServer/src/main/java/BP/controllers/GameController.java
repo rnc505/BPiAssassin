@@ -15,6 +15,7 @@ import BP.domain.GameData;
 import BP.events.GameManager;
 import BP.events.GameManagerInterface;
 import BP.events.objects.GameCreated;
+import BP.events.objects.GameEnded;
 import BP.events.objects.GameStarted;
 import BP.events.objects.UserKilled;
 import BP.users.GameUserImage;
@@ -86,7 +87,7 @@ public class GameController {
 			@RequestParam(value = "gameData",required = true, defaultValue = "") final GameData recognizerData)
 	{
 		GameStarted startedGame = gameManager.startGame(gameId, recognizerData);
-		/// send notification to non-host users
+		this.apnController.sendNotification(startedGame, "LET THE GAMES BEGIN! Come see who's your first target...");
 		return "";
 		
 	}
@@ -103,11 +104,21 @@ public class GameController {
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/killUser")
 	public @ResponseBody String killUser(
-			@RequestParam(value = "gameId", required = true, defaultValue = "") final String gameID,
+			@RequestParam(value = "gameId", required = true, defaultValue = "") final String gameId,
 			@RequestParam(value = "assassinId", required = true, defaultValue = "") final String assassinId,
-			@RequestParam(value = "victimId", required = true, defaultValue = "") final String victimID) 
+			@RequestParam(value = "victimId", required = true, defaultValue = "") final String victimId) 
 	{
-		return gameManager.killUser(gameID, assassinId, victimID).getNextTarget();
+		UserKilled killed = gameManager.killUser(gameId, assassinId, victimId);
+		if(killed.getNextTarget().equals(assassinId)) {
+			GameEnded ended =  this.gameManager.endGame(gameId, assassinId);
+			this.apnController.sendNotification(ended, ended.getWinner(assassinId) + " has won the game!");
+		} else {
+			UserKilled everyoneElse = killed.getEveryoneExceptAssassinAndVictim(assassinId, victimId);
+			this.apnController.sendNotification(everyoneElse, everyoneElse.getNextTarget() + " has been assassinated!!");
+			this.apnController.sendNotification(killed.getVictim(victimId), "You have been assassinated!");
+		}
+		this.apnController.sendNotification(killed, ""); // 
+		return killed.getNextTarget(); 
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/registerUser")

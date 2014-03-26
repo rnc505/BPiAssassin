@@ -5,4 +5,5 @@ import java.util.HashMap;
 
 public interface PushNotificationInterface {
 	public ArrayList<HashMap<String, String>> getNotificationObject();
+	public String getActionIdentifier();
 }

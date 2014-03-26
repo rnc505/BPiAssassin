@@ -22,6 +22,20 @@ public class UserKilled implements PushNotificationInterface {
 		
 	}
 	
+	public UserKilled getEveryoneExceptAssassinAndVictim(String assassinId, String victimId) {
+		// create new user killed object
+		// fill in data with everyones APNS except assassin and victim
+		// set nextTarget to the NAME/Codename of the victim
+		return null;
+	}
+	
+	public UserKilled getVictim(String victimId) {
+		// create new user killed object
+		// fill in data with ONLY victims APN
+		// don't need to set nextTarget
+		return null;
+	}
+	
 	public UserKilled(String nxt) {
 		this.nextTarget = nxt;
 	}
@@ -34,5 +48,11 @@ public class UserKilled implements PushNotificationInterface {
 	public ArrayList<HashMap<String, String>> getNotificationObject() {
 		// TODO Auto-generated method stub
 		return data;
+	}
+
+	@Override
+	public String getActionIdentifier() {
+		// TODO Auto-generated method stub
+		return "userKilled";
 	}
 }
