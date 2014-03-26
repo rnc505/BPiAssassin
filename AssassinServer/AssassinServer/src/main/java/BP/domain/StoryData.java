@@ -14,6 +14,7 @@ public class StoryData {
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
     private String uuidString;
 	
+	@Persistent
 	private String data1;
 	
 	public StoryData(String data) {
