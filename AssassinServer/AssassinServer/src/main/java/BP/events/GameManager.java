@@ -38,7 +38,6 @@ public class GameManager implements GameManagerInterface {
 		PersistenceManager pm = getPersistenceManager();
 		GameUser g;
 		try {
-			pm.currentTransaction().begin();
 			ArrayList<String> usrImageUUIDs = new ArrayList<String>();
 			for (GameUserImage a: faceImages) {
 				usrImageUUIDs.add(a.getUUID());
