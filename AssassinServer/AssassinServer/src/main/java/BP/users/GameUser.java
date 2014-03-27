@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
+import javax.jdo.annotations.Embedded;
 import javax.jdo.annotations.EmbeddedOnly;
 import javax.jdo.annotations.Extension;
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -61,7 +62,7 @@ public class GameUser {
 			}
 		}
 	}
-	
+	@Embedded
 	@Persistent
 	private HashMapJDO gameTargetUUIDs;
 

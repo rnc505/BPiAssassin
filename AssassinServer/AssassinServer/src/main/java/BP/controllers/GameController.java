@@ -116,7 +116,7 @@ public class GameController {
 	@RequestMapping(method = RequestMethod.GET, value = "/getTarget/{gameId}/{userId}")
 	public @ResponseBody
 	String getTarget(@PathVariable String gameId, @PathVariable String userId) {
-		return gameManager.getTarget(gameId, userId);
+		return new JSONObject().put("target", gameManager.getTarget(gameId, userId)).toString();
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/killUser")
@@ -144,7 +144,7 @@ public class GameController {
 			this.apnController.sendNotification(victim,
 					"You have been assassinated!");
 		}
-		return killed.getNextTarget();
+		return new JSONObject().put("target",killed.getNextTarget()).toString();
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/registerUser")
