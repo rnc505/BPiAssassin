@@ -54,7 +54,7 @@ public class GameUser {
 		this.code_name = code_name;
 		this.thumbnailUUID = thumbnailUUID;
 		this.usrImageUUIDs = usrImageUUIDs;
-		this.gameTargetUUIDs =null;
+		this.gameTargetUUIDs = new HashMap<String,String>();
 		this.numKills = 0;
 		this.numDeaths = 0;
 		this.numWins = 0;

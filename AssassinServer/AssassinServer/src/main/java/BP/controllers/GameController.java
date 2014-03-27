@@ -2,9 +2,6 @@ package BP.controllers;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -13,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import BP.domain.GameData;
@@ -53,11 +49,15 @@ public class GameController {
 
 	@RequestMapping(method = RequestMethod.POST, value = "/createGame")
 	public @ResponseBody
-	GameCreated createGame(
-			@RequestParam(value = "hostId", required = true, defaultValue = "") final String hostID,
-			@RequestParam(value = "playerIds", required = true, defaultValue = "") final String[] playerIds) {
-		ArrayList<String> temp = new ArrayList<String>(Arrays.asList(playerIds));
-		return gameManager.createGame(hostID, temp);
+	GameCreated createGame(@RequestBody final String Body) {
+		// @RequestParam(value = "hostId", required = true, defaultValue = "")
+		// final String hostID,
+		// @RequestParam(value = "playerIds", required = true, defaultValue =
+		// "") final String[] playerIds) {
+		JSONObject body = new JSONObject(Body);
+		ArrayList<String> temp = jsonArrayToArrayList(
+				body.getJSONArray("playerIds"), String.class);
+		return gameManager.createGame(body.getString("hostId"), temp);
 	}
 
 	/**
@@ -85,14 +85,22 @@ public class GameController {
 	 */
 	@RequestMapping(method = RequestMethod.POST, value = "/startGame")
 	public @ResponseBody
-	String startGame(
-			@RequestParam(value = "gameId", required = true, defaultValue = "") final String gameId,
-			@RequestParam(value = "meanImage", required = true, defaultValue = "") final String meanImage,
-			@RequestParam(value = "covarEigen", required = true, defaultValue = "") final String covarEigen,
-			@RequestParam(value = "workFunctEigen", required = true, defaultValue = "") final String workFunctEigen,
-			@RequestParam(value = "projectedImages", required = true, defaultValue = "") final String projectedImages) {
-		GameStarted startedGame = gameManager.startGame(gameId, new GameData(
-				meanImage, covarEigen, workFunctEigen, projectedImages));
+	String startGame(@RequestBody final String Body) {
+		// @RequestParam(value = "gameId", required = true, defaultValue = "")
+		// final String gameId,
+		// @RequestParam(value = "meanImage", required = true, defaultValue =
+		// "") final String meanImage,
+		// @RequestParam(value = "covarEigen", required = true, defaultValue =
+		// "") final String covarEigen,
+		// @RequestParam(value = "workFunctEigen", required = true, defaultValue
+		// = "") final String workFunctEigen,
+		// @RequestParam(value = "projectedImages", required = true,
+		// defaultValue = "") final String projectedImages) {
+		final JSONObject body = new JSONObject(Body);
+		GameStarted startedGame = gameManager.startGame(body
+				.getString("gameId"), new GameData(body.getString("meanImage"),
+				body.getString("covarEigen"), body.getString("workFunctEigen"),
+				body.getString("projectedImages")));
 		this.apnController.sendNotification(startedGame,
 				"LET THE GAMES BEGIN! Come see who's your first target...");
 		return new JSONObject().toString();
@@ -113,13 +121,20 @@ public class GameController {
 
 	@RequestMapping(method = RequestMethod.POST, value = "/killUser")
 	public @ResponseBody
-	String killUser(
-			@RequestParam(value = "gameId", required = true, defaultValue = "") final String gameId,
-			@RequestParam(value = "assassinId", required = true, defaultValue = "") final String assassinId,
-			@RequestParam(value = "victimId", required = true, defaultValue = "") final String victimId) {
-		UserKilled killed = gameManager.killUser(gameId, assassinId, victimId);
-		if (killed.getNextTarget().equals(assassinId)) {
-			GameEnded ended = this.gameManager.endGame(gameId, assassinId);
+	String killUser(@RequestBody final String Body
+	// @RequestParam(value = "gameId", required = true, defaultValue = "") final
+	// String gameId,
+	// @RequestParam(value = "assassinId", required = true, defaultValue = "")
+	// final String assassinId,
+	// @RequestParam(value = "victimId", required = true, defaultValue = "")
+	// final String victimId
+	) {
+		final JSONObject body = new JSONObject(Body);
+		UserKilled killed = gameManager.killUser(body.getString("gameId"),
+				body.getString("assassinId"), body.getString("victimId"));
+		if (killed.getNextTarget().equals(body.getString("assassinId"))) {
+			GameEnded ended = this.gameManager.endGame(
+					body.getString("gameId"), body.getString("assassinId"));
 			this.apnController.sendNotification(ended, ended.getWinner()
 					+ " has won the game!");
 		} else {
@@ -145,13 +160,11 @@ public class GameController {
 	// platformId
 	) {
 		JSONObject body = new JSONObject(Body);
-		ArrayList<GameUserImage> temp = jsonArrayToArrayList(body
-				.getJSONArray("faceImages"),  GameUserImage.class);
+		ArrayList<GameUserImage> temp = jsonArrayToArrayList(
+				body.getJSONArray("faceImages"), GameUserImage.class);
 		String userUUID = gameManager.RegisterUser(body.getString("username"),
 				new GameUserImage(body.getString("thumbnail")), temp,
 				body.getString("apn"), body.getString("platformId"));
-		// String userUUID = gameManager.RegisterUser("I'm stupid", img, temp2,
-		// "Robby sucks APN", "Rozier sucks everyone");
 
 		return new JSONObject().put("userId", userUUID).toString();
 	}
@@ -172,17 +185,18 @@ public class GameController {
 		return ret;
 	}
 
-	static private<T> ArrayList<T> jsonArrayToArrayList(JSONArray array, Class<T> cls) {
-		ArrayList<T> listdata = new ArrayList<T>(); 
+	static private <T> ArrayList<T> jsonArrayToArrayList(JSONArray array,
+			Class<T> cls) {
+		ArrayList<T> listdata = new ArrayList<T>();
 		try {
-		Constructor<T> ctor = cls.getConstructor(String.class);
-		if (array != null) { 
-		   for (int i=0;i<array.length();i++){ 
-			T temp = ctor.newInstance(array.get(i));
-		    listdata.add(temp);
-		   } 
-		} 
-		} catch(Exception ex) {
+			Constructor<T> ctor = cls.getConstructor(String.class);
+			if (array != null) {
+				for (int i = 0; i < array.length(); i++) {
+					T temp = ctor.newInstance(array.getString(i));
+					listdata.add(temp);
+				}
+			}
+		} catch (Exception ex) {
 			throw new RuntimeException(ex.getMessage(), ex.getCause());
 		}
 		return listdata;

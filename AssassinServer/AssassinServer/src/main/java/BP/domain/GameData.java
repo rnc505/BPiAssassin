@@ -8,9 +8,9 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.appengine.api.datastore.Text;
 
 @JsonAutoDetect
 @PersistenceCapable
@@ -22,47 +22,47 @@ public class GameData {
 	
 	@JsonProperty
 	@Persistent
-	private String meanImage;
+	private Text meanImage;
 	
 	@JsonProperty
 	@Persistent
-	private String covarEigen;
+	private Text covarEigen;
 	
 	@JsonProperty
 	@Persistent
-	private String workFunctEigen;
+	private Text workFunctEigen;
 	
 	@JsonProperty
 	@Persistent
-	private String projectedImages;
+	private Text projectedImages;
 	
 	public GameData(String meanImage, String covarEigen, String workFunctEigen,
 			String projectedImages) {
 		UUID uuid = new UUID(System.nanoTime(), System.nanoTime());
 		this.uuidString = uuid.toString();
-		this.meanImage = meanImage;
-		this.covarEigen = covarEigen;
-		this.workFunctEigen = workFunctEigen;
-		this.projectedImages = projectedImages;
+		this.meanImage = new Text(meanImage);
+		this.covarEigen = new Text(covarEigen);
+		this.workFunctEigen = new Text(workFunctEigen);
+		this.projectedImages = new Text(projectedImages);
 	}
 	
 	public String getUUID() {
 		return this.uuidString;
 	}
 	
-	public String getMeanImage() {
+	public Text getMeanImage() {
 		return this.meanImage;
 	}
 	
-	public String getCovarEigen() {
+	public Text getCovarEigen() {
 		return this.covarEigen;
 	}
 	
-	public String getWorkFunctEigen() {
+	public Text getWorkFunctEigen() {
 		return this.workFunctEigen;
 	}
 	
-	public String getProjectedImages() {
+	public Text getProjectedImages() {
 		return this.projectedImages;
 	}
 	
