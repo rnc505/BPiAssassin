@@ -3,6 +3,7 @@ package BP.events;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Random;
 
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManagerFactory;
@@ -101,7 +102,7 @@ public class GameManager implements GameManagerInterface {
 			
 			//Assigns Targets
 			ArrayList<String> playerUUIDs = g.getPlayerUUIDs();
-			Collections.shuffle(playerUUIDs);
+			Collections.shuffle(playerUUIDs, new Random(System.currentTimeMillis()));
 			int numPlayers = playerUUIDs.size();
 			for (int i= 0; i < numPlayers; i ++) {
 				GameUser hunter = pm.getObjectById(GameUser.class, playerUUIDs.get(i));
