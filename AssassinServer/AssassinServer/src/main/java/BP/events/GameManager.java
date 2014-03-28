@@ -1,12 +1,15 @@
 package BP.events;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Random;
 
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
+import javax.jdo.annotations.PersistenceAware;
 
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
@@ -19,8 +22,9 @@ import BP.events.objects.GameStarted;
 import BP.events.objects.GameEnded;
 import BP.events.objects.UserKilled;
 import BP.game.Game;
+import BP.domain.StoryData;
 
-
+@PersistenceAware
 public class GameManager implements GameManagerInterface {
 	
 	/**
@@ -32,12 +36,19 @@ public class GameManager implements GameManagerInterface {
 	//User Management
 	public String RegisterUser(String code_name, GameUserImage thumbnail, 
 			ArrayList<GameUserImage> faceImages, String apn, String platformID) {
-		GameUser g = new GameUser(code_name, thumbnail, faceImages);
-		g.setAPN(apn);
-		g.setPlatformID(platformID);
 		
 		PersistenceManager pm = getPersistenceManager();
+		GameUser g;
 		try {
+			ArrayList<String> usrImageUUIDs = new ArrayList<String>();
+			for (GameUserImage a: faceImages) {
+				usrImageUUIDs.add(a.getUUID());
+			}
+			g = new GameUser(code_name, thumbnail.getUUID(), usrImageUUIDs);
+			g.setAPN(apn);
+			g.setPlatformID(platformID);
+			pm.makePersistent(thumbnail);
+			pm.makePersistentAll(faceImages);
 			pm.makePersistent(g);
 		} finally {
 			pm.close();
@@ -48,8 +59,7 @@ public class GameManager implements GameManagerInterface {
 	public void deleteUser(String uuid) {
 		PersistenceManager pm = getPersistenceManager();
 		try {
-			Key k = KeyFactory.createKey(GameUser.class.getSimpleName(), uuid);
-			GameUser GameUserToDelete = pm.getObjectById(GameUser.class, k);
+			GameUser GameUserToDelete = pm.getObjectById(GameUser.class, uuid);
 			pm.deletePersistent(GameUserToDelete);
 		} finally {
 			pm.close();
@@ -61,53 +71,60 @@ public class GameManager implements GameManagerInterface {
 		PersistenceManager pm = getPersistenceManager();
 		ArrayList<ArrayList<GameUserImage>> faceImages = 
 				new ArrayList<ArrayList<GameUserImage>>();
-		String gameUUID;
+		Game g = new Game(hostUUID, playerUUIDs);
 		try {
-			// child-parent dependency -- in order to search child entity, need to create a key with the parent key
-			Key k = KeyFactory.createKey(GameUser.class.getSimpleName(), hostUUID);
-			GameUser host = pm.getObjectById(GameUser.class, k);
-			ArrayList<GameUser> players = new ArrayList<GameUser>();
 			GameUser player;
 			for (String a: playerUUIDs) {
-				k = KeyFactory.createKey(GameUser.class.getSimpleName(), a);
-				player = pm.getObjectById(GameUser.class, k);
-				players.add(player);
-				faceImages.add(player.getUsrImages());
+				player = pm.getObjectById(GameUser.class, a);
+				ArrayList<GameUserImage> playerImages = new ArrayList<GameUserImage>();
+				for (String i: player.getUsrImageUUIDs()) {
+					playerImages.add(pm.getObjectById(GameUserImage.class, i));
+				}
+				faceImages.add(playerImages);
 			}
-			Game g = new Game(host, players);
-			gameUUID = g.getUUID();
 			pm.makePersistent(g);
 		} finally {
 			pm.close();
 		}
-		GameCreated retObject = new GameCreated(faceImages, gameUUID);
+		GameCreated retObject = new GameCreated(faceImages, g.getUUID());
 		return retObject;
 	}
 	
 	public GameStarted startGame(String gameUUID, GameData data) {
 		PersistenceManager pm = getPersistenceManager();
 		GameStarted retObject;
-		ArrayList<HashMap<String, String>> array =
+		ArrayList<HashMap<String, String>> apnData =
 				new ArrayList<HashMap<String, String>>();
 		try {
-			Key k = KeyFactory.createKey(Game.class.getSimpleName(), gameUUID);
-			Game g = pm.getObjectById(Game.class, k);
-			g.setGamePlayData(data);
+			Game g = pm.getObjectById(Game.class, gameUUID);
+			g.setGamePlayDataUUID(data.getUUID());
 			g.startGame();
-			String hostUUID = g.getHost().getUUID();
-			for (GameUser a: g.getPlayerList()) {
-				if (a.getUUID() != hostUUID) {
+			
+			//Assigns Targets
+			ArrayList<String> playerUUIDs = g.getPlayerUUIDs();
+			Collections.shuffle(playerUUIDs, new Random(System.currentTimeMillis()));
+			int numPlayers = playerUUIDs.size();
+			for (int i= 0; i < numPlayers; i ++) {
+				GameUser hunter = pm.getObjectById(GameUser.class, playerUUIDs.get(i));
+				hunter.setTargetUUID(gameUUID, playerUUIDs.get((i+1)%numPlayers));
+			}
+			
+			//Collect APN Information
+			String hostUUID = g.getHostUUID();
+			for (String usrUUID: playerUUIDs) {
+				if (usrUUID != hostUUID) {
+					GameUser usr = pm.getObjectById(GameUser.class, usrUUID);
 					HashMap<String, String> entry = 
 							new HashMap<String, String>();
-					entry.put("apn", a.getAPN());
-					entry.put("platformId", a.getPlatformID());
-					array.add(entry);
+					entry.put("apn", usr.getAPN());
+					entry.put("platformId", usr.getPlatformID());
+					apnData.add(entry);
 				}
 			}
 		} finally {
 			pm.close();
 		}
-		retObject = new GameStarted(array);
+		retObject = new GameStarted(apnData);
 		return retObject;
 	}
 
@@ -117,14 +134,14 @@ public class GameManager implements GameManagerInterface {
 		try {
 			Key k = KeyFactory.createKey(Game.class.getSimpleName(), gameUUID);
 			Game g = pm.getObjectById(Game.class, k);
-			retObject = g.getGamePlayData();
+			retObject = pm.getObjectById(GameData.class, g.getGamePlayDataUUID());
 		} finally {
 			pm.close();
 		}
 		return retObject;
 	}
 
-	public GameStarted restartGame(String gameUUID) {
+	/*public GameStarted restartGame(String gameUUID) {
 		PersistenceManager pm = getPersistenceManager();
 		GameStarted retObject;
 		ArrayList<HashMap<String, String>> array =
@@ -148,20 +165,31 @@ public class GameManager implements GameManagerInterface {
 		}
 		retObject = new GameStarted(array);
 		return retObject;
-	}
+	}*/
 	
 	//Game Play
 	public String getTarget(String gameUUID, String userUUID) {
 		PersistenceManager pm = getPersistenceManager();
 		String retVal;
 		try {
-			Key k = KeyFactory.createKey(GameUser.class.getSimpleName(), userUUID);
-			GameUser a = pm.getObjectById(GameUser.class, k);
-			retVal = a.getTarget(gameUUID).getUUID();
+			GameUser a = pm.getObjectById(GameUser.class, userUUID);
+			retVal = a.getTargetUUID(gameUUID);
 		} finally {
 			pm.close();
 		}
 		return retVal;
+	}
+	
+	public GameUserImage getUsrThumbnail(String usrUUID) {
+		PersistenceManager pm = getPersistenceManager();
+		GameUserImage retObject;
+		try {
+			GameUser a = pm.getObjectById(GameUser.class, usrUUID);
+			retObject = pm.getObjectById(GameUserImage.class, a.getThumbnailUUID());
+		} finally {
+			pm.close();
+		}
+		return retObject;
 	}
 	
 	public UserKilled killUser(String gameUUID, String assassinUUID, String victimUUID) {
@@ -171,22 +199,22 @@ public class GameManager implements GameManagerInterface {
 		String victimCodeName;
 		String nextTargetUUID;
 		try {
-			Key k1 = KeyFactory.createKey(Game.class.getSimpleName(), gameUUID);
-			Game g = pm.getObjectById(Game.class, k1);
-			Key k2 = KeyFactory.createKey(GameUser.class.getSimpleName(), assassinUUID);
-			GameUser assassin = pm.getObjectById(GameUser.class, k2);
-			Key k3 = KeyFactory.createKey(GameUser.class.getSimpleName(), victimUUID);
-			GameUser victim = pm.getObjectById(GameUser.class, k3);
-			GameUser nextTarget = g.killUser(assassin, victim);
+			Game g = pm.getObjectById(Game.class, gameUUID);
+			GameUser assassin = pm.getObjectById(GameUser.class, assassinUUID);
+			GameUser victim = pm.getObjectById(GameUser.class, victimUUID);
+			
+			nextTargetUUID = killUser(gameUUID, assassin, victim);
 			victimCodeName = victim.getUserCodeName();
-			nextTargetUUID = nextTarget.getUUID();
-			for (GameUser a: g.getPlayerList()) {
+			
+			//Collects APN information
+			for (String usrUUID: g.getPlayerUUIDs()) {
+				GameUser usr = pm.getObjectById(GameUser.class, usrUUID);
 				HashMap<String, String> entry = new HashMap<String, String>();
-				entry.put("apn",a.getAPN());
-				entry.put("platformId", a.getPlatformID());
-				if (a.getUUID() == victimUUID) {
+				entry.put("apn",usr.getAPN());
+				entry.put("platformId", usr.getPlatformID());
+				if (usrUUID == victimUUID) {
 					victimAPN.add(entry);
-				} else if (a.getUUID() != assassinUUID) {
+				} else if (usrUUID != assassinUUID) {
 					otherAPN.add(entry);
 				}
 			}
@@ -201,29 +229,29 @@ public class GameManager implements GameManagerInterface {
 	public GameEnded endGame(String gameUUID, String winnerUUID) {
 		PersistenceManager pm = getPersistenceManager();
 		GameEnded retObject;
-		ArrayList<HashMap<String, String>> array =
+		ArrayList<HashMap<String, String>> apnData =
 				new ArrayList<HashMap<String, String>>();
 		String winnerCode_Name;
 		try {
-			Key k1 = KeyFactory.createKey(Game.class.getSimpleName(), gameUUID);
-			Game g = pm.getObjectById(Game.class, k1);
-			Key k2 = KeyFactory.createKey(GameUser.class.getSimpleName(), winnerUUID);
-			GameUser winner = pm.getObjectById(GameUser.class, k2);
+			Game g = pm.getObjectById(Game.class, gameUUID);
+			GameUser winner = pm.getObjectById(GameUser.class, winnerUUID);
 			winnerCode_Name = winner.getUserCodeName();
 			g.endGame(winner);
-			for (GameUser a: g.getPlayerList()) {
-				if (a.getUUID() != winnerUUID) {
+			winner.addWin(); //Increments Winner's win count
+			for (String usrUUID: g.getPlayerUUIDs()) {
+				if (usrUUID != winnerUUID) {
+					GameUser usr = pm.getObjectById(GameUser.class, usrUUID);
 					HashMap<String, String> entry = 
 							new HashMap<String, String>();
-					entry.put("apn", a.getAPN());
-					entry.put("platformId", a.getPlatformID());
-					array.add(entry);
+					entry.put("apn", usr.getAPN());
+					entry.put("platformId", usr.getPlatformID());
+					apnData.add(entry);
 				}
 			}
 		} finally {
 			pm.close();
 		}
-		retObject = new GameEnded(array, winnerCode_Name);
+		retObject = new GameEnded(apnData, winnerCode_Name);
 		return retObject;
 	}
 	
@@ -233,6 +261,13 @@ public class GameManager implements GameManagerInterface {
 				.getPersistenceManager();
 	}
 	
+	private String killUser(String gameUUID, GameUser assassin, GameUser victim) {
+		assassin.addKill();
+		victim.addDeath();
+		assassin.setTargetUUID(gameUUID, victim.getTargetUUID(gameUUID)); //Assigns new target to assassin
+		victim.removeTarget(gameUUID);
+		return assassin.getTargetUUID(gameUUID);
+	}
 		
 
 

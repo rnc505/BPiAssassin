@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceAware;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
@@ -19,11 +20,11 @@ public class Game {
 	private String uuidString;
 	
 	@Persistent
-	private GameData gamePlayData; //Data used for facial recognition
+	private String gameDataUUID; //Data used for facial recognition
 	@Persistent
-	private ArrayList<GameUser> playerList;
+	private ArrayList<String> playerUUIDList;
 	@Persistent
-	private GameUser host; //player who "created" game
+	private String hostUUID; //player who "created" game
 	
 	@Persistent
 	private boolean gameInProgress;
@@ -44,11 +45,12 @@ public class Game {
 	 * @param host
 	 * @param playerList
 	 */
-	public Game(GameUser host, ArrayList<GameUser> playerList) {
+	public Game(String hostUUID, ArrayList<String> playerUUIDs) {
 		UUID uuid = new UUID(System.nanoTime(), System.nanoTime());
 		this.uuidString = uuid.toString();
-		this.host = host;
-		this.playerList = playerList;
+		this.hostUUID = hostUUID;
+		this.playerUUIDList = playerUUIDs;
+		this.gameDataUUID = null;
 		this.gameInProgress = false;
 	}
 	
@@ -56,28 +58,30 @@ public class Game {
 		return this.uuidString;
 	}
 	
+
 	/**
 	 * getGameInitData() 
 	 * Returns an Array of an Array containing the 
 	 * ImageData of the game users.
 	 * @return
 	 */
-	public ArrayList<ArrayList<GameUserImage>> getGameInitData() {
-		ArrayList<ArrayList<GameUserImage>> data = 
-				new ArrayList<ArrayList<GameUserImage>>();
-		for (GameUser usr: playerList) {
+	/*public ArrayList<ArrayList<String>> getGameInitData() {
+		ArrayList<ArrayList<String>> data = 
+				new ArrayList<ArrayList<String>>();
+		for (GameUser usr: playerUUIDList) {
 			data.add(usr.getUsrImages());
 		}
 		return data;
 	}
+	*/
 	
 	/**
 	 * setGamePlayData() 
 	 * Sets the game data used for Facial Recognition
 	 * @param gameData
 	 */
-	public void setGamePlayData(GameData gameData) {
-		this.gamePlayData = gameData;
+	public void setGamePlayDataUUID(String gameDataUUID) {
+		this.gameDataUUID = gameDataUUID;
 	}
 	
 	/**
@@ -85,8 +89,8 @@ public class Game {
 	 * Returns the game data used for facial recognition
 	 * @return
 	 */
-	public GameData getGamePlayData() {
-		return this.gamePlayData;
+	public String getGamePlayDataUUID() {
+		return this.gameDataUUID;
 	}
 	
 	/**
@@ -95,7 +99,6 @@ public class Game {
 	 */
 	public void startGame() {
 		this.gameInProgress = true;
-		assignTargets();
 	}
 	
 	/**
@@ -108,13 +111,13 @@ public class Game {
 	 * @param victim
 	 * @return
 	 */
-	public GameUser killUser(GameUser assassin, GameUser victim) {
+	/*public GameUser killUser(GameUser assassin, GameUser victim) {
 		assassin.addKill();
 		victim.addDeath();
 		assassin.setTarget(uuidString, victim.getTarget(uuidString)); //Assigns new target to assassin
 		victim.removeTarget(uuidString);
 		return assassin.getTarget(uuidString);
-	}
+	}*/
 	
 	/**
 	 * endGame() 
@@ -123,15 +126,15 @@ public class Game {
 	 */
 	public void endGame(GameUser winner) {
 		this.gameInProgress = false;
-		winner.addWin();
+		//winner.addWin();
 	}
 	
-	public ArrayList<GameUser> getPlayerList() {
-		return this.playerList;
+	public ArrayList<String> getPlayerUUIDs() {
+		return this.playerUUIDList;
 	}
 	
-	public GameUser getHost() {
-		return this.host;
+	public String getHostUUID() {
+		return this.hostUUID;
 	}
 	
 	
@@ -142,11 +145,11 @@ public class Game {
 	 * Assigns user initial user targets and returns map
 	 * @return
 	 */
-	private void assignTargets() {
+	/*private void assignTargets() {
 		Collections.shuffle(playerList);
 		int numPlayers = playerList.size();
 		for (int i= 0; i < numPlayers; i ++) {
 			playerList.get(i).setTarget(uuidString, playerList.get((i+1)%numPlayers));
 		}
-	}
+	}*/
 }	

@@ -1,14 +1,16 @@
 package BP.domain;
 
+import java.util.UUID;
+
 import javax.jdo.annotations.Extension;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.appengine.api.datastore.Text;
 
 @JsonAutoDetect
 @PersistenceCapable
@@ -16,35 +18,52 @@ public class GameData {
 
 	@PrimaryKey
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-    @Extension(vendorName="datanucleus", key="gae.encoded-pk", value="true")
-    private String encodedKey;
-	
-	@Persistent
-    @Extension(vendorName="datanucleus", key="gae.pk-name", value="true")
     private String uuidString;
 	
 	@JsonProperty
 	@Persistent
-	private String meanImage;
+	private Text meanImage;
 	
 	@JsonProperty
 	@Persistent
-	private String covarEigen;
+	private Text covarEigen;
 	
 	@JsonProperty
 	@Persistent
-	private String workFunctEigen;
+	private Text workFunctEigen;
 	
 	@JsonProperty
 	@Persistent
-	private String projectedImages;
+	private Text projectedImages;
 	
 	public GameData(String meanImage, String covarEigen, String workFunctEigen,
 			String projectedImages) {
-		this.meanImage = meanImage;
-		this.covarEigen = covarEigen;
-		this.workFunctEigen = workFunctEigen;
-		this.projectedImages = projectedImages;
+		UUID uuid = new UUID(System.nanoTime(), System.nanoTime());
+		this.uuidString = uuid.toString();
+		this.meanImage = new Text(meanImage);
+		this.covarEigen = new Text(covarEigen);
+		this.workFunctEigen = new Text(workFunctEigen);
+		this.projectedImages = new Text(projectedImages);
+	}
+	
+	public String getUUID() {
+		return this.uuidString;
+	}
+	
+	public Text getMeanImage() {
+		return this.meanImage;
+	}
+	
+	public Text getCovarEigen() {
+		return this.covarEigen;
+	}
+	
+	public Text getWorkFunctEigen() {
+		return this.workFunctEigen;
+	}
+	
+	public Text getProjectedImages() {
+		return this.projectedImages;
 	}
 	
 }
