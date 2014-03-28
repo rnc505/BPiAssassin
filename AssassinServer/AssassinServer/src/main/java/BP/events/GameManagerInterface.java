@@ -21,7 +21,7 @@ public interface GameManagerInterface {
 	GameCreated createGame(String hostUUID, ArrayList<String> playerUUIDs);
 	GameStarted startGame(String gameUUID, GameData data);
 	GameData getGamePlayData(String gameUUID);
-	GameStarted restartGame(String gameUUID);
+	//GameStarted restartGame(String gameUUID);
 	
 	//Game Play
 	//Do we also want a getTargetThumbnail method?

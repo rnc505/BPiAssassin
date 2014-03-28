@@ -299,6 +299,11 @@
 			<artifactId>java-client</artifactId>
 			<version>0.2.2</version>
 		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20140107</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -329,6 +334,13 @@
 							<directory>${basedir}/src/main/webapp/WEB-INF</directory>
 							<filtering>true</filtering>
 							<targetPath>WEB-INF</targetPath>
+						</resource>
+						
+						
+						<resource>
+							<directory>${basedir}/src/main/java/META-INF</directory>
+							<filtering>true</filtering>
+							<targetPath>WEB-INF/classes/META-INF</targetPath>
 						</resource>
 					</webResources>
 				</configuration>
