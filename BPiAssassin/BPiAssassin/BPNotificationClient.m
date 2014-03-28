@@ -20,8 +20,8 @@
     });
 }
 
-+(void)notifyUserRegistered:(NSString*)userUUID {
-    [BPNotificationClient helperSendNotification:kUserRegisteredNotification withPayload:[NSDictionary dictionaryWithObject:userUUID forKey:@"userId"]];
++(void)notifyUserRegistered:(NSDictionary*)userUUID {
+    [BPNotificationClient helperSendNotification:kUserRegisteredNotification withPayload:userUUID ];
 }
 +(void)notifyGameCreated:(NSDictionary*)dictOfUsersImages {
     [BPNotificationClient helperSendNotification:kGameCreatedNotification withPayload:dictOfUsersImages];
@@ -32,11 +32,11 @@
 +(void)notifyGamePlayDataReceived:(NSDictionary*)gamePlayData {
     [BPNotificationClient helperSendNotification:kGamePlayDataReceivedNotification withPayload:gamePlayData];
 }
-+(void)notifyTargetReceived:(NSString*)target {
-    [BPNotificationClient helperSendNotification:kTargetReceivedNotification withPayload:[NSDictionary dictionaryWithObject:target forKey:@"target"]];
++(void)notifyTargetReceived:(NSDictionary*)target {
+    [BPNotificationClient helperSendNotification:kTargetReceivedNotification withPayload:target];
 }
-+(void)notifyUserKilled:(NSString*)newTarget {
-    [BPNotificationClient helperSendNotification:kUserKilledNotification withPayload:[NSDictionary dictionaryWithObject:newTarget forKey:@"newTarget"]];
++(void)notifyUserKilled:(NSDictionary*)newTarget {
+    [BPNotificationClient helperSendNotification:kUserKilledNotification withPayload:newTarget];
 }
 
 +(void)notifyAPIClientFailed:(NSError *)error forNotification:(NSString *)notification {

@@ -33,6 +33,9 @@ static NSString * const kBaseUrl = @"http://iassassin-cs279.appspot.com/game/";
     if (self) {
         self.responseSerializer = [AFJSONResponseSerializer serializer];
         self.requestSerializer = [AFJSONRequestSerializer serializer];
+        NSMutableSet *superset = [NSMutableSet setWithSet:self.responseSerializer.acceptableContentTypes];
+        [superset addObject:@"text/plain"];
+        self.responseSerializer.acceptableContentTypes = [superset copy];
     }
     
     return self;
@@ -44,12 +47,14 @@ static NSString * const kBaseUrl = @"http://iassassin-cs279.appspot.com/game/";
     NSMutableArray* faceImages = [NSMutableArray arrayWithCapacity:[arrayOfImgs count]];
     for (UIImage* img in arrayOfImgs) {
         NSString* base64EncodedImage = [UIImagePNGRepresentation(img) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-        [faceImages addObject:[NSDictionary dictionaryWithObject:base64EncodedImage forKey:@"image"]];
+//        NSString* base64EncodedImage = @"dalfkjasdkalsdfjkladf";
+        [faceImages addObject:base64EncodedImage];
     }
     
     NSDictionary* param = [NSDictionary dictionaryWithObjectsAndKeys:
                            username,@"username",
-                           thumbnail,@"thumbnail",
+                           [UIImagePNGRepresentation(thumbnail)base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength],@"thumbnail",
+//                           @"fakdsljflksadjfklasdfjklasdjfklajsdf",@"thumbnail",
                            faceImages,@"faceImages",
                            token, @"apn",
                            @"iOS", @"platformId",
@@ -80,17 +85,13 @@ static NSString * const kBaseUrl = @"http://iassassin-cs279.appspot.com/game/";
 }
 -(void)startGameWithGameId:(NSString*)gameId withMeanImage:(NSString*)meanImage withCovarEigen:(NSString*)covarEigen withWorkFunctEigen:(NSString*)workFunctEigen withProjectedImages:(NSString*)projectedImages {
     
-    NSDictionary* gameData = [NSDictionary dictionaryWithObjectsAndKeys:
+    NSDictionary* param = [NSDictionary dictionaryWithObjectsAndKeys:
                               meanImage, @"meanImage",
                               covarEigen, @"covarEigen",
                               workFunctEigen, @"workFunctEigen",
                               projectedImages, @"projectedImages",
+                              gameId,@"gameId",
                               nil];
-    
-    NSDictionary* param = [NSDictionary dictionaryWithObjectsAndKeys:
-                           gameId,@"gameId",
-                           [NSDictionary dictionaryWithObject:gameData forKey:@"GameData"],@"gameData",
-                           nil];
     
     [self POST:@"startGame" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         [BPNotificationClient notifyGameStarted];
