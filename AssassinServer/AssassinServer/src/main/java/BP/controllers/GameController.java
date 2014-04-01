@@ -116,8 +116,9 @@ public class GameController {
 	@RequestMapping(method = RequestMethod.GET, value = "/getTarget/{gameId}/{userId}")
 
 	public @ResponseBody
-	String getTarget(@PathVariable String gameId, @PathVariable String userId) {
-		return new JSONObject().put("target", gameManager.getTarget(gameId, userId)).toString();
+	TargetInfo getTarget(@PathVariable String gameId, @PathVariable String userId) {
+		return gameManager.getTarget(gameId, userId);
+		//return new JSONObject().put("target", gameManager.getTarget(gameId, userId)).toString();
 
 	}
 
