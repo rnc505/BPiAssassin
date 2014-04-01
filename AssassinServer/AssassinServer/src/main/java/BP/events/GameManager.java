@@ -32,6 +32,10 @@ public class GameManager implements GameManagerInterface {
 	 */
 	public GameManager() {
 	}
+	
+	public void exceptionTest() {
+		throw new RuntimeException("Can do that, sorry.");
+	}
 
 	//User Management
 	public String RegisterUser(String code_name, GameUserImage thumbnail, 
@@ -268,6 +272,7 @@ public class GameManager implements GameManagerInterface {
 		victim.removeTarget(gameUUID);
 		return assassin.getTargetUUID(gameUUID);
 	}
+	
 		
 
 
