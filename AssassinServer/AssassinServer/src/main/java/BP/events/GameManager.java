@@ -99,7 +99,7 @@ public class GameManager implements GameManagerInterface {
 			Game g = pm.getObjectById(Game.class, gameUUID);
 			g.setGamePlayDataUUID(data.getUUID());
 			g.startGame();
-			
+			pm.makePersistent(data);
 			//Assigns Targets
 			ArrayList<String> playerUUIDs = g.getPlayerUUIDs();
 			Collections.shuffle(playerUUIDs, new Random(System.currentTimeMillis()));
@@ -176,7 +176,7 @@ public class GameManager implements GameManagerInterface {
 			GameUser a = pm.getObjectById(GameUser.class, userUUID);
 			targetUUID = a.getTargetUUID(gameUUID);
 			targetCodeName = a.getUserCodeName();
-			targetThumbnail = pm.getObjectById(GameUserImage.class, a.getTargetUUID(gameUUID));
+			targetThumbnail = pm.getObjectById(GameUserImage.class, a.getThumbnailUUID());
 		} finally {
 			pm.close();
 		}
