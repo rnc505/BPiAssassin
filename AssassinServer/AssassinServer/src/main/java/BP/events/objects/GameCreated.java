@@ -22,8 +22,8 @@ public class GameCreated {
 		this.gameUUID = gameUUID;
 	}
 	
-	public ArrayList<GameUserImage> getImages(int i) {
-		return this.usrImageCompilation.get(i);
+	public ArrayList<GameUserImage> getUserImages(String userUUID) {
+		return this.usrImageCompilation.get(userUUID);
 	}
 	
 	public String getGameUUID() {

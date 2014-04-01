@@ -69,8 +69,6 @@ public class GameManager implements GameManagerInterface {
 	//Game Management
 	public GameCreated createGame(String hostUUID, ArrayList<String> playerUUIDs) {
 		PersistenceManager pm = getPersistenceManager();
-//		ArrayList<ArrayList<GameUserImage>> faceImages = 
-//				new ArrayList<ArrayList<GameUserImage>>();
 		HashMap<String,ArrayList<GameUserImage>> faceImages = new HashMap<String,ArrayList<GameUserImage>>();
 		Game g = new Game(hostUUID, playerUUIDs);
 		try {
@@ -81,7 +79,6 @@ public class GameManager implements GameManagerInterface {
 				for (String i: player.getUsrImageUUIDs()) {
 					playerImages.add(pm.getObjectById(GameUserImage.class, i));
 				}
-				//faceImages.add(playerImages);
 				faceImages.put(a, playerImages);
 			}
 			pm.makePersistent(g);
