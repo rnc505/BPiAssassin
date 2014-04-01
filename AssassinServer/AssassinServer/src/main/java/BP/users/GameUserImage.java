@@ -15,6 +15,7 @@ import com.google.appengine.api.datastore.Text;
 public class GameUserImage {
 
 	@PrimaryKey
+	@JsonIgnore
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
     private String uuidString;
 	
