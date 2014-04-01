@@ -5,6 +5,7 @@ import BP.users.GameUserImage;
 import BP.events.objects.GameCreated;
 import BP.events.objects.GameStarted;
 import BP.events.objects.GameEnded;
+import BP.events.objects.TargetInfo;
 import BP.events.objects.UserKilled;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public interface GameManagerInterface {
 	
 	//Game Play
 	//Do we also want a getTargetThumbnail method?
-	String getTarget(String gameUUID, String userUUID);
+	TargetInfo getTarget(String gameUUID, String userUUID);
 	UserKilled killUser(String gameUUID, String assassinUUID, String victimUUID);
 	GameEnded endGame(String gameUUID, String winnerUUID);
 	

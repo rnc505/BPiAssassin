@@ -21,8 +21,8 @@ import BP.events.objects.GameCreated;
 import BP.events.objects.GameStarted;
 import BP.events.objects.GameEnded;
 import BP.events.objects.UserKilled;
+import BP.events.objects.TargetInfo;
 import BP.game.Game;
-import BP.domain.StoryData;
 
 @PersistenceAware
 public class GameManager implements GameManagerInterface {
@@ -31,10 +31,6 @@ public class GameManager implements GameManagerInterface {
 	 * Constructor 
 	 */
 	public GameManager() {
-	}
-	
-	public void exceptionTest() {
-		throw new RuntimeException("Can do that, sorry.");
 	}
 
 	//User Management
@@ -172,16 +168,21 @@ public class GameManager implements GameManagerInterface {
 	}*/
 	
 	//Game Play
-	public String getTarget(String gameUUID, String userUUID) {
+	public TargetInfo getTarget(String gameUUID, String userUUID) {
 		PersistenceManager pm = getPersistenceManager();
-		String retVal;
+		String targetUUID, targetCodeName;
+		GameUserImage targetThumbnail;
 		try {
 			GameUser a = pm.getObjectById(GameUser.class, userUUID);
-			retVal = a.getTargetUUID(gameUUID);
+			targetUUID = a.getTargetUUID(gameUUID);
+			targetCodeName = a.getUserCodeName();
+			targetThumbnail = pm.getObjectById(GameUserImage.class, a.getTargetUUID(gameUUID));
 		} finally {
 			pm.close();
 		}
-		return retVal;
+		TargetInfo retObject = new TargetInfo(targetUUID, targetCodeName, 
+							targetThumbnail);
+		return retObject;
 	}
 	
 	public GameUserImage getUsrThumbnail(String usrUUID) {
