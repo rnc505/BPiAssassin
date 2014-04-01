@@ -132,8 +132,7 @@ public class GameManager implements GameManagerInterface {
 		PersistenceManager pm = getPersistenceManager();
 		GameData retObject;
 		try {
-			Key k = KeyFactory.createKey(Game.class.getSimpleName(), gameUUID);
-			Game g = pm.getObjectById(Game.class, k);
+			Game g = pm.getObjectById(Game.class, gameUUID);
 			retObject = pm.getObjectById(GameData.class, g.getGamePlayDataUUID());
 		} finally {
 			pm.close();
