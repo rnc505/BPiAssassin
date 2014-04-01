@@ -19,6 +19,7 @@ import BP.events.objects.GameCreated;
 import BP.events.objects.GameEnded;
 import BP.events.objects.GameStarted;
 import BP.events.objects.UserKilled;
+import BP.events.objects.TargetInfo;
 import BP.users.GameUserImage;
 
 @Controller
