@@ -36,6 +36,11 @@
 		D510A7CF1890790000DBCD91 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D510A7AE1890790000DBCD91 /* UIKit.framework */; };
 		D510A7D71890790000DBCD91 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D510A7D51890790000DBCD91 /* InfoPlist.strings */; };
 		D510A7D91890790000DBCD91 /* BPiAssassinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D510A7D81890790000DBCD91 /* BPiAssassinTests.m */; };
+		D512B48018EB583700601738 /* BPAPIUserRegistered.m in Sources */ = {isa = PBXBuildFile; fileRef = D512B47F18EB583700601738 /* BPAPIUserRegistered.m */; };
+		D512B48318EB5A8B00601738 /* BPAPIClientObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D512B48218EB5A8B00601738 /* BPAPIClientObject.m */; };
+		D512B48618EB621500601738 /* BPAPIGameCreated.m in Sources */ = {isa = PBXBuildFile; fileRef = D512B48518EB621500601738 /* BPAPIGameCreated.m */; };
+		D512B48918EB834800601738 /* BPAPIGameplayDataReceived.m in Sources */ = {isa = PBXBuildFile; fileRef = D512B48818EB834800601738 /* BPAPIGameplayDataReceived.m */; };
+		D512B48C18EB862A00601738 /* BPAPINewTargetReceived.m in Sources */ = {isa = PBXBuildFile; fileRef = D512B48B18EB862A00601738 /* BPAPINewTargetReceived.m */; };
 		D571F50F18E27E580098D973 /* BPDemoServerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D571F50E18E27E580098D973 /* BPDemoServerVC.m */; };
 		D5B01E6018E134D500BDC3A6 /* BPAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B01E5F18E134D500BDC3A6 /* BPAPIClient.m */; };
 		D5B01E6418E1451100BDC3A6 /* BPNotificationClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B01E6318E1451100BDC3A6 /* BPNotificationClient.m */; };
@@ -107,6 +112,17 @@
 		D510A7D41890790000DBCD91 /* BPiAssassinTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BPiAssassinTests-Info.plist"; sourceTree = "<group>"; };
 		D510A7D61890790000DBCD91 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D510A7D81890790000DBCD91 /* BPiAssassinTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPiAssassinTests.m; sourceTree = "<group>"; };
+		D512B47E18EB583700601738 /* BPAPIUserRegistered.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPAPIUserRegistered.h; sourceTree = "<group>"; };
+		D512B47F18EB583700601738 /* BPAPIUserRegistered.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPAPIUserRegistered.m; sourceTree = "<group>"; };
+		D512B48118EB5A8B00601738 /* BPAPIClientObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPAPIClientObject.h; sourceTree = "<group>"; };
+		D512B48218EB5A8B00601738 /* BPAPIClientObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPAPIClientObject.m; sourceTree = "<group>"; };
+		D512B48418EB621500601738 /* BPAPIGameCreated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPAPIGameCreated.h; sourceTree = "<group>"; };
+		D512B48518EB621500601738 /* BPAPIGameCreated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPAPIGameCreated.m; sourceTree = "<group>"; };
+		D512B48718EB834800601738 /* BPAPIGameplayDataReceived.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPAPIGameplayDataReceived.h; sourceTree = "<group>"; };
+		D512B48818EB834800601738 /* BPAPIGameplayDataReceived.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPAPIGameplayDataReceived.m; sourceTree = "<group>"; };
+		D512B48A18EB862A00601738 /* BPAPINewTargetReceived.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPAPINewTargetReceived.h; sourceTree = "<group>"; };
+		D512B48B18EB862A00601738 /* BPAPINewTargetReceived.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPAPINewTargetReceived.m; sourceTree = "<group>"; };
+		D512B48D18EB89F500601738 /* BPAPIClientObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPAPIClientObjects.h; sourceTree = "<group>"; };
 		D571F50D18E27E580098D973 /* BPDemoServerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDemoServerVC.h; sourceTree = "<group>"; };
 		D571F50E18E27E580098D973 /* BPDemoServerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDemoServerVC.m; sourceTree = "<group>"; };
 		D5B01E5E18E134D500BDC3A6 /* BPAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPAPIClient.h; sourceTree = "<group>"; };
@@ -187,6 +203,7 @@
 		D510A7B01890790000DBCD91 /* BPiAssassin */ = {
 			isa = PBXGroup;
 			children = (
+				D512B47B18EB580F00601738 /* BPAPIClientObjects */,
 				D5B01E6118E1446000BDC3A6 /* BPNotificationClient */,
 				D5B01E5B18E134B700BDC3A6 /* BPAPIClient */,
 				D510A7B91890790000DBCD91 /* BPAppDelegate.h */,
@@ -240,6 +257,24 @@
 				D510A7D51890790000DBCD91 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D512B47B18EB580F00601738 /* BPAPIClientObjects */ = {
+			isa = PBXGroup;
+			children = (
+				D512B47E18EB583700601738 /* BPAPIUserRegistered.h */,
+				D512B47F18EB583700601738 /* BPAPIUserRegistered.m */,
+				D512B48118EB5A8B00601738 /* BPAPIClientObject.h */,
+				D512B48218EB5A8B00601738 /* BPAPIClientObject.m */,
+				D512B48418EB621500601738 /* BPAPIGameCreated.h */,
+				D512B48518EB621500601738 /* BPAPIGameCreated.m */,
+				D512B48718EB834800601738 /* BPAPIGameplayDataReceived.h */,
+				D512B48818EB834800601738 /* BPAPIGameplayDataReceived.m */,
+				D512B48A18EB862A00601738 /* BPAPINewTargetReceived.h */,
+				D512B48B18EB862A00601738 /* BPAPINewTargetReceived.m */,
+				D512B48D18EB89F500601738 /* BPAPIClientObjects.h */,
+			);
+			name = BPAPIClientObjects;
 			sourceTree = "<group>";
 		};
 		D5B01E5B18E134B700BDC3A6 /* BPAPIClient */ = {
@@ -443,10 +478,15 @@
 				52CA373C18B0291400A87AAE /* BPCreateGameVC.m in Sources */,
 				52CA374818B02A5900A87AAE /* BPMatchmakingVC.m in Sources */,
 				D5B01E6018E134D500BDC3A6 /* BPAPIClient.m in Sources */,
+				D512B48618EB621500601738 /* BPAPIGameCreated.m in Sources */,
+				D512B48918EB834800601738 /* BPAPIGameplayDataReceived.m in Sources */,
+				D512B48C18EB862A00601738 /* BPAPINewTargetReceived.m in Sources */,
+				D512B48018EB583700601738 /* BPAPIUserRegistered.m in Sources */,
 				D5B01E6418E1451100BDC3A6 /* BPNotificationClient.m in Sources */,
 				D571F50F18E27E580098D973 /* BPDemoServerVC.m in Sources */,
 				D510A7C41890790000DBCD91 /* BPViewController.m in Sources */,
 				D510A7BB1890790000DBCD91 /* BPAppDelegate.m in Sources */,
+				D512B48318EB5A8B00601738 /* BPAPIClientObject.m in Sources */,
 				D510A7B71890790000DBCD91 /* main.m in Sources */,
 				52CA373F18B0294700A87AAE /* BPLiveGameVC.m in Sources */,
 			);
