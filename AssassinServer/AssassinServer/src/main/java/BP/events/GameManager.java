@@ -21,8 +21,8 @@ import BP.events.objects.GameCreated;
 import BP.events.objects.GameStarted;
 import BP.events.objects.GameEnded;
 import BP.events.objects.UserKilled;
+import BP.events.objects.TargetInfo;
 import BP.game.Game;
-import BP.domain.StoryData;
 
 @PersistenceAware
 public class GameManager implements GameManagerInterface {
@@ -69,8 +69,7 @@ public class GameManager implements GameManagerInterface {
 	//Game Management
 	public GameCreated createGame(String hostUUID, ArrayList<String> playerUUIDs) {
 		PersistenceManager pm = getPersistenceManager();
-		ArrayList<ArrayList<GameUserImage>> faceImages = 
-				new ArrayList<ArrayList<GameUserImage>>();
+		HashMap<String,ArrayList<GameUserImage>> faceImages = new HashMap<String,ArrayList<GameUserImage>>();
 		Game g = new Game(hostUUID, playerUUIDs);
 		try {
 			GameUser player;
@@ -80,7 +79,7 @@ public class GameManager implements GameManagerInterface {
 				for (String i: player.getUsrImageUUIDs()) {
 					playerImages.add(pm.getObjectById(GameUserImage.class, i));
 				}
-				faceImages.add(playerImages);
+				faceImages.put(a, playerImages);
 			}
 			pm.makePersistent(g);
 		} finally {
@@ -99,7 +98,7 @@ public class GameManager implements GameManagerInterface {
 			Game g = pm.getObjectById(Game.class, gameUUID);
 			g.setGamePlayDataUUID(data.getUUID());
 			g.startGame();
-			
+			pm.makePersistent(data);
 			//Assigns Targets
 			ArrayList<String> playerUUIDs = g.getPlayerUUIDs();
 			Collections.shuffle(playerUUIDs, new Random(System.currentTimeMillis()));
@@ -132,8 +131,7 @@ public class GameManager implements GameManagerInterface {
 		PersistenceManager pm = getPersistenceManager();
 		GameData retObject;
 		try {
-			Key k = KeyFactory.createKey(Game.class.getSimpleName(), gameUUID);
-			Game g = pm.getObjectById(Game.class, k);
+			Game g = pm.getObjectById(Game.class, gameUUID);
 			retObject = pm.getObjectById(GameData.class, g.getGamePlayDataUUID());
 		} finally {
 			pm.close();
@@ -168,16 +166,21 @@ public class GameManager implements GameManagerInterface {
 	}*/
 	
 	//Game Play
-	public String getTarget(String gameUUID, String userUUID) {
+	public TargetInfo getTarget(String gameUUID, String userUUID) {
 		PersistenceManager pm = getPersistenceManager();
-		String retVal;
+		String targetUUID, targetCodeName;
+		GameUserImage targetThumbnail;
 		try {
 			GameUser a = pm.getObjectById(GameUser.class, userUUID);
-			retVal = a.getTargetUUID(gameUUID);
+			targetUUID = a.getTargetUUID(gameUUID);
+			targetCodeName = a.getUserCodeName();
+			targetThumbnail = pm.getObjectById(GameUserImage.class, a.getThumbnailUUID());
 		} finally {
 			pm.close();
 		}
-		return retVal;
+		TargetInfo retObject = new TargetInfo(targetUUID, targetCodeName, 
+							targetThumbnail);
+		return retObject;
 	}
 	
 	public GameUserImage getUsrThumbnail(String usrUUID) {
@@ -268,6 +271,7 @@ public class GameManager implements GameManagerInterface {
 		victim.removeTarget(gameUUID);
 		return assassin.getTargetUUID(gameUUID);
 	}
+	
 		
 
 
