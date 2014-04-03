@@ -116,7 +116,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t1q-DY-C1t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1810" y="-1194"/>
+            <point key="canvasLocation" x="1726" y="-1274"/>
         </scene>
         <!--Camera AimVC-->
         <scene sceneID="w3t-dc-DcZ">
