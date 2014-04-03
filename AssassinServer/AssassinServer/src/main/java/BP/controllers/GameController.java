@@ -19,6 +19,7 @@ import BP.events.objects.GameCreated;
 import BP.events.objects.GameEnded;
 import BP.events.objects.GameStarted;
 import BP.events.objects.UserKilled;
+import BP.events.objects.TargetInfo;
 import BP.users.GameUserImage;
 
 @Controller
@@ -116,14 +117,15 @@ public class GameController {
 	@RequestMapping(method = RequestMethod.GET, value = "/getTarget/{gameId}/{userId}")
 
 	public @ResponseBody
-	String getTarget(@PathVariable String gameId, @PathVariable String userId) {
-		return new JSONObject().put("target", gameManager.getTarget(gameId, userId)).toString();
+	TargetInfo getTarget(@PathVariable String gameId, @PathVariable String userId) {
+		return gameManager.getTarget(gameId, userId);
+		//return new JSONObject().put("target", gameManager.getTarget(gameId, userId)).toString();
 
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/killUser")
 	public @ResponseBody
-	String killUser(@RequestBody final String Body
+	TargetInfo killUser(@RequestBody final String Body
 	// @RequestParam(value = "gameId", required = true, defaultValue = "") final
 	// String gameId,
 	// @RequestParam(value = "assassinId", required = true, defaultValue = "")
@@ -146,7 +148,8 @@ public class GameController {
 			this.apnController.sendNotification(victim,
 					"You have been assassinated!");
 		}
-		return new JSONObject().put("target",killed.getNextTarget()).toString();
+//		return new JSONObject().put("target",killed.getNextTarget()).toString();
+		return this.gameManager.getTarget(body.getString("gameId"), body.getString("assassinId"));
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/registerUser")
