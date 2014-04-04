@@ -7,6 +7,7 @@
 //
 
 #import "BPCameraAimVC.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface BPCameraAimVC ()
 
@@ -27,6 +28,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    AVCaptureSession *session = [[AVCaptureSession alloc] init];
+    // Add inputs and outputs.
+    [session startRunning];
 }
 
 - (void)didReceiveMemoryWarning
@@ -34,5 +39,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Camera Capture
+
+
+
+
 
 @end

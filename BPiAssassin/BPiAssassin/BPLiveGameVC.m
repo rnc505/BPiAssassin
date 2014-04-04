@@ -35,4 +35,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - View Rotation Lock
+//Prevents this screen from being rotated into Landscape
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait + UIInterfaceOrientationMaskPortraitUpsideDown;
+}
+
 @end
