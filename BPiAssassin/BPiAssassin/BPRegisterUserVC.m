@@ -156,14 +156,21 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 
     
     [[NSNotificationCenter defaultCenter] addObserverForName:kUserRegisteredNotification object:[BPAPIClient sharedAPIClient] queue:nil usingBlock:^(NSNotification *note) {
-        
+        // segue
+        [self performSegueWithIdentifier:@"userRegistered" sender:self];
                 
     }];
     
     [[BPAPIClient sharedAPIClient] registerUserForUsername:[self.usr_code_name text] forThumbnail:[self.usrImage1.image resizedAndGrayscaledSquareImageOfDimension:200] forArrayOfFaceImages:@[[self.usrImage1.image resizedAndGrayscaledSquareImageOfDimension:300],[self.usrImage2.image resizedAndGrayscaledSquareImageOfDimension:300],[self.usrImage3.image resizedAndGrayscaledSquareImageOfDimension:300],[self.usrImage4.image resizedAndGrayscaledSquareImageOfDimension:300]] forApnDeviceToken:[[UAPush shared] deviceToken]];
     
 }
-#pragma mark - Image Selection
+#pragma mark - View Rotation Lock
+//Prevents this screen from being rotated into Landscape
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait + UIInterfaceOrientationMaskPortraitUpsideDown;
+}
+
 
 
 
