@@ -153,10 +153,15 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     [self removeGestureRecognizers:self.usrImage2];
     [self removeGestureRecognizers:self.usrImage3];
     [self removeGestureRecognizers:self.usrImage4];
-
+    [self.registerButton setEnabled:false];
     
-    [[NSNotificationCenter defaultCenter] addObserverForName:kUserRegisteredNotification object:[BPAPIClient sharedAPIClient] queue:nil usingBlock:^(NSNotification *note) {
+    __block id registerComplete = [[NSNotificationCenter defaultCenter] addObserverForName:kUserRegisteredNotification object:[BPAPIClient sharedAPIClient] queue:nil usingBlock:^(NSNotification *note) {
         // segue
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:registerComplete];
+        BPAPIUserRegistered* event = [[note userInfo] objectForKey:@"event"];
+        [[NSUserDefaults standardUserDefaults] setObject:[event userId] forKey:@"kUserUUID"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         [self performSegueWithIdentifier:@"userRegistered" sender:self];
                 
     }];
@@ -168,7 +173,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 //Prevents this screen from being rotated into Landscape
 - (NSUInteger)supportedInterfaceOrientations
 {
-    return UIInterfaceOrientationMaskPortrait + UIInterfaceOrientationMaskPortraitUpsideDown;
+    return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskPortraitUpsideDown;
 }
 
 

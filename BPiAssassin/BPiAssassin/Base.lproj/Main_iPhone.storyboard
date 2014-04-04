@@ -161,22 +161,17 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="IJ3-vM-9aK" kind="modal" id="clp-yP-JMe"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hvh-1v-xud">
-                                <rect key="frame" x="42" y="427" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="KRu-GM-4s1" kind="modal" id="4Ly-jH-6b2"/>
+                                    <action selector="createOrRegisterBtnPressed:" destination="m45-WM-bjU" eventType="touchUpInside" id="8Vf-jf-qRT"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="createOrRegisterBtn" destination="Gq6-RJ-CZ4" id="MmH-P4-Xsh"/>
+                        <segue destination="IJ3-vM-9aK" kind="modal" identifier="registerRequested" id="qJm-Gw-uYd"/>
+                        <segue destination="KRu-GM-4s1" kind="modal" identifier="createGameRequested" id="7YW-5K-DKb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="COL-UW-Lcb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -518,13 +513,16 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Ko2-GT-4Q2" kind="modal" id="LWt-44-zSv"/>
+                                    <action selector="createGameBtnPress:" destination="KRu-GM-4s1" eventType="touchUpInside" id="8wO-Sj-DCQ"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="bK4-Pt-Lzz"/>
+                    <connections>
+                        <outlet property="createGameBtn" destination="Hd0-XJ-Jl2" id="IQi-Mm-BXW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GmK-7O-9Zv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

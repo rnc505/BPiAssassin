@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface BPCreateGameVC : UIViewController
+@property (weak, nonatomic) IBOutlet UIButton *createOrRegisterBtn;
 
 @end
