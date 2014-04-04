@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		525289C818EE3C830090DDA4 /* BPRegisterUserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 525289C718EE3C830090DDA4 /* BPRegisterUserVC.m */; };
 		5272562818B472B900F3E8FA /* 883033.png in Resources */ = {isa = PBXBuildFile; fileRef = 5272562518B472B800F3E8FA /* 883033.png */; };
 		5272562A18B472B900F3E8FA /* speeding_bullet.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5272562718B472B800F3E8FA /* speeding_bullet.jpg */; };
 		5272563218B47E3800F3E8FA /* icon29pt.png in Resources */ = {isa = PBXBuildFile; fileRef = 5272562F18B47E3800F3E8FA /* icon29pt.png */; };
@@ -82,6 +83,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		525289C618EE3C830090DDA4 /* BPRegisterUserVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPRegisterUserVC.h; sourceTree = "<group>"; };
+		525289C718EE3C830090DDA4 /* BPRegisterUserVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPRegisterUserVC.m; sourceTree = "<group>"; };
 		5272562518B472B800F3E8FA /* 883033.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 883033.png; sourceTree = "<group>"; };
 		5272562718B472B800F3E8FA /* speeding_bullet.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = speeding_bullet.jpg; sourceTree = "<group>"; };
 		5272562F18B47E3800F3E8FA /* icon29pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon29pt.png; sourceTree = "<group>"; };
@@ -343,6 +346,8 @@
 				D571F50D18E27E580098D973 /* BPDemoServerVC.h */,
 				D571F50E18E27E580098D973 /* BPDemoServerVC.m */,
 				D512B4A518EE0D1700601738 /* AirshipConfig.plist */,
+				525289C618EE3C830090DDA4 /* BPRegisterUserVC.h */,
+				525289C718EE3C830090DDA4 /* BPRegisterUserVC.m */,
 			);
 			path = BPiAssassin;
 			sourceTree = "<group>";
@@ -720,6 +725,7 @@
 				D512B48618EB621500601738 /* BPAPIGameCreated.m in Sources */,
 				D512B48918EB834800601738 /* BPAPIGameplayDataReceived.m in Sources */,
 				D512B48C18EB862A00601738 /* BPAPINewTargetReceived.m in Sources */,
+				525289C818EE3C830090DDA4 /* BPRegisterUserVC.m in Sources */,
 				D512B48018EB583700601738 /* BPAPIUserRegistered.m in Sources */,
 				D5B01E6418E1451100BDC3A6 /* BPNotificationClient.m in Sources */,
 				D571F50F18E27E580098D973 /* BPDemoServerVC.m in Sources */,
