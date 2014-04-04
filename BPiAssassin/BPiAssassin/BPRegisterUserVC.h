@@ -10,11 +10,12 @@
 
 @interface BPRegisterUserVC : UIViewController
 
-@property (strong, nonatomic) IBOutlet UITextField *usr_code_name;
+@property (weak, nonatomic) IBOutlet UITextField *usr_code_name;
 
-@property (strong, nonatomic) IBOutlet UIImageView *usrImage1;
-@property (strong, nonatomic) IBOutlet UIImageView *usrImage2;
-@property (strong, nonatomic) IBOutlet UIImageView *usrImage3;
-@property (strong, nonatomic) IBOutlet UIImageView *usrImage4;
+@property (weak, nonatomic) IBOutlet UIImageView *usrImage1;
+@property (weak, nonatomic) IBOutlet UIImageView *usrImage2;
+@property (weak, nonatomic) IBOutlet UIImageView *usrImage3;
+@property (weak, nonatomic) IBOutlet UIImageView *usrImage4;
 
+@property (weak, nonatomic) IBOutlet UIButton *registerButton;
 @end
