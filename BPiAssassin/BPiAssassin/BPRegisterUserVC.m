@@ -26,7 +26,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    UIGestureRecognizer * recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(UIImageViewTapped:)];
+    recognizer.
+    
+    self.usrImage1.
+}
+
+-(void)UIImageViewTapped:(UIGestureRecognizer*)recognizer {
+    
 }
 
 - (void)didReceiveMemoryWarning
