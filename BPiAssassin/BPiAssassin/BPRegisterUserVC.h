@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BPRegisterUserVC : UIViewController
+@interface BPRegisterUserVC : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *usr_code_name;
 
@@ -18,4 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *usrImage4;
 
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
+@property (weak, nonatomic) IBOutlet UILabel *label1;
+@property (weak, nonatomic) IBOutlet UILabel *label2;
+@property (weak, nonatomic) IBOutlet UILabel *label3;
+@property (weak, nonatomic) IBOutlet UILabel *label4;
 @end
