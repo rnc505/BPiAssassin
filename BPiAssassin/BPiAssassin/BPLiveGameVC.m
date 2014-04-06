@@ -39,7 +39,9 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     targetCodenameLabel.text = [defaults objectForKey:@"targetCodename"];
-    targetThumbnail.image = [defaults objectForKey:@"targetThumbnail"];
+    NSData *imageData = [defaults objectForKey:@"targetThumbnail"];
+    UIImage *image = [UIImage imageWithData:imageData];
+    targetThumbnail.image = image;
     
 }
 
