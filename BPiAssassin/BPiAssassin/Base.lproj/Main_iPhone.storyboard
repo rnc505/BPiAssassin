@@ -171,11 +171,12 @@
                         <outlet property="createOrRegisterBtn" destination="Gq6-RJ-CZ4" id="MmH-P4-Xsh"/>
                         <segue destination="IJ3-vM-9aK" kind="modal" identifier="registerRequested" id="qJm-Gw-uYd"/>
                         <segue destination="KRu-GM-4s1" kind="modal" identifier="createGameRequested" id="7YW-5K-DKb"/>
+                        <segue destination="Ko2-GT-4Q2" kind="modal" identifier="openedApp_GameInProgress" id="Qq7-J0-yCj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="COL-UW-Lcb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-205" y="-706"/>
+            <point key="canvasLocation" x="-441" y="-562"/>
         </scene>
         <!--Game StatsVC-->
         <scene sceneID="Tb9-NL-Nfh">
@@ -238,7 +239,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t1q-DY-C1t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1726" y="-1274"/>
+            <point key="canvasLocation" x="1998" y="-546"/>
         </scene>
         <!--Camera AimVC-->
         <scene sceneID="w3t-dc-DcZ">
@@ -275,16 +276,29 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="yAz-99-vgc" kind="modal" modalTransitionStyle="flipHorizontal" id="mfQ-3y-O97"/>
+                                    <action selector="backBtnPressed:" destination="CtU-Ht-5kP" eventType="touchUpInside" id="qd8-qc-gIj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7hn-D8-dQD">
+                                <rect key="frame" x="148" y="483" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <state key="normal" title="Kill my Target">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="killTargetBtnPressed:" destination="CtU-Ht-5kP" eventType="touchUpInside" id="4X5-u6-3IU"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="Ko2-GT-4Q2" kind="modal" identifier="viewTargetRequested" id="Ifj-02-cE2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S1N-Yf-SIU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1319" y="301"/>
+            <point key="canvasLocation" x="1930" y="-1425"/>
         </scene>
         <!--Demo ServerVC-->
         <scene sceneID="NF6-gX-jMN">
@@ -415,7 +429,7 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="cfY-co-OHr" kind="modal" id="cll-4O-DIK"/>
+                                    <segue destination="CtU-Ht-5kP" kind="modal" identifier="cameraAimRequest" id="Z24-EM-Ier"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eKq-tm-Dbf">
@@ -432,10 +446,14 @@
                             </button>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="targetCodenameLabel" destination="fgf-ye-gLk" id="6CA-gY-PuI"/>
+                        <outlet property="targetThumbnail" destination="UNB-OF-neC" id="pzv-OQ-T4g"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b1s-xR-8pW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1299" y="-679"/>
+            <point key="canvasLocation" x="1139" y="-1055"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="dda-tl-Phz">
@@ -449,7 +467,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AUX-dV-hYq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1844" y="-575"/>
+            <point key="canvasLocation" x="1440" y="1"/>
         </scene>
         <!--MatchmakingVC-->
         <scene sceneID="SFx-GZ-CDW">
@@ -522,11 +540,12 @@
                     <navigationItem key="navigationItem" id="bK4-Pt-Lzz"/>
                     <connections>
                         <outlet property="createGameBtn" destination="Hd0-XJ-Jl2" id="IQi-Mm-BXW"/>
+                        <segue destination="Ko2-GT-4Q2" kind="modal" identifier="gameSucessfullyStarted" id="1ol-kS-jXY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GmK-7O-9Zv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="283" y="-946"/>
+            <point key="canvasLocation" x="339" y="-1472"/>
         </scene>
     </scenes>
     <resources>
@@ -538,4 +557,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="Ifj-02-cE2"/>
+    </inferredMetricsTieBreakers>
 </document>

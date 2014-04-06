@@ -160,7 +160,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         
         [[NSNotificationCenter defaultCenter] removeObserver:registerComplete];
         BPAPIUserRegistered* event = [[note userInfo] objectForKey:@"event"];
-        [[NSUserDefaults standardUserDefaults] setObject:[event userId] forKey:@"kUserUUID"];
+        [[NSUserDefaults standardUserDefaults] setObject:[event userId] forKey:@"myUUID"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         [self performSegueWithIdentifier:@"userRegistered" sender:self];
                 

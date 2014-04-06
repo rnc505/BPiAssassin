@@ -23,7 +23,7 @@
     return self;
 }
 - (IBAction)createOrRegisterBtnPressed:(id)sender {
-    if([[NSUserDefaults standardUserDefaults] objectForKey:@"kUserUUID"]) {
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"myUUID"]) {
         [self performSegueWithIdentifier:@"createGameRequested" sender:self];
     } else {
         [self performSegueWithIdentifier:@"registerRequested" sender:self];
@@ -37,10 +37,17 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    if([[NSUserDefaults standardUserDefaults] objectForKey:@"kUserUUID"]) {
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"myUUID"]) {
         [self.createOrRegisterBtn setTitle:@"Create Game" forState:(UIControlStateNormal)];
     } else {
         [self.createOrRegisterBtn setTitle:@"Register User" forState:(UIControlStateNormal)];
+    }
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    //Handles different start screens depending on the current game state
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"gameInProgress"]) {
+        [self performSegueWithIdentifier:@"openedApp_GameInProgress" sender:self];
     }
 }
 

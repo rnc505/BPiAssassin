@@ -10,4 +10,8 @@
 
 @interface BPCameraAimVC : UIViewController
 
+- (IBAction)backBtnPressed:(id)sender;
+
+- (IBAction)killTargetBtnPressed:(id)sender;
+
 @end
