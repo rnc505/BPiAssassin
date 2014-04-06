@@ -173,8 +173,9 @@ public class GameManager implements GameManagerInterface {
 		try {
 			GameUser a = pm.getObjectById(GameUser.class, userUUID);
 			targetUUID = a.getTargetUUID(gameUUID);
-			targetCodeName = a.getUserCodeName();
-			targetThumbnail = pm.getObjectById(GameUserImage.class, a.getThumbnailUUID());
+			GameUser targetObject = pm.getObjectById(GameUser.class, targetUUID);
+			targetCodeName = targetObject.getUserCodeName();
+			targetThumbnail = pm.getObjectById(GameUserImage.class, targetObject.getThumbnailUUID());
 		} finally {
 			pm.close();
 		}
