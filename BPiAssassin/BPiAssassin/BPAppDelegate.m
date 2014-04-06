@@ -7,12 +7,17 @@
 //
 
 #import "BPAppDelegate.h"
+#import "UAirship.h"
+#import "UAConfig.h"
+#import "UAPush.h"
 
 @implementation BPAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    UAConfig *config = [UAConfig defaultConfig];
+    [UAirship takeOff:config];
     return YES;
 }
 							

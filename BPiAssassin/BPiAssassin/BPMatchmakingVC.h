@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface BPMatchmakingVC : UIViewController
+@property (weak, nonatomic) IBOutlet UIButton *createGameBtn;
 
 @end

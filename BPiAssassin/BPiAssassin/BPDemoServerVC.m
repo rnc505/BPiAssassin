@@ -9,6 +9,7 @@
 #import "BPDemoServerVC.h"
 #import "BPAPIClient.h"
 #import "BPNotifications.h"
+#import "BPAPIClientObjects.h"
 @interface BPDemoServerVC ()
 @property (nonatomic, retain) NSString* hostId;
 @property (nonatomic, retain) NSMutableArray* everyonesId;
@@ -47,7 +48,7 @@
 }
 - (IBAction)startAGame:(UIButton *)sender {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alert:) name:kGameStartedNotification object:[BPAPIClient sharedAPIClient]];
-    [[BPAPIClient sharedAPIClient] startGameWithGameId:self.gameId withMeanImage:[self genRandStringLength:250] withCovarEigen:[self genRandStringLength:250] withWorkFunctEigen:[self genRandStringLength:250] withProjectedImages:[self genRandStringLength:1000]];
+    [[BPAPIClient sharedAPIClient] startGameWithGameId:self.gameId withMeanImage:[self genRandStringLength:240] withCovarEigen:[self genRandStringLength:240] withWorkFunctEigen:[self genRandStringLength:240] withProjectedImages:[self genRandStringLength:1000]];
 }
 - (IBAction)getTargets:(UIButton *)sender {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alert:) name:kTargetReceivedNotification object:[BPAPIClient sharedAPIClient]];
@@ -59,23 +60,28 @@
     [[BPAPIClient sharedAPIClient] killUserForGameId:self.gameId forAssassinId:self.hostId forVictimId:self.target];
     
 }
+- (IBAction)getGameplayData:(UIButton *)sender {
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alert:)  name:kGamePlayDataReceivedNotification object:[BPAPIClient sharedAPIClient]];
+    
+    [[BPAPIClient sharedAPIClient] getGamePlayDataForGameId:self.gameId];
+}
 
 -(void)alert:(NSNotification*)notification {
-    NSDictionary* dict = [notification userInfo];
-    if([dict objectForKey:@"userId"] != nil) {
+    id APIClientObject = [[notification userInfo] objectForKey:@"event"];
+    if([APIClientObject isKindOfClass:[BPAPIUserRegistered class]]) {
         if(!self.hostId) {
-            self.hostId = [dict objectForKey:@"userId"];
+            self.hostId = [APIClientObject userId];
             self.everyonesId = [NSMutableArray new];
         }
-        [self.everyonesId addObject:[dict objectForKey:@"userId"]];
-    } else if ([dict objectForKey:@"gameUUID"] != nil) {
-        self.gameId = [dict objectForKey:@"gameUUID"];
-    } else if ([dict objectForKey:@"target"] != nil) {
-        self.target = [dict objectForKey:@"target"];
-    }
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[notification name] message:[notification description] delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
-    [alert show];
+        [self.everyonesId addObject:[APIClientObject userId]];
+    } else if ([APIClientObject isKindOfClass:[BPAPIGameCreated class]]) {
+        self.gameId  = [APIClientObject gameId];
+    } else if([APIClientObject isKindOfClass:[BPAPINewTargetReceived class]]) {
+        self.target = [APIClientObject targetId];
+    } 
     
+    NSLog(@"notified");
 }
 
 
@@ -98,7 +104,7 @@
     CGRect rect = CGRectMake(0, 0, 100, 100);
     
     
-    // Create a 1 by 1 pixel context
+    // Create a 100 by 100 pixel context
     
     UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0);
     

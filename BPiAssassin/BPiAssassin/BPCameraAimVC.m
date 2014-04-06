@@ -7,6 +7,10 @@
 //
 
 #import "BPCameraAimVC.h"
+#import <AVFoundation/AVFoundation.h>
+#import "BPAPIClient.h"
+#import "BPNotifications.h"
+#import "BPAPIClientObjects.h"
 
 @interface BPCameraAimVC ()
 
@@ -27,6 +31,12 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    //TO DO
+    //NEED TO Write Code for Target Information
+    AVCaptureSession *session = [[AVCaptureSession alloc] init];
+    // Add inputs and outputs.
+    [session startRunning];
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,4 +45,19 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Camera Capture
+
+
+
+- (IBAction)backBtnPressed:(id)sender {
+    [self performSegueWithIdentifier:@"viewTargetRequested" sender:self];
+}
+
+- (IBAction)killTargetBtnPressed:(id)sender {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    //TO DO
+    //Need to add killUser command and register activity
+    
+}
 @end

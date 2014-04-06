@@ -10,4 +10,7 @@
 
 @interface BPLiveGameVC : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *targetCodenameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *targetThumbnail;
+
 @end

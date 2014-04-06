@@ -9,7 +9,7 @@ import BP.users.GameUserImage;
 public class TargetInfo {
 	
 	@JsonProperty
-	public String targetUUId;
+	public String targetUUID;
 	@JsonProperty
 	public String code_name;
 	@JsonProperty
@@ -17,7 +17,7 @@ public class TargetInfo {
 	
 	
 	public TargetInfo (String uuid, String codeName, GameUserImage image) {
-		this.targetUUId = uuid;
+		this.targetUUID = uuid;
 		this.code_name = codeName;
 		this.thumbnail = image;
 	}
