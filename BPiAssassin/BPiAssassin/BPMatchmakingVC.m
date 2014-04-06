@@ -35,8 +35,9 @@
 }
 - (IBAction)createGameBtnPress:(id)sender {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //TO DO
+    //remove this and replace with GameCenter
     NSString* robbysUUID = @"000b9508-2046-4c67-000b-950820464d44";
-    NSString* johnsUUID = @"000b93b7-ee30-75b4-000b-93b7ee3076f4";
     
     __block id gameCreated = [[NSNotificationCenter defaultCenter] addObserverForName:kGameCreatedNotification object:[BPAPIClient sharedAPIClient] queue:nil usingBlock:^(NSNotification *note) {
         [[NSNotificationCenter defaultCenter] removeObserver:gameCreated];
@@ -55,9 +56,12 @@
     __block id gameStarted = [[NSNotificationCenter defaultCenter] addObserverForName:kGameStartedNotification object:[BPAPIClient sharedAPIClient] queue:nil usingBlock:^(NSNotification *note) {
         [[NSNotificationCenter defaultCenter] removeObserver:gameStarted];
         
+        
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Yay game started successfully" message:[NSString stringWithFormat:@"Game id: %@",[defaults objectForKey:@"gameUUID"]] delegate:self cancelButtonTitle:@"Close" otherButtonTitles:nil];
         [alert show];
-                            
+        
+        [defaults setBool:YES forKey:@"gameInProgress"];
+        [defaults synchronize];
        
         [[BPAPIClient sharedAPIClient] getTargetForGameId:[defaults objectForKey:@"gameUUID"] forUserId:[defaults objectForKey:@"myUUID"]];
         
@@ -66,21 +70,19 @@
     __block id targetReceived = [[NSNotificationCenter defaultCenter] addObserverForName:kTargetReceivedNotification object:[BPAPIClient sharedAPIClient] queue:nil usingBlock:^(NSNotification *note) {
         [[NSNotificationCenter defaultCenter] removeObserver:targetReceived];
         
-        BPAPINewTargetReceived *targetReceived = [[note userInfo]objectForKey:@"event"];
+        BPAPINewTargetReceived *target = [[note userInfo] objectForKeyedSubscript:@"event"];
         
-        [defaults setObject:[targetReceived targetCodename] forKey:@"targetCodename"];
-        [defaults setObject:[targetReceived targetId] forKey:@"targetUUID"];
-        [defaults setObject:[targetReceived targetThumbnail] forKey:@"targetThumbnail"];
-        [defaults synchronize];
-        
-        [defaults setBool:YES forKey:@"gameInProgress"];
+        [defaults setObject:[target targetId] forKey:@"targetUUID"];
+        [defaults setObject:[target targetCodename] forKey:@"targetCodename"];
+        [defaults setObject:UIImagePNGRepresentation([target targetThumbnail]) forKey:@"targetThumbnail"];
         [defaults synchronize];
         
         [self performSegueWithIdentifier:@"gameSucessfullyStarted" sender:self];
     }];
 
-    
-    [[BPAPIClient sharedAPIClient] createGameWithHostId:robbysUUID withAllPlayersId:@[robbysUUID, johnsUUID]];
+    //TO DO
+    //need to fix this once GameCenter is working
+    [[BPAPIClient sharedAPIClient] createGameWithHostId:robbysUUID withAllPlayersId:@[robbysUUID, [defaults objectForKey:@"myUUID"]]];
     
 }
 

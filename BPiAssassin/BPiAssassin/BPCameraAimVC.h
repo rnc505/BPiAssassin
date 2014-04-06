@@ -10,6 +10,8 @@
 
 @interface BPCameraAimVC : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIButton *killTargetBtn;
+
 - (IBAction)backBtnPressed:(id)sender;
 
 - (IBAction)killTargetBtnPressed:(id)sender;

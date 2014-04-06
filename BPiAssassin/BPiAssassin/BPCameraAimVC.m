@@ -18,6 +18,8 @@
 
 @implementation BPCameraAimVC
 
+@synthesize killTargetBtn;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -54,10 +56,41 @@
 }
 
 - (IBAction)killTargetBtnPressed:(id)sender {
+    killTargetBtn.enabled = NO;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
+    __block id nextTargetReceived = [[NSNotificationCenter defaultCenter] addObserverForName:kUserKilledNotification object:[BPAPIClient sharedAPIClient] queue:nil usingBlock:^(NSNotification *note) {
+        [[NSNotificationCenter defaultCenter] removeObserver:nextTargetReceived];
+        
+        BPAPINewTargetReceived *target = [[note userInfo] objectForKeyedSubscript:@"event"];
+        
+        [defaults setObject:[target targetId] forKey:@"targetUUID"];
+        [defaults setObject:[target targetCodename] forKey:@"targetCodename"];
+        [defaults setObject:UIImagePNGRepresentation([target targetThumbnail]) forKey:@"targetThumbnail"];
+        [defaults synchronize];
+        
+        //TO DO
+        //might need to change this depending, on how we handle
+        //how a user is notified that they win.
+        if ([[defaults objectForKey:@"targetUUID"] isEqualToString: [defaults objectForKey:@"myUUID"]]) {
+            [defaults setBool:NO forKey:@"gameInProgress"];
+            [defaults synchronize];
+            
+            [self performSegueWithIdentifier:@"userWon" sender:self];
+        } else {
+            [self performSegueWithIdentifier:@"viewTargetRequested" sender:self];
+        }
+        
+        
+        
+    }];
     //TO DO
-    //Need to add killUser command and register activity
+    //REMOVE THIS LATER
+     NSString* robbysUUID = @"000b9508-2046-4c67-000b-950820464d44";
+    NSString *gameUUID = [defaults objectForKey:@"gameUUID"];
+    NSString *myUUID = [defaults objectForKey:@"myUUID"];
+    
+    [[BPAPIClient sharedAPIClient] killUserForGameId:gameUUID forAssassinId:myUUID forVictimId:robbysUUID];
     
 }
 @end
