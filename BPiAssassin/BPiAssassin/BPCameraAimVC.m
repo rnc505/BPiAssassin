@@ -18,6 +18,7 @@
 
 @implementation BPCameraAimVC
 
+@synthesize cameraFeedView;
 @synthesize killTargetBtn;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -29,16 +30,16 @@
     return self;
 }
 
+#pragma mark - Camera Capture
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
     //TO DO
-    //NEED TO Write Code for Target Information
-    AVCaptureSession *session = [[AVCaptureSession alloc] init];
-    // Add inputs and outputs.
-    [session startRunning];
+    //Camera Capture here
+    [self setUpCameraForUImage];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,10 +47,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-#pragma mark - Camera Capture
-
-
 
 - (IBAction)backBtnPressed:(id)sender {
     [self performSegueWithIdentifier:@"viewTargetRequested" sender:self];
@@ -93,4 +90,31 @@
     [[BPAPIClient sharedAPIClient] killUserForGameId:gameUUID forAssassinId:myUUID forVictimId:robbysUUID];
     
 }
+
+- (void)setUpCameraForUImage {
+    AVCaptureSession *session = [[AVCaptureSession alloc] init];
+	session.sessionPreset = AVCaptureSessionPresetMedium;
+	
+	CALayer *viewLayer = self.cameraFeedView.layer;
+	NSLog(@"viewLayer = %@", viewLayer);
+	
+	AVCaptureVideoPreviewLayer *captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
+	
+	captureVideoPreviewLayer.frame = self.cameraFeedView.bounds;
+	[self.cameraFeedView.layer addSublayer:captureVideoPreviewLayer];
+	
+	AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+	
+	NSError *error = nil;
+	AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
+	if (!input) {
+		// Handle the error appropriately.
+		NSLog(@"ERROR: trying to open camera: %@", error);
+	}
+	[session addInput:input];
+	
+	[session startRunning];
+}
+
+
 @end

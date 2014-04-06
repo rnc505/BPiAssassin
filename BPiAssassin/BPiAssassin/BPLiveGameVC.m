@@ -37,8 +37,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    targetCodenameLabel.text = [defaults objectForKey:@"targetCodename"];
+    NSDictionary *attributes = [(NSAttributedString *)targetCodenameLabel.attributedText attributesAtIndex:0 effectiveRange:NULL];
+    targetCodenameLabel.attributedText = [[NSAttributedString alloc] initWithString:[defaults objectForKey:@"targetCodename"] attributes:attributes];
     NSData *imageData = [defaults objectForKey:@"targetThumbnail"];
     UIImage *image = [UIImage imageWithData:imageData];
     targetThumbnail.image = image;
