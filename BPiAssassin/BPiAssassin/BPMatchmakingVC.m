@@ -38,11 +38,11 @@
     //TO DO
     //remove this and replace with GameCenter
     NSString* otherUUID;
-    if ([[defaults objectForKey:@"myUUID"] isEqualToString:@"000cb5c1-abd0-ad1b-000c-b5c1abd0adf9"]){
+    if ([[defaults objectForKey:@"myUUID"] isEqualToString:@"000cb6a0-6cfa-ae21-000c-b6a06cfaaee3"]){
         //This is John. Assign Robby
-        otherUUID = @"000cb564-278c-668f-000c-b564278c67bd";
+        otherUUID = @"000cb6a0-b5bc-3740-000c-b6a0b5bc383f";
     } else {
-        otherUUID = @"000cb5c1-abd0-ad1b-000c-b5c1abd0adf9";
+        otherUUID = @"000cb6a0-6cfa-ae21-000c-b6a06cfaaee3";
     }
     
     
