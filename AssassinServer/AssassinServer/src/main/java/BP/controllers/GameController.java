@@ -103,7 +103,7 @@ public class GameController {
 				body.getString("covarEigen"), body.getString("workFunctEigen"),
 				body.getString("projectedImages")));
 		this.apnController.sendNotification(startedGame,
-				"LET THE GAMES BEGIN! Come see who's your first target...");
+				"LET THE GAMES BEGIN! Come see who is your first target...");
 		return new JSONObject().toString();
 
 	}

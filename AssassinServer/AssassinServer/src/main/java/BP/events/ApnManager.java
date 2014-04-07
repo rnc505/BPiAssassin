@@ -37,20 +37,21 @@ public class ApnManager {
 		try {
 		URL url = new URL(urlBase);
 		String nameAndPassword = key+":"+secret;
-		String authorizationString = "Basic " + base64.encode(nameAndPassword.getBytes());
+		String authorizationString = "Basic " + "UTVsVjVnTVBUMmUtLU9OSG14ZDFXQTpLbTlxeFR0UVNRbU0waXpaS3VyWHB3"; // key and secret
 		 
 		HTTPRequest request = new HTTPRequest(url, HTTPMethod.POST);
 		request.addHeader(new HTTPHeader("Authorization", authorizationString));
 		request.addHeader(new HTTPHeader("Content-Type", "application/json"));
+		request.addHeader(new HTTPHeader("Accept","application/vnd.urbanairship+json; version=3;"));
 		 
 		String jsonPayload = apnInfo.toString();
 		request.setPayload(jsonPayload.getBytes());
 		URLFetchService urlFetchService = URLFetchServiceFactory.getURLFetchService();
 		HTTPResponse fetchedResponse = urlFetchService.fetch(request);
-		if (fetchedResponse.getResponseCode() != 200) {
+		if (fetchedResponse.getResponseCode()/100 != 2) {
 		    // something went wrong...
 			// do some sort of logging...
-			throw new RuntimeException("APNs failed. code: " + fetchedResponse.getResponseCode());
+			throw new RuntimeException("APNs failed. code: "+ fetchedResponse.getResponseCode() + "headers: " + request.getHeaders().toString() +"\n also content: " + jsonPayload);
 		}
 		} catch (IOException except) {
 			throw new RuntimeException("APNs failed (IOException): " + except.toString());

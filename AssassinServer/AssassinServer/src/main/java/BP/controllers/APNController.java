@@ -51,10 +51,10 @@ public class APNController {
 				jsonPayload.getJSONObject("audience").put("device_token",
 						iOSDeviceTokens.getString(0));
 			} else {
-				jsonPayload.getJSONObject("audience").put("AND", new JSONArray());
+				jsonPayload.getJSONObject("audience").put("OR", new JSONArray());
 				for (int i = 0; i < iOSDeviceTokens.length(); i++) {
 					String apn = iOSDeviceTokens.getString(i);
-					jsonPayload.getJSONObject("audience").getJSONArray("AND").put(new JSONObject().put("device_token", apn));
+					jsonPayload.getJSONObject("audience").getJSONArray("OR").put(new JSONObject().put("device_token", apn));
 				}
 			}
 		} else {
@@ -63,10 +63,10 @@ public class APNController {
 				jsonPayload.getJSONObject("audience").put("apid",
 						AndroidDeviceTokens.getString(0));
 			} else {
-				jsonPayload.getJSONObject("audience").put("AND", new JSONArray());
+				jsonPayload.getJSONObject("audience").put("OR", new JSONArray());
 				for (int i = 0; i < AndroidDeviceTokens.length(); i++) {
 					String apn = AndroidDeviceTokens.getString(i);
-					jsonPayload.getJSONObject("audience").getJSONArray("AND").put(new JSONObject().put("apid", apn));
+					jsonPayload.getJSONObject("audience").getJSONArray("OR").put(new JSONObject().put("apid", apn));
 				}
 			}
 		}
