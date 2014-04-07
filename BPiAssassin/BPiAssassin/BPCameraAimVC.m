@@ -86,7 +86,7 @@
     NSString* otherUUID;
     if ([[defaults objectForKey:@"myUUID"] isEqualToString:@"000cb6a0-6cfa-ae21-000c-b6a06cfaaee3"]){
         //This is John. Assign Robby
-        otherUUID = @"000cb6a0-b5bc-3740-000c-b6a0b5bc383f";
+        otherUUID = @"000cb7a2-03fd-ccac-000c-b7a203fdcd9e";
     } else {
         otherUUID = @"000cb6a0-6cfa-ae21-000c-b6a06cfaaee3";
     }
