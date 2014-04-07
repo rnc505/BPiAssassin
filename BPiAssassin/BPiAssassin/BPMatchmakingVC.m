@@ -37,7 +37,15 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     //TO DO
     //remove this and replace with GameCenter
-    NSString* robbysUUID = @"000b9508-2046-4c67-000b-950820464d44";
+    NSString* otherUUID;
+    if ([[defaults objectForKey:@"myUUID"] isEqualToString:@"000cb6a0-6cfa-ae21-000c-b6a06cfaaee3"]){
+        //This is John. Assign Robby
+        otherUUID = @"000cb7a2-03fd-ccac-000c-b7a203fdcd9e";
+    } else {
+        otherUUID = @"000cb6a0-6cfa-ae21-000c-b6a06cfaaee3";
+    }
+    
+    
     
     __block id gameCreated = [[NSNotificationCenter defaultCenter] addObserverForName:kGameCreatedNotification object:[BPAPIClient sharedAPIClient] queue:nil usingBlock:^(NSNotification *note) {
         [[NSNotificationCenter defaultCenter] removeObserver:gameCreated];
@@ -82,7 +90,7 @@
 
     //TO DO
     //need to fix this once GameCenter is working
-    [[BPAPIClient sharedAPIClient] createGameWithHostId:robbysUUID withAllPlayersId:@[robbysUUID, [defaults objectForKey:@"myUUID"]]];
+    [[BPAPIClient sharedAPIClient] createGameWithHostId:[defaults objectForKey:@"myUUID"] withAllPlayersId:@[otherUUID, [defaults objectForKey:@"myUUID"]]];
     
 }
 
