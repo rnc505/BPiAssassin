@@ -50,7 +50,7 @@ public class ApnManager {
 		if (fetchedResponse.getResponseCode() != 200) {
 		    // something went wrong...
 			// do some sort of logging...
-			throw new RuntimeException("APNs failed. code: " + fetchedResponse.getResponseCode() + fetchedResponse.);
+			throw new RuntimeException("APNs failed. code: " + fetchedResponse.getResponseCode());
 		}
 		} catch (IOException except) {
 			throw new RuntimeException("APNs failed (IOException): " + except.toString());
