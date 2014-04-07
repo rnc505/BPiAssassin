@@ -136,7 +136,9 @@ public class GameController {
 		final JSONObject body = new JSONObject(Body);
 		UserKilled killed = gameManager.killUser(body.getString("gameId"),
 				body.getString("assassinId"), body.getString("victimId"));
+		TargetInfo ret;
 		if (killed.getNextTarget().equals(body.getString("assassinId"))) {
+			ret = this.gameManager.getTarget(body.getString("gameId"), body.getString("assassinId"));
 			GameEnded ended = this.gameManager.endGame(
 					body.getString("gameId"), body.getString("assassinId"));
 			this.apnController.sendNotification(ended, ended.getWinner()
@@ -147,9 +149,11 @@ public class GameController {
 					killed.getVictimCodeName() + " has been assassinated!!");
 			this.apnController.sendNotification(victim,
 					"You have been assassinated!");
+			ret = this.gameManager.getTarget(body.getString("gameId"), body.getString("assassinId"));
 		}
 //		return new JSONObject().put("target",killed.getNextTarget()).toString();
-		return this.gameManager.getTarget(body.getString("gameId"), body.getString("assassinId"));
+//		return this.gameManager.getTarget(body.getString("gameId"), body.getString("assassinId"));
+		return ret; 
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/registerUser")
