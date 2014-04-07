@@ -83,11 +83,18 @@
     }];
     //TO DO
     //REMOVE THIS LATER
-     NSString* robbysUUID = @"000b9508-2046-4c67-000b-950820464d44";
+    NSString* otherUUID;
+    if ([[defaults objectForKey:@"myUUID"] isEqualToString:@"000cb5c1-abd0-ad1b-000c-b5c1abd0adf9"]){
+        //This is John. Assign Robby
+        otherUUID = @"000cb564-278c-668f-000c-b564278c67bd";
+    } else {
+        otherUUID = @"000cb5c1-abd0-ad1b-000c-b5c1abd0adf9";
+    }
+
     NSString *gameUUID = [defaults objectForKey:@"gameUUID"];
     NSString *myUUID = [defaults objectForKey:@"myUUID"];
     
-    [[BPAPIClient sharedAPIClient] killUserForGameId:gameUUID forAssassinId:myUUID forVictimId:robbysUUID];
+    [[BPAPIClient sharedAPIClient] killUserForGameId:gameUUID forAssassinId:myUUID forVictimId:otherUUID];
     
 }
 
