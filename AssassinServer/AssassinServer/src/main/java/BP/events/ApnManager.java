@@ -55,7 +55,7 @@ public class ApnManager {
 		} catch (IOException except) {
 			throw new RuntimeError("APNs failed (IOException): " + except.toString());
 		}
-		throw new RuntimeError("")
+		throw new RuntimeError("APN should've hit");
 	}
 	
 }

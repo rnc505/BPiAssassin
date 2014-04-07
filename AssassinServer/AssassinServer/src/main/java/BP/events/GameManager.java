@@ -240,8 +240,8 @@ public class GameManager implements GameManagerInterface {
 			Game g = pm.getObjectById(Game.class, gameUUID);
 			GameUser winner = pm.getObjectById(GameUser.class, winnerUUID);
 			winnerCode_Name = winner.getUserCodeName();
-			winner.removeTarget(gameUUID);
 			g.endGame(winner);
+			winner.removeTarget(gameUUID);
 			winner.addWin(); //Increments Winner's win count
 			for (String usrUUID: g.getPlayerUUIDs()) {
 				if (usrUUID != winnerUUID) {
