@@ -15,6 +15,8 @@ static NSString * const kGameStartedNotification = @"kGameStartedNotification";
 static NSString * const kGamePlayDataReceivedNotification = @"kGamePlayDataReceivedNotification";
 static NSString * const kTargetReceivedNotification = @"kTargetReceivedNotification";
 static NSString * const kUserKilledNotification = @"kUserKilledNotification";
+static NSString * const kUserStatusReceiviedNotification = @"kUserStatusReceiviedNotification";
+
 
 static NSString * const kAPIClientFailureNotification = @"kAPIClientFailureNotification";
 #endif

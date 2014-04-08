@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="m45-WM-bjU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="CkY-aM-Ibe">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -167,6 +167,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="M33-mw-G1V"/>
                     <connections>
                         <outlet property="createOrRegisterBtn" destination="Gq6-RJ-CZ4" id="MmH-P4-Xsh"/>
                         <segue destination="IJ3-vM-9aK" kind="modal" identifier="registerRequested" id="qJm-Gw-uYd"/>
@@ -177,6 +178,76 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="COL-UW-Lcb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-441" y="-562"/>
+        </scene>
+        <!--Landing Page-->
+        <scene sceneID="vci-17-d4c">
+            <objects>
+                <viewController id="CkY-aM-Ibe" customClass="BPLandingPage" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vI3-ch-rfk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lAD-jz-dA0">
+                                <rect key="frame" x="5" y="74" width="0.0" height="0.0"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading Current Game Status From Server..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NzL-Ht-N7W">
+                                <rect key="frame" x="85" y="74" width="134" height="102"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" id="Lyr-9b-NNg">
+                                <rect key="frame" x="134" y="188" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="m45-WM-bjU" kind="modal" identifier="landingToRegistered" id="Qmp-cU-v02"/>
+                        <segue destination="Ko2-GT-4Q2" kind="modal" identifier="landingToAlive" id="76c-Uv-dnt"/>
+                        <segue destination="G7Y-y4-pjA" kind="modal" identifier="landingToDead" id="vsC-3p-bmC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gJ6-EQ-1bo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-192" y="173"/>
+        </scene>
+        <!--Dead View Controller-->
+        <scene sceneID="HjY-n7-Y4G">
+            <objects>
+                <viewController id="G7Y-y4-pjA" customClass="BPDeadViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RrK-jG-uNy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are Dead." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kqy-n4-oww">
+                                <rect key="frame" x="106" y="175" width="108" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Wait for the game to end." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hik-7O-GBH">
+                                <rect key="frame" x="35" y="273" width="250" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Mqw-Ps-1Y5"/>
+                    <connections>
+                        <segue destination="m45-WM-bjU" kind="push" identifier="deadToStart" id="IzN-st-1Mu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="deM-73-enb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1752" y="-1672"/>
         </scene>
         <!--Game StatsVC-->
         <scene sceneID="Tb9-NL-Nfh">
@@ -250,6 +321,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="G7Y-y4-pjA" kind="push" identifier="youGotKilled" id="Nfo-iy-UhX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t1q-DY-C1t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -312,6 +386,7 @@
                         <outlet property="killTargetBtn" destination="7hn-D8-dQD" id="eMp-fB-rdb"/>
                         <segue destination="Ko2-GT-4Q2" kind="modal" identifier="viewTargetRequested" id="Ifj-02-cE2"/>
                         <segue destination="cfY-co-OHr" kind="modal" identifier="userWon" id="GXW-Re-Go3"/>
+                        <segue destination="G7Y-y4-pjA" kind="push" identifier="youGotKilled" id="dVW-cp-fNx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S1N-Yf-SIU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -475,6 +550,7 @@
                     <connections>
                         <outlet property="targetCodenameLabel" destination="fgf-ye-gLk" id="6CA-gY-PuI"/>
                         <outlet property="targetThumbnail" destination="UNB-OF-neC" id="pzv-OQ-T4g"/>
+                        <segue destination="G7Y-y4-pjA" kind="push" identifier="youGotKilled" id="adJ-Cj-Jbk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b1s-xR-8pW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -602,7 +678,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Gug-hI-pjy"/>
-        <segue reference="Ifj-02-cE2"/>
+        <segue reference="76c-Uv-dnt"/>
+        <segue reference="Qmp-cU-v02"/>
+        <segue reference="vsC-3p-bmC"/>
     </inferredMetricsTieBreakers>
 </document>

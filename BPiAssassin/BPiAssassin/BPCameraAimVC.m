@@ -71,6 +71,7 @@
         //how a user is notified that they win.
         if ([[defaults objectForKey:@"targetUUID"] isEqualToString: [defaults objectForKey:@"myUUID"]]) {
             [defaults setBool:NO forKey:@"gameInProgress"];
+            [defaults setObject:@"Registered" forKey:@"CurrentUserStatus"];
             [defaults synchronize];
             
             [self performSegueWithIdentifier:@"userWon" sender:self];

@@ -12,6 +12,7 @@
 #import "BPAPIGameCreated.h"
 #import "BPAPINewTargetReceived.h"
 #import "BPAPIGameplayDataReceived.h"
+#import "BPAPIUserStatusReceived.h"
 
 
 #endif

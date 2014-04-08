@@ -10,6 +10,11 @@
 #import "BPNotificationClient.h"
 #import "BPNotifications.h"
 
+@interface BPAPIClient ()
+-(void)updateUserStatus:(NSString*)status;
+//-(void)updateUserStatus;
+@end
+
 @implementation BPAPIClient
 
 static NSString * const kBaseUrl = @"http://iassassin-cs279.appspot.com/game/";
@@ -61,9 +66,19 @@ static NSString * const kBaseUrl = @"http://iassassin-cs279.appspot.com/game/";
                            nil];
     
     [self POST:@"registerUser" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+        [self updateUserStatus:@"Registered"];
         [BPNotificationClient notifyUserRegistered:responseObject];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [BPNotificationClient notifyAPIClientFailed:error forNotification:kUserRegisteredNotification];
+    }];
+}
+
+-(void)getUserStatusForId:(NSString *)userId {
+    [self GET:[NSString stringWithFormat:@"getUserStatus/%@",userId] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [BPNotificationClient notifyUserStatusRecieved:responseObject];
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [BPNotificationClient notifyAPIClientFailed:error forNotification:kUserStatusReceiviedNotification];
     }];
 }
 
@@ -95,6 +110,8 @@ static NSString * const kBaseUrl = @"http://iassassin-cs279.appspot.com/game/";
     
     [self POST:@"startGame" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         [BPNotificationClient notifyGameStarted];
+        [self updateUserStatus:@"Playing - Alive"];
+        [self getUserStatusForId:[[NSUserDefaults standardUserDefaults] objectForKey:@"myUUID"]];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [BPNotificationClient notifyAPIClientFailed:error forNotification:kGameStartedNotification];
     }];
@@ -132,6 +149,11 @@ static NSString * const kBaseUrl = @"http://iassassin-cs279.appspot.com/game/";
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [BPNotificationClient notifyAPIClientFailed:error forNotification:kUserKilledNotification];
     }];
+}
+
+-(void)updateUserStatus:(NSString *)status {
+    [[NSUserDefaults standardUserDefaults] setObject:status forKey:@"CurrentUserState"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 

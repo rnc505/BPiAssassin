@@ -9,12 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @interface BPNotificationClient : NSObject
-+(void)notifyUserRegistered:(NSString*)userUUID;
++(void)notifyUserRegistered:(NSDictionary*)userUUID;
 +(void)notifyGameCreated:(NSDictionary*)dictOfUsersImages;
 +(void)notifyGameStarted;
 +(void)notifyGamePlayDataReceived:(NSDictionary*)gamePlayData;
-+(void)notifyTargetReceived:(NSString*)target;
-+(void)notifyUserKilled:(NSString*)newTarget;
++(void)notifyTargetReceived:(NSDictionary*)target;
++(void)notifyUserKilled:(NSDictionary*)newTarget;
++(void)notifyUserStatusRecieved:(NSDictionary*)status;
 
 +(void)notifyAPIClientFailed:(NSError*)error forNotification:(NSString*)notification;
 @end

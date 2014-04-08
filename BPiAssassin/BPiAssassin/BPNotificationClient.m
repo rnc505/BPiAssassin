@@ -39,6 +39,10 @@
 +(void)notifyUserKilled:(NSDictionary*)newTarget {
     [BPNotificationClient helperSendNotification:kUserKilledNotification withPayload:[BPAPINewTargetReceived initializeWithDictionary:newTarget]];
 }
++(void)notifyUserStatusRecieved:(NSDictionary *)status {
+    [BPNotificationClient helperSendNotification:kUserStatusReceiviedNotification withPayload:[BPAPIUserStatusReceived initializeWithDictionary:status]];
+}
+
 
 +(void)notifyAPIClientFailed:(NSError *)error forNotification:(NSString *)notification {
     NSDictionary *errorDictionary = [NSDictionary dictionaryWithObjectsAndKeys:notification, @"NotificationName", error, @"Error", nil];

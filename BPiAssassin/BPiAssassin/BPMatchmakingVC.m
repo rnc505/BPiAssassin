@@ -52,7 +52,7 @@
 
         BPAPIGameCreated *gameCreated = [[note userInfo] objectForKey:@"event"];
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Yay game created successfully" message:[NSString stringWithFormat:@"Game id: %@, number of Images: %d",[gameCreated gameId],[gameCreated images].count] delegate:self cancelButtonTitle:@"Close" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Yay game created successfully" message:[NSString stringWithFormat:@"Game id: %@, number of Images: %lu",[gameCreated gameId],(unsigned long)[gameCreated images].count] delegate:self cancelButtonTitle:@"Close" otherButtonTitles:nil];
         [alert show];
         
         [defaults setObject:[gameCreated gameId] forKey:@"gameUUID"];
@@ -69,6 +69,7 @@
         [alert show];
         
         [defaults setBool:YES forKey:@"gameInProgress"];
+        [defaults setObject:@"Playing - Alive" forKey:@"CurrentUserStatus"];
         [defaults synchronize];
        
         [[BPAPIClient sharedAPIClient] getTargetForGameId:[defaults objectForKey:@"gameUUID"] forUserId:[defaults objectForKey:@"myUUID"]];

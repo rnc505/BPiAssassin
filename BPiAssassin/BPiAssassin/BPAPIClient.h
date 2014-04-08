@@ -14,6 +14,7 @@
 
 #pragma mark - User
 -(void)registerUserForUsername:(NSString*)username forThumbnail:(UIImage*)thumbnail forArrayOfFaceImages:(NSArray*)arrayOfImgs forApnDeviceToken:(NSString*)token;
+-(void)getUserStatusForId:(NSString*)userId;
 
 #pragma mark - Game Hoster
 -(void)createGameWithHostId:(NSString*)hostId withAllPlayersId:(NSArray*)playersIds;
