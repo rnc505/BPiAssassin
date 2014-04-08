@@ -34,6 +34,9 @@ public class GameManager implements GameManagerInterface {
 	}
 
 	//User Management
+	
+	
+	
 	public String RegisterUser(String code_name, GameUserImage thumbnail, 
 			ArrayList<GameUserImage> faceImages, String apn, String platformID) {
 		
@@ -89,6 +92,19 @@ public class GameManager implements GameManagerInterface {
 		return retObject;
 	}
 	
+	public String GetUserStatus(String userId) {
+		PersistenceManager pm = getPersistenceManager();
+		GameUser g;
+		String ret;
+		try {
+			g = pm.getObjectById(GameUser.class, userId);
+			ret = g.getUserStatus();
+		} finally {
+			pm.close();
+		}
+		return ret;
+	}
+	
 	public GameStarted startGame(String gameUUID, GameData data) {
 		PersistenceManager pm = getPersistenceManager();
 		GameStarted retObject;
@@ -106,6 +122,7 @@ public class GameManager implements GameManagerInterface {
 			for (int i= 0; i < numPlayers; i ++) {
 				GameUser hunter = pm.getObjectById(GameUser.class, playerUUIDs.get(i));
 				hunter.setTargetUUID(gameUUID, playerUUIDs.get((i+1)%numPlayers));
+				hunter.setUserStatus("Playing - Alive");
 			}
 			
 			//Collect APN Information
@@ -206,6 +223,7 @@ public class GameManager implements GameManagerInterface {
 			Game g = pm.getObjectById(Game.class, gameUUID);
 			GameUser assassin = pm.getObjectById(GameUser.class, assassinUUID);
 			GameUser victim = pm.getObjectById(GameUser.class, victimUUID);
+			victim.setUserStatus("Playing - Dead");
 			
 			nextTargetUUID = killUser(gameUUID, assassin, victim);
 			victimCodeName = victim.getUserCodeName();
@@ -243,9 +261,11 @@ public class GameManager implements GameManagerInterface {
 			g.endGame(winner);
 			winner.removeTarget(gameUUID);
 			winner.addWin(); //Increments Winner's win count
+			winner.setUserStatus("Registered");
 			for (String usrUUID: g.getPlayerUUIDs()) {
 				if (usrUUID != winnerUUID) {
 					GameUser usr = pm.getObjectById(GameUser.class, usrUUID);
+					usr.setUserStatus("Registered");
 					HashMap<String, String> entry = 
 							new HashMap<String, String>();
 					entry.put("apn", usr.getAPN());
