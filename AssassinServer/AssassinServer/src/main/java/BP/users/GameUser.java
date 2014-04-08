@@ -64,6 +64,10 @@ public class GameUser {
 				this.targetIds.remove(indexToRemove);
 			}
 		}
+		
+		public String getGameId() {
+			return this.gameIds.get(0);
+		}
 	}
 	@Embedded
 	@Persistent
@@ -149,6 +153,10 @@ public class GameUser {
 		this.gameTargetUUIDs.addNewTarget(gameUUID, targetUUID);
 	}
 
+	public String getGameId() {
+		return this.gameTargetUUIDs.getGameId();
+	}
+	
 	/**
 	 * getTarget()
 	 * 

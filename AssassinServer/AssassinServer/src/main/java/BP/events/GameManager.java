@@ -92,13 +92,16 @@ public class GameManager implements GameManagerInterface {
 		return retObject;
 	}
 	
-	public String GetUserStatus(String userId) {
+	public HashMap<String,String> GetUserStatus(String userId) {
 		PersistenceManager pm = getPersistenceManager();
 		GameUser g;
-		String ret;
+		HashMap<String,String> ret = new HashMap<String,String>();
 		try {
 			g = pm.getObjectById(GameUser.class, userId);
-			ret = g.getUserStatus();
+			ret.put("status", g.getUserStatus());
+			if(!g.getUserStatus().equals("Registered")) {
+				ret.put("gameId", g.getGameId());
+			}
 		} finally {
 			pm.close();
 		}

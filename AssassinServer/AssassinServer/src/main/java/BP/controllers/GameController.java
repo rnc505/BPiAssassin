@@ -51,7 +51,7 @@ public class GameController {
 	@RequestMapping(method = RequestMethod.GET, value = "/getUserStatus/{userId}")
 	public @ResponseBody
 	String getUserStatus(@PathVariable String userId) {
-		return new JSONObject().put("status",this.gameManager.GetUserStatus(userId)).toString();
+		return new JSONObject(this.gameManager.GetUserStatus(userId)).toString();
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/createGame")
