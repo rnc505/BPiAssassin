@@ -37,6 +37,7 @@
         if(self.window.rootViewController.presentedViewController) {
 //        [self.window.rootViewController.presentedViewController performSegueWithIdentifier:@"toLanding" sender:self.window.rootViewController.presentedViewController];
             [self.window.rootViewController.presentedViewController dismissViewControllerAnimated:NO completion:nil];
+             [self.window.rootViewController viewDidLoad];
         } else {
             [self.window.rootViewController viewDidLoad];
         }
