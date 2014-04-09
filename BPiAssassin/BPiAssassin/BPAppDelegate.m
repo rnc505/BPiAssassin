@@ -36,7 +36,7 @@
         if(self.window.rootViewController.presentedViewController) {
             [self.window.rootViewController.presentedViewController dismissViewControllerAnimated:YES completion:nil];
         } else {
-            [self.window.rootViewController viewDidAppear:NO];
+            [self.window.rootViewController viewDidLoad];
         }
     }
     
@@ -57,7 +57,7 @@
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     //[self updateStatus];
-    [self.window.rootViewController viewDidAppear:NO];
+    [self.window.rootViewController viewDidLoad];
     
 }
 

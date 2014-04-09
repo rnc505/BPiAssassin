@@ -25,11 +25,11 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
+//- (void)viewDidLoad
+//{
+//    [super viewDidLoad];
+//    // Do any additional setup after loading the view.
+//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -37,7 +37,9 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)viewDidAppear:(BOOL)animated {
+-(void)viewDidLoad:(BOOL)animated {
+    [super viewDidLoad];
+
     NSString* uuid = [[NSUserDefaults standardUserDefaults] objectForKey:@"myUUID"];
     if(!uuid) {
         [self performSegueWithIdentifier:@"landingToRegistered" sender:self];
@@ -60,7 +62,6 @@
             [defaults setObject:[target targetCodename] forKey:@"targetCodename"];
             [defaults setObject:UIImagePNGRepresentation([target targetThumbnail]) forKey:@"targetThumbnail"];
             [defaults synchronize];
-            [NSThread sleepForTimeInterval:.3];
             [self performSegueWithIdentifier:@"landingToAlive" sender:self];
             
         }];
@@ -74,10 +75,8 @@
             NSString *status = [rec status];
 //            [NSUserDefaults standardUserDefaults] setObject:@" forKey:
             if([status isEqualToString:@"Registered"]) {
-                [NSThread sleepForTimeInterval:.3];
                 [self performSegueWithIdentifier:@"landingToRegistered" sender:self];
             } else if([status isEqualToString:@"Playing - Dead"]) {
-                [NSThread sleepForTimeInterval:.3];
                 [self performSegueWithIdentifier:@"landingToDead" sender:self];
             } else if([status isEqualToString:@"Playing - Alive"]) {
                 if([oldstatus isEqualToString:@"Registered"]) {
