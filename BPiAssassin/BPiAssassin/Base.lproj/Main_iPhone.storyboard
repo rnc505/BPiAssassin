@@ -126,7 +126,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fMp-PU-Jfl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="537" y="-255"/>
+            <point key="canvasLocation" x="729" y="-59"/>
         </scene>
         <!--Create GameVC-->
         <scene sceneID="Ezz-mA-t0C">
@@ -173,6 +173,7 @@
                         <segue destination="IJ3-vM-9aK" kind="modal" identifier="registerRequested" id="qJm-Gw-uYd"/>
                         <segue destination="KRu-GM-4s1" kind="modal" identifier="createGameRequested" id="7YW-5K-DKb"/>
                         <segue destination="Ko2-GT-4Q2" kind="modal" identifier="openedApp_GameInProgress" id="Qq7-J0-yCj"/>
+                        <segue destination="CkY-aM-Ibe" kind="modal" identifier="toLanding" id="U8J-l2-yam"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="COL-UW-Lcb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -215,7 +216,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gJ6-EQ-1bo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-192" y="173"/>
+            <point key="canvasLocation" x="-668" y="441"/>
         </scene>
         <!--Dead View Controller-->
         <scene sceneID="HjY-n7-Y4G">
@@ -243,6 +244,7 @@
                     <navigationItem key="navigationItem" id="Mqw-Ps-1Y5"/>
                     <connections>
                         <segue destination="m45-WM-bjU" kind="push" identifier="deadToStart" id="IzN-st-1Mu"/>
+                        <segue destination="CkY-aM-Ibe" kind="modal" identifier="toLanding" id="L2U-O3-xA2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="deM-73-enb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -551,6 +553,7 @@
                         <outlet property="targetCodenameLabel" destination="fgf-ye-gLk" id="6CA-gY-PuI"/>
                         <outlet property="targetThumbnail" destination="UNB-OF-neC" id="pzv-OQ-T4g"/>
                         <segue destination="G7Y-y4-pjA" kind="push" identifier="youGotKilled" id="adJ-Cj-Jbk"/>
+                        <segue destination="CkY-aM-Ibe" kind="modal" identifier="toLanding" id="n8a-oL-ioI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b1s-xR-8pW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -678,8 +681,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="76c-Uv-dnt"/>
-        <segue reference="Qmp-cU-v02"/>
+        <segue reference="IzN-st-1Mu"/>
         <segue reference="vsC-3p-bmC"/>
+        <segue reference="L2U-O3-xA2"/>
+        <segue reference="Qq7-J0-yCj"/>
     </inferredMetricsTieBreakers>
 </document>

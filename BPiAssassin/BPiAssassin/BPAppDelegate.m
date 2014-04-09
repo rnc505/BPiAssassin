@@ -33,9 +33,12 @@
         //navigate the "aps" dictionary looking for "loc-args" and "loc-key", for example, or your personal payload)
         //[self updateStatus];
 //        [self.window.rootViewController viewDidAppear:NO];
-        while(self.window.rootViewController.presentedViewController.presentedViewController) {
-            [self.window.rootViewController.presentedViewController.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+        UIViewController *vc = self.window.rootViewController;
+        while(vc.presentedViewController) {
+//            [self.window.rootViewController.presentedViewController.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+            vc = vc.presentedViewController;
         }
+        [vc performSegueWithIdentifier:@"toLanding" sender:vc];
         
         if(!self.window.rootViewController.presentedViewController) {
             [self.window.rootViewController viewDidLoad];
