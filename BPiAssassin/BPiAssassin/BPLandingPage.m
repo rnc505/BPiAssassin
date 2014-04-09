@@ -37,8 +37,8 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)viewDidLoad {
-    [super viewDidLoad];
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
 
     NSString* uuid = [[NSUserDefaults standardUserDefaults] objectForKey:@"myUUID"];
     if(!uuid) {

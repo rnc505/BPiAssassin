@@ -37,9 +37,9 @@
         if(self.window.rootViewController.presentedViewController) {
 //        [self.window.rootViewController.presentedViewController performSegueWithIdentifier:@"toLanding" sender:self.window.rootViewController.presentedViewController];
             [self.window.rootViewController.presentedViewController dismissViewControllerAnimated:NO completion:nil];
-             [self.window.rootViewController viewDidLoad];
+            [self.window.rootViewController viewDidAppear:NO];
         } else {
-            [self.window.rootViewController viewDidLoad];
+            [self.window.rootViewController viewDidAppear:NO];
         }
     }
     
@@ -60,7 +60,7 @@
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     //[self updateStatus];
-    [self.window.rootViewController viewDidLoad];
+    [self.window.rootViewController viewDidAppear:NO];
     
 }
 
