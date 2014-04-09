@@ -35,7 +35,8 @@
 //        [self.window.rootViewController viewDidAppear:NO];
         
         if(self.window.rootViewController.presentedViewController) {
-        [self.window.rootViewController.presentedViewController performSegueWithIdentifier:@"toLanding" sender:self.window.rootViewController.presentedViewController];
+//        [self.window.rootViewController.presentedViewController performSegueWithIdentifier:@"toLanding" sender:self.window.rootViewController.presentedViewController];
+            [self.window.rootViewController.presentedViewController dismissViewControllerAnimated:NO completion:nil];
         } else {
             [self.window.rootViewController viewDidLoad];
         }
