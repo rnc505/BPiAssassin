@@ -60,6 +60,7 @@
             [defaults setObject:[target targetCodename] forKey:@"targetCodename"];
             [defaults setObject:UIImagePNGRepresentation([target targetThumbnail]) forKey:@"targetThumbnail"];
             [defaults synchronize];
+            [NSThread sleepForTimeInterval:.3];
             [self performSegueWithIdentifier:@"landingToAlive" sender:self];
             
         }];
@@ -73,8 +74,10 @@
             NSString *status = [rec status];
 //            [NSUserDefaults standardUserDefaults] setObject:@" forKey:
             if([status isEqualToString:@"Registered"]) {
+                [NSThread sleepForTimeInterval:.3];
                 [self performSegueWithIdentifier:@"landingToRegistered" sender:self];
             } else if([status isEqualToString:@"Playing - Dead"]) {
+                [NSThread sleepForTimeInterval:.3];
                 [self performSegueWithIdentifier:@"landingToDead" sender:self];
             } else if([status isEqualToString:@"Playing - Alive"]) {
                 if([oldstatus isEqualToString:@"Registered"]) {
