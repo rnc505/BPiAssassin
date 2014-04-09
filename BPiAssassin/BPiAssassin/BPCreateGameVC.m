@@ -46,9 +46,9 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     //Handles different start screens depending on the current game state
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"gameInProgress"]) {
-        [self performSegueWithIdentifier:@"openedApp_GameInProgress" sender:self];
-    }
+//    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"gameInProgress"]) {
+//        [self performSegueWithIdentifier:@"openedApp_GameInProgress" sender:self];
+//    }
 }
 
 - (void)didReceiveMemoryWarning
