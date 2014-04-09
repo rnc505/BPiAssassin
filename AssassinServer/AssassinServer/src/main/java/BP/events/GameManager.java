@@ -34,7 +34,7 @@ public class GameManager implements GameManagerInterface {
 	}
 
 	//User Management
-	public String RegisterUser(String code_name, GameUserImage thumbnail, 
+	public String RegisterUser(String uuid, String code_name, GameUserImage thumbnail, 
 			ArrayList<GameUserImage> faceImages, String apn, String platformID) {
 		
 		PersistenceManager pm = getPersistenceManager();
@@ -44,7 +44,7 @@ public class GameManager implements GameManagerInterface {
 			for (GameUserImage a: faceImages) {
 				usrImageUUIDs.add(a.getUUID());
 			}
-			g = new GameUser(code_name, thumbnail.getUUID(), usrImageUUIDs);
+			g = new GameUser(uuid, code_name, thumbnail.getUUID(), usrImageUUIDs);
 			g.setAPN(apn);
 			g.setPlatformID(platformID);
 			pm.makePersistent(thumbnail);

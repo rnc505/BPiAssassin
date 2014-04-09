@@ -14,7 +14,7 @@ public interface GameManagerInterface {
 	
 	
 	//User Management
-	String RegisterUser(String code_name, GameUserImage thumbnail, 
+	String RegisterUser(String uuid, String code_name, GameUserImage thumbnail, 
 			ArrayList<GameUserImage> faceImages, String apn, String platformID);
 	void deleteUser(String uuid);
 	

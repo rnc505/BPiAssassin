@@ -84,10 +84,11 @@ public class GameUser {
 	public GameUser() {
 	}
 
-	public GameUser(String code_name, String thumbnailUUID,
+	public GameUser(String uuid, String code_name, String thumbnailUUID,
 			ArrayList<String> usrImageUUIDs) {
-		UUID uuid = new UUID(System.nanoTime(), System.nanoTime());
-		this.uuidString = uuid.toString();
+		//UUID uuid = new UUID(System.nanoTime(), System.nanoTime());
+		//this.uuidString = uuid.toString();
+		this.uuidString = uuid;
 		this.code_name = code_name;
 		this.thumbnailUUID = thumbnailUUID;
 		this.usrImageUUIDs = usrImageUUIDs;
