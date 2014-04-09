@@ -9,14 +9,16 @@ import BP.events.objects.TargetInfo;
 import BP.events.objects.UserKilled;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface GameManagerInterface {
 	
 	
 	//User Management
-	String RegisterUser(String code_name, GameUserImage thumbnail, 
+	String RegisterUser(String uuid, String code_name, GameUserImage thumbnail, 
 			ArrayList<GameUserImage> faceImages, String apn, String platformID);
 	void deleteUser(String uuid);
+	public HashMap<String, String> GetUserStatus(String userId);
 	
 	//Game Management
 	GameCreated createGame(String hostUUID, ArrayList<String> playerUUIDs);
