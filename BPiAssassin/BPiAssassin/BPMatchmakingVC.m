@@ -34,6 +34,7 @@
     return self;
 }
 - (IBAction)createGameBtnPress:(id)sender {
+    [sender setEnabled:NO];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     //TO DO
     //remove this and replace with GameCenter
