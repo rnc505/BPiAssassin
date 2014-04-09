@@ -32,14 +32,14 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alert:) name:kUserRegisteredNotification object:[BPAPIClient sharedAPIClient]];
     
     
-    [[BPAPIClient sharedAPIClient] registerUserForUsername:@"user1" forThumbnail:[self imageWithColor:[UIColor redColor]] forArrayOfFaceImages:@[[self imageWithColor:[UIColor redColor]],[self imageWithColor:[UIColor greenColor]],[self imageWithColor:[UIColor blueColor]]] forApnDeviceToken:@"apndevicetoken1"];
+//    [[BPAPIClient sharedAPIClient] registerUserForUsername:@"user1" forThumbnail:[self imageWithColor:[UIColor redColor]] forArrayOfFaceImages:@[[self imageWithColor:[UIColor redColor]],[self imageWithColor:[UIColor greenColor]],[self imageWithColor:[UIColor blueColor]]] forApnDeviceToken:@"apndevicetoken1"];
 }
 - (IBAction)registerMoreUsersBtnPress:(UIButton *)sender {
-    [[BPAPIClient sharedAPIClient] registerUserForUsername:@"user2" forThumbnail:[self imageWithColor:[UIColor redColor]] forArrayOfFaceImages:@[[self imageWithColor:[UIColor redColor]],[self imageWithColor:[UIColor cyanColor]],[self imageWithColor:[UIColor blueColor]]] forApnDeviceToken:@"apndevicetoken2"];
+//    [[BPAPIClient sharedAPIClient] registerUserForUsername:@"user2" forThumbnail:[self imageWithColor:[UIColor redColor]] forArrayOfFaceImages:@[[self imageWithColor:[UIColor redColor]],[self imageWithColor:[UIColor cyanColor]],[self imageWithColor:[UIColor blueColor]]] forApnDeviceToken:@"apndevicetoken2"];
     
-    [[BPAPIClient sharedAPIClient] registerUserForUsername:@"user3" forThumbnail:[self imageWithColor:[UIColor redColor]] forArrayOfFaceImages:@[[self imageWithColor:[UIColor redColor]],[self imageWithColor:[UIColor blackColor]],[self imageWithColor:[UIColor blueColor]]] forApnDeviceToken:@"apndevicetoken3"];
+//    [[BPAPIClient sharedAPIClient] registerUserForUsername:@"user3" forThumbnail:[self imageWithColor:[UIColor redColor]] forArrayOfFaceImages:@[[self imageWithColor:[UIColor redColor]],[self imageWithColor:[UIColor blackColor]],[self imageWithColor:[UIColor blueColor]]] forApnDeviceToken:@"apndevicetoken3"];
     
-    [[BPAPIClient sharedAPIClient] registerUserForUsername:@"user4" forThumbnail:[self imageWithColor:[UIColor redColor]] forArrayOfFaceImages:@[[self imageWithColor:[UIColor darkGrayColor]],[self imageWithColor:[UIColor greenColor]],[self imageWithColor:[UIColor blueColor]]] forApnDeviceToken:@"apndevicetoken4"];
+//    [[BPAPIClient sharedAPIClient] registerUserForUsername:@"user4" forThumbnail:[self imageWithColor:[UIColor redColor]] forArrayOfFaceImages:@[[self imageWithColor:[UIColor darkGrayColor]],[self imageWithColor:[UIColor greenColor]],[self imageWithColor:[UIColor blueColor]]] forApnDeviceToken:@"apndevicetoken4"];
     
 }
 - (IBAction)createAGame:(UIButton *)sender {

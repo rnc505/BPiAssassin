@@ -167,7 +167,22 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
                 
     }];
     
-    [[BPAPIClient sharedAPIClient] registerUserForUsername:[self.usr_code_name text] forThumbnail:[self.usrImage1.image resizedAndGrayscaledSquareImageOfDimension:200] forArrayOfFaceImages:@[[self.usrImage1.image resizedAndGrayscaledSquareImageOfDimension:300],[self.usrImage2.image resizedAndGrayscaledSquareImageOfDimension:300],[self.usrImage3.image resizedAndGrayscaledSquareImageOfDimension:300],[self.usrImage4.image resizedAndGrayscaledSquareImageOfDimension:300]] forApnDeviceToken:[[UAPush shared] deviceToken]];
+    NSString* registeredId;
+    
+    if([[[UAirship shared] deviceToken] isEqualToString:@"ff73785fb527f7bf2499a4ecaebf12b1295a38e7ad90869340813919807ded38"]) {
+        // John
+        registeredId = @"ff73785fb527f7bf2499a4ecaebf12b1295a38e7ad90869340813919807ded38";
+        
+    } else if([[[UAirship shared] deviceToken] isEqualToString:@"c0279cad4d5eaf37366cc8ed5f00804eea3045c938ccdc9f4c01594f90430a79"]){
+        // Robby
+        registeredId = @"c0279cad4d5eaf37366cc8ed5f00804eea3045c938ccdc9f4c01594f90430a79";
+        
+    } else {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Device Tokens changed" message:@"they changed" delegate:self cancelButtonTitle:@"Close" otherButtonTitles:nil];
+        [alert show];
+    }
+    
+    [[BPAPIClient sharedAPIClient] registerUserForUsername:[self.usr_code_name text] forThumbnail:[self.usrImage1.image resizedAndGrayscaledSquareImageOfDimension:200] forArrayOfFaceImages:@[[self.usrImage1.image resizedAndGrayscaledSquareImageOfDimension:300],[self.usrImage2.image resizedAndGrayscaledSquareImageOfDimension:300],[self.usrImage3.image resizedAndGrayscaledSquareImageOfDimension:300],[self.usrImage4.image resizedAndGrayscaledSquareImageOfDimension:300]] forApnDeviceToken:[[UAPush shared] deviceToken] withRegisteredId:registeredId];
     
 }
 #pragma mark - View Rotation Lock

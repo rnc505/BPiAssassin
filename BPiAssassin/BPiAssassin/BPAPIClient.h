@@ -13,7 +13,7 @@
 - (instancetype)initWithBaseURL:(NSURL *)url;
 
 #pragma mark - User
--(void)registerUserForUsername:(NSString*)username forThumbnail:(UIImage*)thumbnail forArrayOfFaceImages:(NSArray*)arrayOfImgs forApnDeviceToken:(NSString*)token;
+-(void)registerUserForUsername:(NSString*)username forThumbnail:(UIImage*)thumbnail forArrayOfFaceImages:(NSArray*)arrayOfImgs forApnDeviceToken:(NSString*)token withRegisteredId:(NSString*)registeredId;
 -(void)getUserStatusForId:(NSString*)userId;
 
 #pragma mark - Game Hoster

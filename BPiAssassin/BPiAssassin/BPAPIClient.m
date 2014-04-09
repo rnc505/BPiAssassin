@@ -47,7 +47,7 @@ static NSString * const kBaseUrl = @"http://iassassin-cs279.appspot.com/game/";
 }
 
 #pragma mark - User
--(void)registerUserForUsername:(NSString*)username forThumbnail:(UIImage*)thumbnail forArrayOfFaceImages:(NSArray*)arrayOfImgs forApnDeviceToken:(NSString*)token {
+-(void)registerUserForUsername:(NSString*)username forThumbnail:(UIImage*)thumbnail forArrayOfFaceImages:(NSArray*)arrayOfImgs forApnDeviceToken:(NSString*)token withRegisteredId:(NSString *)registeredId {
     
     NSMutableArray* faceImages = [NSMutableArray arrayWithCapacity:[arrayOfImgs count]];
     for (UIImage* img in arrayOfImgs) {
@@ -63,6 +63,7 @@ static NSString * const kBaseUrl = @"http://iassassin-cs279.appspot.com/game/";
                            faceImages,@"faceImages",
                            token, @"apn",
                            @"iOS", @"platformId",
+                           registeredId, @"registeredId",
                            nil];
     
     [self POST:@"registerUser" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {

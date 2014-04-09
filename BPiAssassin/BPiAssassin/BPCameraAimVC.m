@@ -85,11 +85,11 @@
     //TO DO
     //REMOVE THIS LATER
     NSString* otherUUID;
-    if ([[defaults objectForKey:@"myUUID"] isEqualToString:@"000cb6a0-6cfa-ae21-000c-b6a06cfaaee3"]){
+    if ([[defaults objectForKey:@"myUUID"] isEqualToString:@"ff73785fb527f7bf2499a4ecaebf12b1295a38e7ad90869340813919807ded38"]){
         //This is John. Assign Robby
-        otherUUID = @"000cb7a2-03fd-ccac-000c-b7a203fdcd9e";
+        otherUUID = @"c0279cad4d5eaf37366cc8ed5f00804eea3045c938ccdc9f4c01594f90430a79";
     } else {
-        otherUUID = @"000cb6a0-6cfa-ae21-000c-b6a06cfaaee3";
+        otherUUID = @"ff73785fb527f7bf2499a4ecaebf12b1295a38e7ad90869340813919807ded38";
     }
     NSString *gameUUID = [defaults objectForKey:@"gameUUID"];
     NSString *myUUID = [defaults objectForKey:@"myUUID"];
