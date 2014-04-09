@@ -34,13 +34,18 @@
         //[self updateStatus];
 //        [self.window.rootViewController viewDidAppear:NO];
         
-        if(self.window.rootViewController.presentedViewController) {
-//        [self.window.rootViewController.presentedViewController performSegueWithIdentifier:@"toLanding" sender:self.window.rootViewController.presentedViewController];
-            [self.window.rootViewController.presentedViewController dismissViewControllerAnimated:NO completion:nil];
-            [self.window.rootViewController viewDidAppear:NO];
-        } else {
-            [self.window.rootViewController viewDidAppear:NO];
+        if([[userInfo objectForKey:@"action"] isEqualToString:@"gameEnded"]) {
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"gameInProgress"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
         }
+        
+//        if(self.window.rootViewController.presentedViewController) {
+////        [self.window.rootViewController.presentedViewController performSegueWithIdentifier:@"toLanding" sender:self.window.rootViewController.presentedViewController];
+//            [self.window.rootViewController.presentedViewController dismissViewControllerAnimated:NO completion:nil];
+//            [self.window.rootViewController viewDidAppear:NO];
+//        } else {
+//            [self.window.rootViewController viewDidAppear:NO];
+//        }
     }
     
 }
