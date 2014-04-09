@@ -32,7 +32,12 @@
         //the app is in the foreground, so here you do your stuff since the OS does not do it for you
         //navigate the "aps" dictionary looking for "loc-args" and "loc-key", for example, or your personal payload)
         //[self updateStatus];
-        [self.window.rootViewController viewDidAppear:NO];
+//        [self.window.rootViewController viewDidAppear:NO];
+        if(self.window.rootViewController.presentedViewController) {
+            [self.window.rootViewController.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+        } else {
+            [self.window.rootViewController viewDidAppear:NO];
+        }
     }
     
 }
