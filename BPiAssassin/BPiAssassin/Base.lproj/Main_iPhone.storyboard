@@ -249,7 +249,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="deM-73-enb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1752" y="-1672"/>
+            <point key="canvasLocation" x="1864" y="-1720"/>
         </scene>
         <!--Game StatsVC-->
         <scene sceneID="Tb9-NL-Nfh">
@@ -389,11 +389,12 @@
                         <segue destination="Ko2-GT-4Q2" kind="modal" identifier="viewTargetRequested" id="Ifj-02-cE2"/>
                         <segue destination="cfY-co-OHr" kind="modal" identifier="userWon" id="GXW-Re-Go3"/>
                         <segue destination="G7Y-y4-pjA" kind="push" identifier="youGotKilled" id="dVW-cp-fNx"/>
+                        <segue destination="CkY-aM-Ibe" kind="modal" identifier="toLoading" id="Gv8-hI-bez"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S1N-Yf-SIU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1030" y="-1803"/>
+            <point key="canvasLocation" x="758" y="-1987"/>
         </scene>
         <!--Demo ServerVC-->
         <scene sceneID="NF6-gX-jMN">
@@ -685,8 +686,8 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="IzN-st-1Mu"/>
-        <segue reference="vsC-3p-bmC"/>
-        <segue reference="RoQ-4T-m46"/>
-        <segue reference="1ol-kS-jXY"/>
+        <segue reference="dVW-cp-fNx"/>
+        <segue reference="Ifj-02-cE2"/>
+        <segue reference="Gv8-hI-bez"/>
     </inferredMetricsTieBreakers>
 </document>
