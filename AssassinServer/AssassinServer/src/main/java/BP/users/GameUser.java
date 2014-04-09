@@ -20,6 +20,9 @@ public class GameUser {
 	private String uuidString;
 
 	@Persistent
+	private String userStatus;
+	
+	@Persistent
 	private String code_name;
 	@Persistent
 	private String thumbnailUUID;
@@ -61,6 +64,10 @@ public class GameUser {
 				this.targetIds.remove(indexToRemove);
 			}
 		}
+		
+		public String getGameId() {
+			return this.gameIds.get(0);
+		}
 	}
 	@Embedded
 	@Persistent
@@ -96,6 +103,7 @@ public class GameUser {
 		this.numKills = 0;
 		this.numDeaths = 0;
 		this.numWins = 0;
+		this.userStatus = "Registered";
 	}
 
 	/**
@@ -146,6 +154,10 @@ public class GameUser {
 		this.gameTargetUUIDs.addNewTarget(gameUUID, targetUUID);
 	}
 
+	public String getGameId() {
+		return this.gameTargetUUIDs.getGameId();
+	}
+	
 	/**
 	 * getTarget()
 	 * 
@@ -235,4 +247,12 @@ public class GameUser {
 		return this.platformID;
 	}
 
+	public String getUserStatus() {
+		return this.userStatus;
+	}
+	
+	public void setUserStatus(String status) {
+		this.userStatus = status;
+	}
+	
 }
