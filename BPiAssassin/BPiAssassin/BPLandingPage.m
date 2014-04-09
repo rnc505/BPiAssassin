@@ -37,7 +37,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)viewWillAppear:(BOOL)animated {
+-(void)viewDidAppear:(BOOL)animated {
     NSString* uuid = [[NSUserDefaults standardUserDefaults] objectForKey:@"myUUID"];
     if(!uuid) {
         [self performSegueWithIdentifier:@"landingToRegistered" sender:self];
