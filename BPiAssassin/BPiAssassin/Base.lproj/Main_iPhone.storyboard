@@ -620,6 +620,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="CkY-aM-Ibe" kind="modal" id="RoQ-4T-m46"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="bp_reuse_3" id="dUt-Th-cAR">
                                         <rect key="frame" x="0.0" y="110" width="320" height="44"/>
@@ -683,7 +686,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="IzN-st-1Mu"/>
         <segue reference="vsC-3p-bmC"/>
-        <segue reference="L2U-O3-xA2"/>
-        <segue reference="Qq7-J0-yCj"/>
+        <segue reference="RoQ-4T-m46"/>
+        <segue reference="1ol-kS-jXY"/>
     </inferredMetricsTieBreakers>
 </document>
