@@ -85,7 +85,7 @@
                 }
             }
             
-            
+            [[NSUserDefaults standardUserDefaults] setObject:[rec gameId] forKey:@"gameUUID"];
             [[NSUserDefaults standardUserDefaults] setObject:status forKey:@"CurrentUserState"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             
