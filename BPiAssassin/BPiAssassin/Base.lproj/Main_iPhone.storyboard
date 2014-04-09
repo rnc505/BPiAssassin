@@ -621,7 +621,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="CkY-aM-Ibe" kind="modal" id="RoQ-4T-m46"/>
+                                            <segue destination="CkY-aM-Ibe" kind="modal" identifier="toLanding" id="RoQ-4T-m46"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="bp_reuse_3" id="dUt-Th-cAR">
