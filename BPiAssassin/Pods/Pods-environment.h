@@ -48,3 +48,9 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 2
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 1
 
+// Routable
+#define COCOAPODS_POD_AVAILABLE_Routable
+#define COCOAPODS_VERSION_MAJOR_Routable 0
+#define COCOAPODS_VERSION_MINOR_Routable 0
+#define COCOAPODS_VERSION_PATCH_Routable 7
+
