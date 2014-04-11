@@ -16,6 +16,14 @@
 
 @implementation BPLandingPage
 
+
++ (id)allocWithRouterParams:(NSDictionary *)params {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:[NSBundle mainBundle]];
+    BPLandingPage *instance = [storyboard instantiateViewControllerWithIdentifier:@"BPLandingPage"];
+    
+    return instance;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -25,11 +33,11 @@
     return self;
 }
 
-//- (void)viewDidLoad
-//{
-//    [super viewDidLoad];
-//    // Do any additional setup after loading the view.
-//}
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.navigationBarHidden = YES;
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -42,7 +50,8 @@
 
     NSString* uuid = [[NSUserDefaults standardUserDefaults] objectForKey:@"myUUID"];
     if(!uuid) {
-        [self performSegueWithIdentifier:@"landingToRegistered" sender:self];
+//        [self performSegueWithIdentifier:@"landingToRegistered" sender:self];
+        [[Routable sharedRouter] open:@"homePage"];
     } else {
         
         __block id getGamePlayData = [[NSNotificationCenter defaultCenter] addObserverForName:kGamePlayDataReceivedNotification object:[BPAPIClient sharedAPIClient] queue:nil usingBlock:^(NSNotification *note) {
@@ -62,7 +71,8 @@
             [defaults setObject:[target targetCodename] forKey:@"targetCodename"];
             [defaults setObject:UIImagePNGRepresentation([target targetThumbnail]) forKey:@"targetThumbnail"];
             [defaults synchronize];
-            [self performSegueWithIdentifier:@"landingToAlive" sender:self];
+//            [self performSegueWithIdentifier:@"landingToAlive" sender:self];
+            [[Routable sharedRouter] open:@"gameInProgressHome"];
             
         }];
         
@@ -75,9 +85,11 @@
             NSString *status = [rec status];
 //            [NSUserDefaults standardUserDefaults] setObject:@" forKey:
             if([status isEqualToString:@"Registered"]) {
-                [self performSegueWithIdentifier:@"landingToRegistered" sender:self];
+//                [self performSegueWithIdentifier:@"landingToRegistered" sender:self];
+                [[Routable sharedRouter] open:@"homePage"];
             } else if([status isEqualToString:@"Playing - Dead"]) {
-                [self performSegueWithIdentifier:@"landingToDead" sender:self];
+//                [self performSegueWithIdentifier:@"landingToDead" sender:self];
+                [[Routable sharedRouter] open:@"diedPage"];
             } else if([status isEqualToString:@"Playing - Alive"]) {
                 if([oldstatus isEqualToString:@"Registered"]) {
                     [[BPAPIClient sharedAPIClient] getGamePlayDataForGameId:[rec gameId]];

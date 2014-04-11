@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BPLandingPage : UIViewController
+@interface BPLandingPage : UINavigationController
 
 @end

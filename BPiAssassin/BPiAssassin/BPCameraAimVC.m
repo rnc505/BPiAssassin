@@ -21,6 +21,14 @@
 @synthesize cameraFeedView;
 @synthesize killTargetBtn;
 
++ (id)allocWithRouterParams:(NSDictionary *)params {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:[NSBundle mainBundle]];
+    BPCameraAimVC *instance = [storyboard instantiateViewControllerWithIdentifier:@"BPCameraAimVC"];
+    
+    return instance;
+}
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -49,7 +57,8 @@
 }
 
 - (IBAction)backBtnPressed:(id)sender {
-    [self performSegueWithIdentifier:@"viewTargetRequested" sender:self];
+//    [self performSegueWithIdentifier:@"viewTargetRequested" sender:self];
+    [[Routable sharedRouter] open:@"gameInProgressHome"];
 }
 
 - (IBAction)killTargetBtnPressed:(id)sender {
@@ -74,9 +83,11 @@
             [defaults setObject:@"Registered" forKey:@"CurrentUserStatus"];
             [defaults synchronize];
             
-            [self performSegueWithIdentifier:@"userWon" sender:self];
+//            [self performSegueWithIdentifier:@"userWon" sender:self];
+            [[Routable sharedRouter] open:@"youWon"];
         } else {
-            [self performSegueWithIdentifier:@"viewTargetRequested" sender:self];
+//            [self performSegueWithIdentifier:@"viewTargetRequested" sender:self];
+            [[Routable sharedRouter] open:@"gameInProgressHome"];
         }
         
         

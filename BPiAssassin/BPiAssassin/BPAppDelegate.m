@@ -13,6 +13,7 @@
 #import "BPAPIClient.h"
 #import "BPNotifications.h"
 #import "BPAPIClientObjects.h"
+#import "BPViewControllers.h"
 
 @implementation BPAppDelegate
 
@@ -21,26 +22,84 @@
     // Override point for customization after application launch.
     UAConfig *config = [UAConfig defaultConfig];
     [UAirship takeOff:config];
-    
+    [self registerRouting];
+    [[UINavigationBar appearance] setHidden:YES];
     return YES;
 }
 
+-(void)registerRouting {
+    
+    [[Routable sharedRouter] map:@"homePage" toController:[BPCreateGameVC class]];
+    [[Routable sharedRouter] map:@"gameInProgressHome" toController:[BPLiveGameVC class] withOptions:[UPRouterOptions modal]];
+    [[Routable sharedRouter] map:@"gameStatsPage" toController:[BPGameStatsVC class] withOptions:[UPRouterOptions modal]];
+    [[Routable sharedRouter] map:@"takeAimPage" toController:[BPCameraAimVC class] withOptions:[UPRouterOptions modal]];
+    [[Routable sharedRouter] map:@"matchmakingPage" toController:[BPMatchmakingVC class] withOptions:[UPRouterOptions modal]];
+    [[Routable sharedRouter] map:@"registerPage" toController:[BPRegisterUserVC class] withOptions:[UPRouterOptions modal]];
+    [[Routable sharedRouter] map:@"diedPage" toController:[BPDeadViewController class] withOptions:[UPRouterOptions modal]];
+    [[Routable sharedRouter] map:@"landingPage" toController:[BPLandingPage class]];
+    [[Routable sharedRouter] map:@"youWon" toController:[BPYouWonVC class] withOptions:[UPRouterOptions modal]];
+    [[Routable sharedRouter] setNavigationController:(BPLandingPage*)self.window.rootViewController];
+
+}
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     UIApplicationState state = [application applicationState];
     if (state == UIApplicationStateActive) {
-        //the app is in the foreground, so here you do your stuff since the OS does not do it for you
-        //navigate the "aps" dictionary looking for "loc-args" and "loc-key", for example, or your personal payload)
-        //[self updateStatus];
-//        [self.window.rootViewController viewDidAppear:NO];
+        NSString* uuid = [[NSUserDefaults standardUserDefaults] objectForKey:@"myUUID"];
+        __block id getGamePlayData = [[NSNotificationCenter defaultCenter] addObserverForName:kGamePlayDataReceivedNotification object:[BPAPIClient sharedAPIClient] queue:nil usingBlock:^(NSNotification *note) {
+            [[NSNotificationCenter defaultCenter] removeObserver:getGamePlayData];
+            
+            BPAPIGameplayDataReceived *gameplaydata = [[note userInfo] objectForKey:@"event"];
+        }];
         
-        if(self.window.rootViewController.presentedViewController) {
-//        [self.window.rootViewController.presentedViewController performSegueWithIdentifier:@"toLanding" sender:self.window.rootViewController.presentedViewController];
-            [self.window.rootViewController.presentedViewController dismissViewControllerAnimated:NO completion:nil];
-            [self.window.rootViewController viewDidAppear:NO];
-        } else {
-            [self.window.rootViewController viewDidAppear:NO];
-        }
+        
+        
+        __block id getTarget = [[NSNotificationCenter defaultCenter] addObserverForName:kTargetReceivedNotification object:[BPAPIClient sharedAPIClient] queue:nil usingBlock:^(NSNotification *note) {
+            [[NSNotificationCenter defaultCenter] removeObserver:getTarget];
+            
+            BPAPINewTargetReceived *target = [[note userInfo] objectForKey:@"event"];
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:[target targetId] forKey:@"targetUUID"];
+            [defaults setObject:[target targetCodename] forKey:@"targetCodename"];
+            [defaults setObject:UIImagePNGRepresentation([target targetThumbnail]) forKey:@"targetThumbnail"];
+            [defaults synchronize];
+            //            [self performSegueWithIdentifier:@"landingToAlive" sender:self];
+            [[Routable sharedRouter] open:@"gameInProgressHome"];
+            
+        }];
+        
+        __block id statusReceived = [[NSNotificationCenter defaultCenter] addObserverForName:kUserStatusReceiviedNotification object:[BPAPIClient sharedAPIClient] queue:nil usingBlock:^(NSNotification *note) {
+            [[NSNotificationCenter defaultCenter] removeObserver:statusReceived];
+            
+            BPAPIUserStatusReceived *rec = [[note userInfo] objectForKey:@"event"];
+            
+            NSString *oldstatus = [[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentUserState"];
+            NSString *status = [rec status];
+            //            [NSUserDefaults standardUserDefaults] setObject:@" forKey:
+            
+            if(![oldstatus isEqualToString:status]) {
+            if([status isEqualToString:@"Registered"]) {
+                //                [self performSegueWithIdentifier:@"landingToRegistered" sender:self];
+                [[Routable sharedRouter] open:@"homePage"];
+            } else if([status isEqualToString:@"Playing - Dead"]) {
+                //                [self performSegueWithIdentifier:@"landingToDead" sender:self];
+                [[Routable sharedRouter] open:@"diedPage"];
+            } else if([status isEqualToString:@"Playing - Alive"]) {
+                if([oldstatus isEqualToString:@"Registered"]) {
+                    [[BPAPIClient sharedAPIClient] getGamePlayDataForGameId:[rec gameId]];
+                    [[BPAPIClient sharedAPIClient] getTargetForGameId:[rec gameId] forUserId:uuid];
+                } else if ([oldstatus isEqualToString:@"Playing - Alive"]) {
+                    [[BPAPIClient sharedAPIClient] getTargetForGameId:[rec gameId] forUserId:uuid];
+                }
+            }
+            
+            [[NSUserDefaults standardUserDefaults] setObject:[rec gameId] forKey:@"gameUUID"];
+            [[NSUserDefaults standardUserDefaults] setObject:status forKey:@"CurrentUserState"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            }
+        }];
+        
+        [[BPAPIClient sharedAPIClient] getUserStatusForId:uuid];
     }
     
 }

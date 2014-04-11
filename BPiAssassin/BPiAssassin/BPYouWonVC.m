@@ -1,18 +1,29 @@
 //
-//  BPDeadViewController.m
+//  BPYouWonVC.m
 //  BPiAssassin
 //
-//  Created by Robby Cohen on 4/7/14.
+//  Created by Robby Cohen on 4/11/14.
 //  Copyright (c) 2014 BP. All rights reserved.
 //
 
-#import "BPDeadViewController.h"
+#import "BPYouWonVC.h"
 
-@interface BPDeadViewController ()
+@interface BPYouWonVC ()
 
 @end
 
-@implementation BPDeadViewController
+@implementation BPYouWonVC
+
++ (id)allocWithRouterParams:(NSDictionary *)params {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:[NSBundle mainBundle]];
+    BPYouWonVC *instance = [storyboard instantiateViewControllerWithIdentifier:@"BPYouWonVC"];
+    
+    return instance;
+}
+- (IBAction)retToHomeBtn:(id)sender {
+    [[Routable sharedRouter] open:@"homePage"];
+    
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -21,13 +32,6 @@
         // Custom initialization
     }
     return self;
-}
-
-+ (id)allocWithRouterParams:(NSDictionary *)params {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:[NSBundle mainBundle]];
-    BPDeadViewController *instance = [storyboard instantiateViewControllerWithIdentifier:@"BPDeadViewController"];
-    
-    return instance;
 }
 
 - (void)viewDidLoad

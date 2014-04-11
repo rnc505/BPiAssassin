@@ -14,6 +14,20 @@
 
 @implementation BPCreateGameVC
 @synthesize createOrRegisterBtn;
+
++ (id)allocWithRouterParams:(NSDictionary *)params {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:[NSBundle mainBundle]];
+    BPCreateGameVC *instance = [storyboard instantiateViewControllerWithIdentifier:@"BPCreateGameVC"];
+    
+    return instance;
+}
+
+- (id)initWithRouterParams:(NSDictionary *)params {
+    if ((self = [self initWithNibName:nil bundle:nil])) {
+    }
+    return self;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -24,9 +38,12 @@
 }
 - (IBAction)createOrRegisterBtnPressed:(id)sender {
     if([[NSUserDefaults standardUserDefaults] objectForKey:@"myUUID"]) {
-        [self performSegueWithIdentifier:@"createGameRequested" sender:self];
+//        [self performSegueWithIdentifier:@"createGameRequested" sender:self];
+        [[Routable sharedRouter] open:@"matchmakingPage"];
     } else {
-        [self performSegueWithIdentifier:@"registerRequested" sender:self];
+//        [self performSegueWithIdentifier:@"registerRequested" sender:self];
+        [[Routable sharedRouter] open:@"registerPage"];
+
     }
 }
 

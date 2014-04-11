@@ -22,6 +22,13 @@
 
 @implementation BPRegisterUserVC
 
++ (id)allocWithRouterParams:(NSDictionary *)params {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:[NSBundle mainBundle]];
+    BPRegisterUserVC *instance = [storyboard instantiateViewControllerWithIdentifier:@"BPRegisterUserVC"];
+    
+    return instance;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -163,8 +170,10 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         [[NSUserDefaults standardUserDefaults] setObject:[event userId] forKey:@"myUUID"];
         [[NSUserDefaults standardUserDefaults] setObject:@"Registered" forKey:@"CurrentUserState"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        [self performSegueWithIdentifier:@"userRegistered" sender:self];
-                
+//        [self performSegueWithIdentifier:@"userRegistered" sender:self];
+        
+        [[Routable sharedRouter] open:@"homePage"];
+        
     }];
     
     NSString* registeredId;
