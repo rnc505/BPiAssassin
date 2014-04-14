@@ -108,6 +108,18 @@
             NSString *oldstatus = [[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentUserStatus"];
             NSString *status = [rec status];
             //            [NSUserDefaults standardUserDefaults] setObject:@" forKey:
+            
+            if([oldstatus isEqualToString:status]) {
+                if([oldstatus isEqualToString:@"Registered"]) {
+                    [[Routable sharedRouter] open:@"homePage"];
+                } else if([oldstatus isEqualToString:@"Playing - Dead"]) {
+                    [[Routable sharedRouter] open:@"diedPage"];
+                } else if([oldstatus isEqualToString:@"Playing - Alive"]) {
+                    [[Routable sharedRouter] open:@"gameInProgressHome"];
+                }
+
+                
+            } else {
             if([status isEqualToString:@"Registered"]) {
                 //                [self performSegueWithIdentifier:@"landingToRegistered" sender:self];
                 [[Routable sharedRouter] open:@"homePage"];
@@ -121,6 +133,8 @@
                 } else if ([oldstatus isEqualToString:@"Playing - Alive"]) {
                     [[BPAPIClient sharedAPIClient] getTargetForGameId:[rec gameId] forUserId:uuid];
                 }
+            }
+                
             }
             
             [[NSUserDefaults standardUserDefaults] setObject:[rec gameId] forKey:@"gameUUID"];
