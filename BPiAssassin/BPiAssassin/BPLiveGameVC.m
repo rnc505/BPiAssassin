@@ -51,7 +51,7 @@
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *attributes = [(NSAttributedString *)targetCodenameLabel.attributedText attributesAtIndex:0 effectiveRange:NULL];
     targetCodenameLabel.attributedText = [[NSAttributedString alloc] initWithString:[defaults objectForKey:@"targetCodename"] attributes:attributes];
