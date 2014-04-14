@@ -58,12 +58,12 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *attributes = [(NSAttributedString *)targetCodenameLabel.attributedText attributesAtIndex:0 effectiveRange:NULL];
-    targetCodenameLabel.attributedText = [[NSAttributedString alloc] initWithString:[defaults objectForKey:@"targetCodename"] attributes:attributes];
-    NSData *imageData = [defaults objectForKey:@"targetThumbnail"];
-    UIImage *image = [UIImage imageWithData:imageData];
-    targetThumbnail.image = image;
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSDictionary *attributes = [(NSAttributedString *)targetCodenameLabel.attributedText attributesAtIndex:0 effectiveRange:NULL];
+//    targetCodenameLabel.attributedText = [[NSAttributedString alloc] initWithString:[defaults objectForKey:@"targetCodename"] attributes:attributes];
+//    NSData *imageData = [defaults objectForKey:@"targetThumbnail"];
+//    UIImage *image = [UIImage imageWithData:imageData];
+//    targetThumbnail.image = image;
     
 }
 
