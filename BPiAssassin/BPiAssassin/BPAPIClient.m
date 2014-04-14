@@ -153,7 +153,7 @@ static NSString * const kBaseUrl = @"http://iassassin-cs279.appspot.com/game/";
 }
 
 -(void)updateUserStatus:(NSString *)status {
-    [[NSUserDefaults standardUserDefaults] setObject:status forKey:@"CurrentUserState"];
+    [[NSUserDefaults standardUserDefaults] setObject:status forKey:@"CurrentUserStatus"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

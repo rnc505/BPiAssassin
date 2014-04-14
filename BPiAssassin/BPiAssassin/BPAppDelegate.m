@@ -105,7 +105,7 @@
             
             BPAPIUserStatusReceived *rec = [[note userInfo] objectForKey:@"event"];
             
-            NSString *oldstatus = [[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentUserState"];
+            NSString *oldstatus = [[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentUserStatus"];
             NSString *status = [rec status];
             //            [NSUserDefaults standardUserDefaults] setObject:@" forKey:
             if([status isEqualToString:@"Registered"]) {
@@ -124,7 +124,7 @@
             }
             
             [[NSUserDefaults standardUserDefaults] setObject:[rec gameId] forKey:@"gameUUID"];
-            [[NSUserDefaults standardUserDefaults] setObject:status forKey:@"CurrentUserState"];
+            [[NSUserDefaults standardUserDefaults] setObject:status forKey:@"CurrentUserStatus"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             
         }];
