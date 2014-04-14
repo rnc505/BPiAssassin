@@ -23,10 +23,20 @@
     return self;
 }
 
++ (id)allocWithRouterParams:(NSDictionary *)params {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:[NSBundle mainBundle]];
+    BPDeadViewController *instance = [storyboard instantiateViewControllerWithIdentifier:@"BPDeadViewController"];
+    
+    return instance;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    if(self.navigationController) {
+        [self.navigationController setNavigationBarHidden:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning

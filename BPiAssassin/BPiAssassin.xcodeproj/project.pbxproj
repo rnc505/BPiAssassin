@@ -53,6 +53,7 @@
 		D512B4A218EE0C5500601738 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D512B4A018EE0C5500601738 /* CoreTelephony.framework */; };
 		D512B4A618EE0D1700601738 /* AirshipConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = D512B4A518EE0D1700601738 /* AirshipConfig.plist */; };
 		D512B62018EE137000601738 /* libUAirship-4.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D512B61F18EE137000601738 /* libUAirship-4.0.0.a */; };
+		D518508718F8610800814DD8 /* BPYouWonVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D518508618F8610800814DD8 /* BPYouWonVC.m */; };
 		D571F50F18E27E580098D973 /* BPDemoServerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D571F50E18E27E580098D973 /* BPDemoServerVC.m */; };
 		D584E4AB18F3A52200BEC305 /* BPAPIUserStatusReceived.m in Sources */ = {isa = PBXBuildFile; fileRef = D584E4AA18F3A52200BEC305 /* BPAPIUserStatusReceived.m */; };
 		D584E4B018F3AD2400BEC305 /* BPDeadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D584E4AF18F3AD2400BEC305 /* BPDeadViewController.m */; };
@@ -225,6 +226,9 @@
 		D512B74418EE162D00601738 /* UADeviceRegistrar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UADeviceRegistrar.h; sourceTree = "<group>"; };
 		D512B74518EE162D00601738 /* UADeviceRegistrationPayload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UADeviceRegistrationPayload.h; sourceTree = "<group>"; };
 		D512B74618EE162D00601738 /* UAPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAPush.h; sourceTree = "<group>"; };
+		D518508218F7420A00814DD8 /* BPViewControllers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPViewControllers.h; sourceTree = "<group>"; };
+		D518508518F8610800814DD8 /* BPYouWonVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPYouWonVC.h; sourceTree = "<group>"; };
+		D518508618F8610800814DD8 /* BPYouWonVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPYouWonVC.m; sourceTree = "<group>"; };
 		D571F50D18E27E580098D973 /* BPDemoServerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDemoServerVC.h; sourceTree = "<group>"; };
 		D571F50E18E27E580098D973 /* BPDemoServerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDemoServerVC.m; sourceTree = "<group>"; };
 		D584E4A918F3A52200BEC305 /* BPAPIUserStatusReceived.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPAPIUserStatusReceived.h; sourceTree = "<group>"; };
@@ -365,6 +369,9 @@
 				D584E4AF18F3AD2400BEC305 /* BPDeadViewController.m */,
 				D584E4B118F3B99B00BEC305 /* BPLandingPage.h */,
 				D584E4B218F3B99B00BEC305 /* BPLandingPage.m */,
+				D518508218F7420A00814DD8 /* BPViewControllers.h */,
+				D518508518F8610800814DD8 /* BPYouWonVC.h */,
+				D518508618F8610800814DD8 /* BPYouWonVC.m */,
 			);
 			path = BPiAssassin;
 			sourceTree = "<group>";
@@ -743,6 +750,7 @@
 				D5B01E6018E134D500BDC3A6 /* BPAPIClient.m in Sources */,
 				D512B48618EB621500601738 /* BPAPIGameCreated.m in Sources */,
 				D584E4B318F3B99B00BEC305 /* BPLandingPage.m in Sources */,
+				D518508718F8610800814DD8 /* BPYouWonVC.m in Sources */,
 				D512B48918EB834800601738 /* BPAPIGameplayDataReceived.m in Sources */,
 				D512B48C18EB862A00601738 /* BPAPINewTargetReceived.m in Sources */,
 				525289C818EE3C830090DDA4 /* BPRegisterUserVC.m in Sources */,

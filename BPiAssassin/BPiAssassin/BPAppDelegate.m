@@ -13,36 +13,42 @@
 #import "BPAPIClient.h"
 #import "BPNotifications.h"
 #import "BPAPIClientObjects.h"
+#import "BPViewControllers.h"
 
 @implementation BPAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    _nav = [[UINavigationController alloc] initWithRootViewController:[BPLandingPage allocWithRouterParams:nil]];
     UAConfig *config = [UAConfig defaultConfig];
     [UAirship takeOff:config];
-    
+    [self registerRouting];
+    [self updateStatus];
+    [self.window setRootViewController:self.nav];
     return YES;
 }
 
+-(void)registerRouting {
+    
+    [[Routable sharedRouter] map:@"homePage" toController:[BPCreateGameVC class] withOptions:[UPRouterOptions root]];
+    [[Routable sharedRouter] map:@"gameInProgressHome" toController:[BPLiveGameVC class] withOptions:[UPRouterOptions root]];
+    [[Routable sharedRouter] map:@"gameStatsPage" toController:[BPGameStatsVC class] withOptions:[UPRouterOptions modal]];
+    [[Routable sharedRouter] map:@"takeAimPage" toController:[BPCameraAimVC class] withOptions:[UPRouterOptions modal]];
+    [[Routable sharedRouter] map:@"matchmakingPage" toController:[BPMatchmakingVC class] withOptions:[UPRouterOptions modal]];
+    [[Routable sharedRouter] map:@"registerPage" toController:[BPRegisterUserVC class] withOptions:[UPRouterOptions modal]];
+    [[Routable sharedRouter] map:@"diedPage" toController:[BPDeadViewController class] withOptions:[UPRouterOptions modal]];
+    [[Routable sharedRouter] map:@"landingPage" toController:[BPLandingPage class] withOptions:[UPRouterOptions root]];
+//    [[Routable sharedRouter] map:@"youWon" toController:[BPYouWonVC class]];
+    [[Routable sharedRouter] setNavigationController:self.nav];
+
+}
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     UIApplicationState state = [application applicationState];
     if (state == UIApplicationStateActive) {
-        //the app is in the foreground, so here you do your stuff since the OS does not do it for you
-        //navigate the "aps" dictionary looking for "loc-args" and "loc-key", for example, or your personal payload)
-        //[self updateStatus];
-//        [self.window.rootViewController viewDidAppear:NO];
-        
-        if(self.window.rootViewController.presentedViewController) {
-//        [self.window.rootViewController.presentedViewController performSegueWithIdentifier:@"toLanding" sender:self.window.rootViewController.presentedViewController];
-            [self.window.rootViewController.presentedViewController dismissViewControllerAnimated:NO completion:nil];
-            [self.window.rootViewController viewDidAppear:NO];
-        } else {
-            [self.window.rootViewController viewDidAppear:NO];
-        }
+        [self updateStatus];
     }
-    
 }
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -60,86 +66,71 @@
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     //[self updateStatus];
-    [self.window.rootViewController viewDidAppear:NO];
+//    [self.window.rootViewController viewDidAppear:NO];
+    [self updateStatus];
     
 }
 
 -(void)updateStatus {
-    if([[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentUserState"] == nil || [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentUserState"] isEqualToString:@"Unregistered"]) {
-        [[NSUserDefaults standardUserDefaults] setObject:@"Unregistered" forKey:@"CurrentUserState"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+    NSString* uuid = [[NSUserDefaults standardUserDefaults] objectForKey:@"myUUID"];
+    if(!uuid) {
+        //        [self performSegueWithIdentifier:@"landingToRegistered" sender:self];
+        [[Routable sharedRouter] open:@"homePage"];
     } else {
         
-        __block id status = [[NSNotificationCenter defaultCenter] addObserverForName:kUserStatusReceiviedNotification object:[BPAPIClient sharedAPIClient] queue:nil usingBlock:^(NSNotification *note) {
+        __block id getGamePlayData = [[NSNotificationCenter defaultCenter] addObserverForName:kGamePlayDataReceivedNotification object:[BPAPIClient sharedAPIClient] queue:nil usingBlock:^(NSNotification *note) {
+            [[NSNotificationCenter defaultCenter] removeObserver:getGamePlayData];
             
-            [[NSNotificationCenter defaultCenter] removeObserver:status];
+            BPAPIGameplayDataReceived *gameplaydata = [[note userInfo] objectForKey:@"event"];
+        }];
+        
+        
+        
+        __block id getTarget = [[NSNotificationCenter defaultCenter] addObserverForName:kTargetReceivedNotification object:[BPAPIClient sharedAPIClient] queue:nil usingBlock:^(NSNotification *note) {
+            [[NSNotificationCenter defaultCenter] removeObserver:getTarget];
             
-            BPAPIUserStatusReceived* notification = [[note userInfo] objectForKey:@"event"];
-            NSString *newStatus = [notification status];
-            NSString *oldStatus =[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentUserState"];
-            if(![newStatus isEqualToString:oldStatus]) {
-                // so current status is incorrect...
-                // therefore there is work to be done.
-                UIViewController *top = self.window.rootViewController;
-                BOOL worked = NO;
-                if([newStatus isEqualToString:@"Playing - Alive"]) { // segue from waiting to start a game
-                    @try {
-                        [top performSegueWithIdentifier:@"createGameRequested" sender:top]; // assume that its BPCreateGameVC
-                        worked = YES;
-                    }
-                    @catch (NSException *exception) {
-                        /* not the corrected VC*/
-                    }
-                    @finally { }
-                    if(!worked) {
-                        @try {
-                            [top performSegueWithIdentifier:@"gameSucessfullyStarted" sender:top]; // assume that is matchmaking
-                            worked = YES;
-                        }
-                        @catch (NSException *exception) {
-                            /* not the corrected VC*/
-                            
-                        }
-                        @finally { }
-                    }
-                    if(!worked) {
-                        [self alertFailure:@"Transitioning to 'Playing - Alive' Failed" description:@"Neither VC (BPCreateGameVC or BPMatchmakingVC) were open, so Segue failed"];
-                    }
-                } else if([newStatus isEqualToString:@"Playing - Dead"]) {
-                    @try {
-                        [top performSegueWithIdentifier:@"youGotKilled" sender:top]; // could be camera aim, game stats or live game
-                        worked = YES;
-                    }
-                    @catch (NSException *exception) {
-                        /* incorrect vc*/
-                    }
-                    @finally { }
-                    if(!worked) {
-                        [self alertFailure:@"Transitioning to 'Playing - Dead' Failed" description:@"None of the VCs were open, so segue failed"];
-                    }
-                } else if([newStatus isEqualToString:@"Registered"] && [oldStatus isEqualToString:@"Playing - Dead"]) {
-                    @try {
-                        [top performSegueWithIdentifier:@"deadToStart" sender:top];
-                        worked = YES;
-                    }
-                    @catch (NSException *exception) {
-                        /* incorrect vc */
-                    }
-                    @finally { }
-                    if(!worked) {
-                        [self alertFailure:@"Transitioning to 'Registered' from 'Playing - Dead' Failed" description:@"Dead VC wasn't up"];
-                    }
-                } else {
-                    [self alertFailure:@"Didn't catch something correct" description:[NSString stringWithFormat:@"Oops some weird shit just happened. Here's the old status %@. Here's the new status %@",oldStatus,newStatus]];
+            BPAPINewTargetReceived *target = [[note userInfo] objectForKey:@"event"];
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:[target targetId] forKey:@"targetUUID"];
+            [defaults setObject:[target targetCodename] forKey:@"targetCodename"];
+            [defaults setObject:UIImagePNGRepresentation([target targetThumbnail]) forKey:@"targetThumbnail"];
+            [defaults synchronize];
+            //            [self performSegueWithIdentifier:@"landingToAlive" sender:self];
+            [[Routable sharedRouter] open:@"gameInProgressHome"];
+            
+        }];
+        
+        __block id statusReceived = [[NSNotificationCenter defaultCenter] addObserverForName:kUserStatusReceiviedNotification object:[BPAPIClient sharedAPIClient] queue:nil usingBlock:^(NSNotification *note) {
+            [[NSNotificationCenter defaultCenter] removeObserver:statusReceived];
+            
+            BPAPIUserStatusReceived *rec = [[note userInfo] objectForKey:@"event"];
+            
+            NSString *oldstatus = [[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentUserState"];
+            NSString *status = [rec status];
+            //            [NSUserDefaults standardUserDefaults] setObject:@" forKey:
+            if([status isEqualToString:@"Registered"]) {
+                //                [self performSegueWithIdentifier:@"landingToRegistered" sender:self];
+                [[Routable sharedRouter] open:@"homePage"];
+            } else if([status isEqualToString:@"Playing - Dead"]) {
+                //                [self performSegueWithIdentifier:@"landingToDead" sender:self];
+                [[Routable sharedRouter] open:@"diedPage"];
+            } else if([status isEqualToString:@"Playing - Alive"]) {
+                if([oldstatus isEqualToString:@"Registered"]) {
+                    [[BPAPIClient sharedAPIClient] getGamePlayDataForGameId:[rec gameId]];
+                    [[BPAPIClient sharedAPIClient] getTargetForGameId:[rec gameId] forUserId:uuid];
+                } else if ([oldstatus isEqualToString:@"Playing - Alive"]) {
+                    [[BPAPIClient sharedAPIClient] getTargetForGameId:[rec gameId] forUserId:uuid];
                 }
             }
-            [[NSUserDefaults standardUserDefaults] setObject:newStatus forKey:@"CurrentUserState"];
+            
+            [[NSUserDefaults standardUserDefaults] setObject:[rec gameId] forKey:@"gameUUID"];
+            [[NSUserDefaults standardUserDefaults] setObject:status forKey:@"CurrentUserState"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             
         }];
-        [[BPAPIClient sharedAPIClient] getUserStatusForId:[[NSUserDefaults standardUserDefaults] objectForKey:@"myUUID"]];
-    }
-}
+        
+        [[BPAPIClient sharedAPIClient] getUserStatusForId:uuid];
+    }}
 
 -(void)alertFailure:(NSString*)title description:(NSString*)description {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:description delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];

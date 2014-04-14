@@ -25,6 +25,14 @@
 
 @implementation BPMatchmakingVC
 
+
++ (id)allocWithRouterParams:(NSDictionary *)params {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:[NSBundle mainBundle]];
+    BPMatchmakingVC *instance = [storyboard instantiateViewControllerWithIdentifier:@"BPMatchmakingVC"];
+    
+    return instance;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -87,7 +95,8 @@
         [defaults setObject:UIImagePNGRepresentation([target targetThumbnail]) forKey:@"targetThumbnail"];
         [defaults synchronize];
         
-        [self performSegueWithIdentifier:@"gameSucessfullyStarted" sender:self];
+//        [self performSegueWithIdentifier:@"gameSucessfullyStarted" sender:self];
+//        [[Routable sharedRouter] open:@"gameInProgressHome"];
     }];
 
     //TO DO
@@ -99,6 +108,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if(self.navigationController) {
+        [self.navigationController setNavigationBarHidden:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning

@@ -7,7 +7,7 @@
         <!--Register UserVC-->
         <scene sceneID="gNd-re-9fu">
             <objects>
-                <viewController id="IJ3-vM-9aK" customClass="BPRegisterUserVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BPRegisterUserVC" id="IJ3-vM-9aK" customClass="BPRegisterUserVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wla-St-dxR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -131,7 +131,7 @@
         <!--Create GameVC-->
         <scene sceneID="Ezz-mA-t0C">
             <objects>
-                <viewController id="m45-WM-bjU" customClass="BPCreateGameVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BPCreateGameVC" id="m45-WM-bjU" customClass="BPCreateGameVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2iy-HL-a9J">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -183,7 +183,7 @@
         <!--Landing Page-->
         <scene sceneID="vci-17-d4c">
             <objects>
-                <viewController id="CkY-aM-Ibe" customClass="BPLandingPage" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BPLandingPage" id="CkY-aM-Ibe" customClass="BPLandingPage" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vI3-ch-rfk">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -221,7 +221,7 @@
         <!--Dead View Controller-->
         <scene sceneID="HjY-n7-Y4G">
             <objects>
-                <viewController id="G7Y-y4-pjA" customClass="BPDeadViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BPDeadViewController" id="G7Y-y4-pjA" customClass="BPDeadViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RrK-jG-uNy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -254,7 +254,7 @@
         <!--Game StatsVC-->
         <scene sceneID="Tb9-NL-Nfh">
             <objects>
-                <viewController id="xeq-E3-4XT" customClass="BPGameStatsVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BPGameStatsVC" id="xeq-E3-4XT" customClass="BPGameStatsVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="m3g-gF-gyh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -313,7 +313,7 @@
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="Ko2-GT-4Q2" kind="modal" id="bmi-um-eqt"/>
+                                                    <action selector="backButtonPressed:" destination="xeq-E3-4XT" eventType="touchUpInside" id="zUJ-Dd-8Z6"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
@@ -334,7 +334,7 @@
         <!--Camera AimVC-->
         <scene sceneID="w3t-dc-DcZ">
             <objects>
-                <viewController id="CtU-Ht-5kP" customClass="BPCameraAimVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BPCameraAimVC" id="CtU-Ht-5kP" customClass="BPCameraAimVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ttr-O5-JEL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -485,7 +485,7 @@
         <!--Live GameVC-->
         <scene sceneID="yOQ-Uf-JDa">
             <objects>
-                <viewController id="Ko2-GT-4Q2" customClass="BPLiveGameVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BPLiveGameVC" id="Ko2-GT-4Q2" customClass="BPLiveGameVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bII-bZ-ftx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -533,7 +533,7 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="CtU-Ht-5kP" kind="modal" identifier="cameraAimRequest" id="Z24-EM-Ier"/>
+                                    <action selector="aimBtnPressed:" destination="Ko2-GT-4Q2" eventType="touchUpInside" id="M0J-CL-QGe"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eKq-tm-Dbf">
@@ -545,7 +545,7 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="xeq-E3-4XT" kind="modal" id="1A8-2M-fj9"/>
+                                    <action selector="gameStatsBtnPressed:" destination="Ko2-GT-4Q2" eventType="touchUpInside" id="Qdk-29-2II"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -561,10 +561,10 @@
             </objects>
             <point key="canvasLocation" x="1139" y="-1055"/>
         </scene>
-        <!--View Controller-->
+        <!--You WonVC-->
         <scene sceneID="dda-tl-Phz">
             <objects>
-                <viewController id="cfY-co-OHr" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BPYouWonVC" id="cfY-co-OHr" customClass="BPYouWonVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="940-Ns-1Pn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -582,7 +582,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="m45-WM-bjU" kind="modal" id="Gug-hI-pjy"/>
+                                    <action selector="retToHomeBtn:" destination="cfY-co-OHr" eventType="touchUpInside" id="NAv-Ve-43t"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -596,7 +596,7 @@
         <!--MatchmakingVC-->
         <scene sceneID="SFx-GZ-CDW">
             <objects>
-                <viewController id="KRu-GM-4s1" customClass="BPMatchmakingVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BPMatchmakingVC" id="KRu-GM-4s1" customClass="BPMatchmakingVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xhm-ph-JAI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -685,9 +685,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="IzN-st-1Mu"/>
         <segue reference="vsC-3p-bmC"/>
-        <segue reference="L2U-O3-xA2"/>
-        <segue reference="Ifj-02-cE2"/>
+        <segue reference="RoQ-4T-m46"/>
+        <segue reference="Qmp-cU-v02"/>
+        <segue reference="76c-Uv-dnt"/>
     </inferredMetricsTieBreakers>
 </document>

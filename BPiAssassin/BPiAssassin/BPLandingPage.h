@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface BPLandingPage : UIViewController
-
++ (id)allocWithRouterParams:(NSDictionary *)params;
 @end

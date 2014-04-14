@@ -1,27 +1,28 @@
 //
-//  BPLandingPage.m
+//  BPYouWonVC.m
 //  BPiAssassin
 //
-//  Created by Robby Cohen on 4/7/14.
+//  Created by Robby Cohen on 4/11/14.
 //  Copyright (c) 2014 BP. All rights reserved.
 //
 
-#import "BPLandingPage.h"
-#import "BPAPIClient.h"
-#import "BPAPIClientObjects.h"
-#import "BPNotifications.h"
-@interface BPLandingPage ()
+#import "BPYouWonVC.h"
+
+@interface BPYouWonVC ()
 
 @end
 
-@implementation BPLandingPage
-
+@implementation BPYouWonVC
 
 + (id)allocWithRouterParams:(NSDictionary *)params {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:[NSBundle mainBundle]];
-    BPLandingPage *instance = [storyboard instantiateViewControllerWithIdentifier:@"BPLandingPage"];
+    BPYouWonVC *instance = [storyboard instantiateViewControllerWithIdentifier:@"BPYouWonVC"];
     
     return instance;
+}
+- (IBAction)retToHomeBtn:(id)sender {
+    [[Routable sharedRouter] open:@"homePage"];
+    
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -36,6 +37,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // Do any additional setup after loading the view.
     if(self.navigationController) {
         [self.navigationController setNavigationBarHidden:YES];
     }
@@ -45,11 +47,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-
 }
 
 /*

@@ -21,6 +21,14 @@
 @synthesize cameraFeedView;
 @synthesize killTargetBtn;
 
++ (id)allocWithRouterParams:(NSDictionary *)params {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:[NSBundle mainBundle]];
+    BPCameraAimVC *instance = [storyboard instantiateViewControllerWithIdentifier:@"BPCameraAimVC"];
+    
+    return instance;
+}
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -38,6 +46,9 @@
     
     //TO DO
     //Camera Capture here
+    if(self.navigationController) {
+        [self.navigationController setNavigationBarHidden:YES];
+    }
     [self setUpCameraForUImage];
     
 }
@@ -49,7 +60,8 @@
 }
 
 - (IBAction)backBtnPressed:(id)sender {
-    [self performSegueWithIdentifier:@"viewTargetRequested" sender:self];
+//    [self performSegueWithIdentifier:@"viewTargetRequested" sender:self];
+    [[Routable sharedRouter] open:@"gameInProgressHome"];
 }
 
 - (IBAction)killTargetBtnPressed:(id)sender {
@@ -73,10 +85,16 @@
             [defaults setBool:NO forKey:@"gameInProgress"];
             [defaults setObject:@"Registered" forKey:@"CurrentUserStatus"];
             [defaults synchronize];
+//            [[Routable sharedRouter] pop:NO];
+//            [self performSegueWithIdentifier:@"userWon" sender:self];
+//            [[Routable sharedRouter] open:@"youWon"];
+            UIAlertView *winAlert = [[UIAlertView alloc] initWithTitle:@"You Won!" message:@"Congratulations, you won the game!" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
+            [winAlert show];
             
-            [self performSegueWithIdentifier:@"userWon" sender:self];
+//            [[Routable sharedRouter] open:@"homePage"];
         } else {
-            [self performSegueWithIdentifier:@"viewTargetRequested" sender:self];
+//            [self performSegueWithIdentifier:@"viewTargetRequested" sender:self];
+            [[Routable sharedRouter] open:@"gameInProgressHome"];
         }
         
         

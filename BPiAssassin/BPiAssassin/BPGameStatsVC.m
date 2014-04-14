@@ -14,6 +14,16 @@
 
 @implementation BPGameStatsVC
 
++ (id)allocWithRouterParams:(NSDictionary *)params {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:[NSBundle mainBundle]];
+    BPGameStatsVC *instance = [storyboard instantiateViewControllerWithIdentifier:@"BPGameStatsVC"];
+    
+    return instance;
+}
+- (IBAction)backButtonPressed:(id)sender {
+    [[Routable sharedRouter] open:@"gameInProgressHome"];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -27,6 +37,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    if(self.navigationController) {
+        [self.navigationController setNavigationBarHidden:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning

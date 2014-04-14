@@ -20,6 +20,8 @@
 
 @implementation BPDemoServerVC
 
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -126,6 +128,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    if(self.navigationController) {
+        [self.navigationController setNavigationBarHidden:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning

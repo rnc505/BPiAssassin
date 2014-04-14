@@ -20,6 +20,19 @@
 @synthesize targetThumbnail;
 
 
++ (id)allocWithRouterParams:(NSDictionary *)params {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:[NSBundle mainBundle]];
+    BPLiveGameVC *instance = [storyboard instantiateViewControllerWithIdentifier:@"BPLiveGameVC"];
+    
+    return instance;
+}
+- (IBAction)aimBtnPressed:(id)sender {
+    [[Routable sharedRouter] open:@"takeAimPage"];
+}
+- (IBAction)gameStatsBtnPressed:(id)sender {
+    [[Routable sharedRouter] open:@"gameStatsPage"];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -33,6 +46,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    if(self.navigationController) {
+        [self.navigationController setNavigationBarHidden:YES];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
