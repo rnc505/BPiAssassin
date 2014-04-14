@@ -96,7 +96,7 @@
         [defaults synchronize];
         
 //        [self performSegueWithIdentifier:@"gameSucessfullyStarted" sender:self];
-        [[Routable sharedRouter] open:@"gameInProgressHome"];
+//        [[Routable sharedRouter] open:@"gameInProgressHome"];
     }];
 
     //TO DO
@@ -108,6 +108,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if(self.navigationController) {
+        [self.navigationController setNavigationBarHidden:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning

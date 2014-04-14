@@ -102,6 +102,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if(self.navigationController) {
+        [self.navigationController setNavigationBarHidden:YES];
+    }
     NSLog(@"Loaded");
     [self addTapRecognizer:self.usrImage1];
     [self addTapRecognizer:self.usrImage2];

@@ -17,6 +17,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if(self.navigationController) {
+        [self.navigationController setNavigationBarHidden:YES];
+    }
 	// Do any additional setup after loading the view, typically from a nib.
     
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {

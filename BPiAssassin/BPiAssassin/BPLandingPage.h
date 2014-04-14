@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BPLandingPage : UINavigationController
-
+@interface BPLandingPage : UIViewController
++ (id)allocWithRouterParams:(NSDictionary *)params;
 @end

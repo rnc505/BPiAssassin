@@ -46,6 +46,9 @@
     
     //TO DO
     //Camera Capture here
+    if(self.navigationController) {
+        [self.navigationController setNavigationBarHidden:YES];
+    }
     [self setUpCameraForUImage];
     
 }
@@ -82,9 +85,13 @@
             [defaults setBool:NO forKey:@"gameInProgress"];
             [defaults setObject:@"Registered" forKey:@"CurrentUserStatus"];
             [defaults synchronize];
-            
+//            [[Routable sharedRouter] pop:NO];
 //            [self performSegueWithIdentifier:@"userWon" sender:self];
-            [[Routable sharedRouter] open:@"youWon"];
+//            [[Routable sharedRouter] open:@"youWon"];
+            UIAlertView *winAlert = [[UIAlertView alloc] initWithTitle:@"You Won!" message:@"Congratulations, you won the game!" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
+            [winAlert show];
+            
+//            [[Routable sharedRouter] open:@"homePage"];
         } else {
 //            [self performSegueWithIdentifier:@"viewTargetRequested" sender:self];
             [[Routable sharedRouter] open:@"gameInProgressHome"];
