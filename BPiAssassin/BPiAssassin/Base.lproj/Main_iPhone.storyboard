@@ -125,7 +125,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fMp-PU-Jfl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="729" y="-59"/>
+            <point key="canvasLocation" x="449" y="-1295"/>
         </scene>
         <!--Create GameVC-->
         <scene sceneID="Ezz-mA-t0C">
@@ -135,8 +135,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="PMs-WV-Ulw">
-                                <rect key="frame" x="34" y="103" width="253" height="326"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="waterFight.jpg" id="PMs-WV-Ulw">
+                                <rect key="frame" x="0.0" y="103" width="320" height="372"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Yvk-NS-DU5">
@@ -206,7 +206,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gJ6-EQ-1bo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-668" y="441"/>
+            <point key="canvasLocation" x="-1148" y="-503"/>
         </scene>
         <!--Dead View Controller-->
         <scene sceneID="HjY-n7-Y4G">
@@ -373,7 +373,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S1N-Yf-SIU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="758" y="-1987"/>
+            <point key="canvasLocation" x="602" y="-562"/>
         </scene>
         <!--Demo ServerVC-->
         <scene sceneID="NF6-gX-jMN">
@@ -536,7 +536,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b1s-xR-8pW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1139" y="-1055"/>
+            <point key="canvasLocation" x="975" y="-1311"/>
         </scene>
         <!--You WonVC-->
         <scene sceneID="dda-tl-Phz">
@@ -568,7 +568,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AUX-dV-hYq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-154" y="-1680"/>
+            <point key="canvasLocation" x="122" y="-608"/>
         </scene>
         <!--MatchmakingVC-->
         <scene sceneID="SFx-GZ-CDW">
@@ -645,12 +645,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GmK-7O-9Zv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="487" y="-1288"/>
+            <point key="canvasLocation" x="-77" y="-1344"/>
         </scene>
     </scenes>
     <resources>
         <image name="Hot Blood Wallpapers.jpg" width="1600" height="1200"/>
         <image name="icon29pt.png" width="58" height="58"/>
+        <image name="waterFight.jpg" width="460" height="276"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

@@ -15,6 +15,7 @@
 		5272563418B47E3800F3E8FA /* icon60pt.png in Resources */ = {isa = PBXBuildFile; fileRef = 5272563118B47E3800F3E8FA /* icon60pt.png */; };
 		5272563618B4848600F3E8FA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5272563518B4848600F3E8FA /* Default.png */; };
 		5272563818B4870000F3E8FA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5272563718B4870000F3E8FA /* Default@2x.png */; };
+		529A6C1918FDBC2700D52894 /* waterFight.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 529A6C1818FDBC2700D52894 /* waterFight.jpg */; };
 		52CA373C18B0291400A87AAE /* BPCreateGameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CA373B18B0291400A87AAE /* BPCreateGameVC.m */; };
 		52CA373F18B0294700A87AAE /* BPLiveGameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CA373E18B0294700A87AAE /* BPLiveGameVC.m */; };
 		52CA374218B029AC00A87AAE /* BPGameStatsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CA374118B029AC00A87AAE /* BPGameStatsVC.m */; };
@@ -97,6 +98,7 @@
 		5272563118B47E3800F3E8FA /* icon60pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon60pt.png; sourceTree = "<group>"; };
 		5272563518B4848600F3E8FA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		5272563718B4870000F3E8FA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		529A6C1818FDBC2700D52894 /* waterFight.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = waterFight.jpg; sourceTree = "<group>"; };
 		52CA373A18B0291400A87AAE /* BPCreateGameVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCreateGameVC.h; sourceTree = "<group>"; };
 		52CA373B18B0291400A87AAE /* BPCreateGameVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCreateGameVC.m; sourceTree = "<group>"; };
 		52CA373D18B0294700A87AAE /* BPLiveGameVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPLiveGameVC.h; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 		D510A79E1890790000DBCD91 = {
 			isa = PBXGroup;
 			children = (
+				529A6C1818FDBC2700D52894 /* waterFight.jpg */,
 				5272563718B4870000F3E8FA /* Default@2x.png */,
 				5272563518B4848600F3E8FA /* Default.png */,
 				5272562F18B47E3800F3E8FA /* icon29pt.png */,
@@ -685,6 +688,7 @@
 				D512B4A618EE0D1700601738 /* AirshipConfig.plist in Resources */,
 				5272563318B47E3800F3E8FA /* icon40pt.png in Resources */,
 				D510A7C61890790000DBCD91 /* Images.xcassets in Resources */,
+				529A6C1918FDBC2700D52894 /* waterFight.jpg in Resources */,
 				D510A7BE1890790000DBCD91 /* Main_iPhone.storyboard in Resources */,
 				5272563218B47E3800F3E8FA /* icon29pt.png in Resources */,
 				D510A7B51890790000DBCD91 /* InfoPlist.strings in Resources */,
