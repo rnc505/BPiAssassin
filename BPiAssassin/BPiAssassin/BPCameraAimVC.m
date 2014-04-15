@@ -13,7 +13,7 @@
 #import "BPAPIClientObjects.h"
 
 @interface BPCameraAimVC ()
-
+@property (nonatomic, retain) AVCaptureSession *sesh;
 @end
 
 @implementation BPCameraAimVC
@@ -65,7 +65,9 @@
 }
 
 - (IBAction)killTargetBtnPressed:(id)sender {
+    [self.sesh stopRunning];
     killTargetBtn.enabled = NO;
+    [NSThread sleepForTimeInterval:2.f];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     __block id nextTargetReceived = [[NSNotificationCenter defaultCenter] addObserverForName:kUserKilledNotification object:[BPAPIClient sharedAPIClient] queue:nil usingBlock:^(NSNotification *note) {
@@ -139,6 +141,7 @@
 	[session addInput:input];
 	
 	[session startRunning];
+    self.sesh = session;
 }
 
 
